@@ -11,6 +11,5 @@ function love.draw()
 end
 
 function draw_init()
-	
-	
+	--init here
 end
