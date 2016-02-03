@@ -12,11 +12,11 @@ function State_Menu:create()
 	self.__index = self
 	
 	--initialise all buttons for the menu 
-	con = Button:create("continue",{},150)
-	bdl = Button:create("borderless",{"off","on"},250)
+	con = Button:create("continue",{},200)
+	ful = Button:create("fullscreen",{"off","on"},250)
 	qut = Button:create("back to main menu",{},300)
 
-	new.buttons = { con, ful, bdl, qut}
+	new.buttons = { con, ful, qut}
 	--this holds the bindings and name of the keys or buttons
 	--					NAME		KEY		BUTTON	PRESSED
 	State_Menu.bindings =  	{{"Back",	"escape",	10,		false}
@@ -80,5 +80,12 @@ function State_Menu:button(name,set)
 		else
 			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {borderless = false})
 		end
+	elseif name == "fullscreen" then
+		if set == "on" then
+			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {fullscreen = true})
+		else
+			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {fullscreen = false})
+		end
 	end
+	
 end
