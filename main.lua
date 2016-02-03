@@ -6,7 +6,7 @@ resx, resy = love.graphics.getWidth( )/mag, love.graphics.getHeight( )/mag
 function love.load()
 	love.graphics.setBackgroundColor(100,100,100)
 	draw_init()
-	background = love.graphics.newImage( "media/level.png" )
+	background = love.graphics.newImage("media/level.png")
 end
 
 function love.update(dt)
