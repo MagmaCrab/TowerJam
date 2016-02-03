@@ -2,8 +2,14 @@
 	main game loop  
 ]]--
 
+require "animation"
+require "boundingbox"
+require "enemy_dynamic"
+require "enemy_static"
 require "button"
 require "InputHandler"
+require "level"
+require "player"
 require "State_Game"
 require "State_Main"
 require "State_Menu"
@@ -18,7 +24,7 @@ function love.load()
 	stateIndex = 1
 	states = {State_Main:create(), State_Game:create(), State_Menu:create()}
 	
-	print(states[stateIndex].bindings[1][4])
+	print("System succesfully started")
 end
 
 function love.update(dt)

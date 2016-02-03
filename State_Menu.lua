@@ -78,12 +78,5 @@ function State_Menu:button(name,set)
 		else
 			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {borderless = false})
 		end
-	elseif name == "fullscreen" then
-		if set == "on" then
-			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {fullscreen = true})
-		else
-			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {fullscreen = false})
-		end
 	end
-	
 end

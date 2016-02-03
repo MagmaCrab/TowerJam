@@ -47,8 +47,6 @@ end
 
 function InputHandler:bindSearch(button, keyboard, pressed)
 	state  = states[stateIndex]
-	print(stateIndex..":"..button..tostring(pressed))
-
 	for i=0,2,1 do
 		for j=1,#state.bindings,1 do
 		control = i

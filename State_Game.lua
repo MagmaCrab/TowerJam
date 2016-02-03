@@ -19,11 +19,16 @@ function State_Game:create()
 	resy = love.graphics.getHeight() / pixelSize
 	canvas = love.graphics.newCanvas(resx, resy)
 	background = love.graphics.newImage("media/level.png")
+
+	levelIndex = 0;
+	player = Player:create(10, 10)
+--TODO intro animation
+	level = State_Game:nextLevel()
 	return new
 end
 
 function State_Game:update(dt)
-
+	level:update(dt)
 end
 
 function State_Game:draw()
@@ -31,12 +36,17 @@ function State_Game:draw()
 	love.graphics.clear( )
 
 	love.graphics.draw(background)
-
+	level:draw()
 
 	love.graphics.setCanvas()
 	love.graphics.draw(canvas, 0, 0, 0, pixelSize)
 end
 
+function State_Game:nextLevel()
+	levelIndex = levelIndex + 1
+	print("ascending to level "..levelIndex..".")
+	return Level:create(levelIndex, player)
+end
 --input handling--
 function State_Game:key(name, set)
 	if 		name == "Menu" then

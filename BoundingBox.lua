@@ -2,6 +2,7 @@
 AABB implementation for entity to tile collision detection in 2D
 this system only uses rectangular bounding boxes
 littleBit is a constant used for collision calculations.
+sx and sy are the inserting values
 ]]--
 BoundingBox = {}
 
