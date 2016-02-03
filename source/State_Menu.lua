@@ -13,7 +13,6 @@ function State_Menu:create()
 	
 	--initialise all buttons for the menu 
 	con = Button:create("continue",{},150)
-	ful = Button:create("fullscreen",{"off","on"},200)
 	bdl = Button:create("borderless",{"off","on"},250)
 	qut = Button:create("back to main menu",{},300)
 
@@ -81,12 +80,5 @@ function State_Menu:button(name,set)
 		else
 			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {borderless = false})
 		end
-	elseif name == "fullscreen" then
-		if set == "on" then
-			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {fullscreen = true})
-		else
-			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {fullscreen = false})
-		end
 	end
-	
 end
