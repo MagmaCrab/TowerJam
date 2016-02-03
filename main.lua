@@ -21,7 +21,7 @@ function love.load()
 	love.graphics.setDefaultFilter("nearest","nearest",1)
  
 	--Gamestates
-	stateIndex = 1
+	stateIndex = 2
 	states = {State_Main:create(), State_Game:create(), State_Menu:create()}
 	
 	print("System succesfully started")

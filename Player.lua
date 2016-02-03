@@ -10,26 +10,26 @@ function Player:create(x,y)
 	self.__index = self
 
 	new.bb = BoundingBox:create(x+2,y+2,10,10)
-	new.acc = 4
 	new.friction = 0.95
 	new.xSpeed = 0
 	new.ySpeed = 0
+	new.speed = 30
 
 	return new;
 end
 
 function Player:update(dt)
 	if     love.keyboard.isDown("a") or love.keyboard.isDown("left")then
-		self.xSpeed = self.xSpeed - self.acc
+		self.xSpeed = -self.speed
 	end
 	if     love.keyboard.isDown("d") or love.keyboard.isDown("right") then
-		self.xSpeed = self.xSpeed + self.acc
+		self.xSpeed = self.speed
 	end
 	if     love.keyboard.isDown("w") or love.keyboard.isDown("up") then
-		self.ySpeed = self.ySpeed - self.acc
+		self.ySpeed = -self.speed
 	end
 	if     love.keyboard.isDown("s") or love.keyboard.isDown("down") then
-		self.ySpeed = self.ySpeed + self.acc
+		self.ySpeed = self.speed
 	end
 	
 	self.xSpeed = self.xSpeed*(1-dt)*self.friction
@@ -40,6 +40,5 @@ function Player:update(dt)
 end
 
 function Player:draw()
-	self.bb:draw()
-	love.graphics.rectangle("fill", self.bb.x, self.bb.y, 12, 12)
+	love.graphics.rectangle("fill", (self.bb.x), (self.bb.y), 10, 10)
 end
