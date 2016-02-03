@@ -2,8 +2,6 @@
 	This class holds the in game menu state.
 ]]--
 
-require "source/Button"
-
 State_Menu = {}
 
 function State_Menu:create()

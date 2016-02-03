@@ -2,8 +2,6 @@
 	This class holds the main menu state.
 ]]--
 
-require "source/Button"
-
 State_Main = {}
 
 function State_Main:create()

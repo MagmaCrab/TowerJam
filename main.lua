@@ -2,10 +2,11 @@
 	main game loop  
 ]]--
 
-require "source/InputHandler"
-require "source/State_Game"
-require "source/State_Main"
-require "source/State_Menu"
+require "button"
+require "InputHandler"
+require "State_Game"
+require "State_Main"
+require "State_Menu"
 
 function love.load()
 	--fonts loading
