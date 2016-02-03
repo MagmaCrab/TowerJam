@@ -1,33 +1,59 @@
+--[[
+	main game loop  
+]]--
 
-mag = 2
-resx, resy = love.graphics.getWidth( )/mag, love.graphics.getHeight( )/mag
-
+require "source/InputHandler"
+require "source/State_Game"
+require "source/State_Main"
+require "source/State_Menu"
 
 function love.load()
-	love.graphics.setBackgroundColor(100,100,100)
-	draw_init()
-	background = love.graphics.newImage("media/level.png")
+	--fonts loading
+	font = love.graphics.newFont("media/runescape_uf.ttf",32)
+	love.graphics.setFont(font)
+	love.graphics.setDefaultFilter("nearest","nearest",1)
+ 
+	--Gamestates
+	stateIndex = 1
+	states = {State_Main:create(), State_Game:create(), State_Menu:create()}
+	
+	print(states[stateIndex].bindings[1][4])
 end
 
 function love.update(dt)
-	
+	states[stateIndex]:update(dt)
 end
 
 function love.draw()
-	love.graphics.setCanvas(canvas)
-	love.graphics.clear( )
-	--DRAW EVERYTHING
-	love.graphics.draw(background)
-	--draw canvas magnified
-	love.graphics.setCanvas()
-	love.graphics.setColor( 255, 255, 255)
- 	love.graphics.draw(canvas,0,0, 0, mag)
+	--refresh
+	love.graphics.setColor(0, 0, 0)
+	love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
+	love.graphics.setColor(255, 255, 255)
+	
+	states[stateIndex]:draw()	
 end
 
-function draw_init()
-	canvas = love.graphics.newCanvas( resx, resy)
-	canvas:setFilter("nearest", "nearest")
+		--callbacks--
+function love.keypressed(key, unicode)
+	InputHandler:keypressed(key, unicode)
 end
 
+function love.keyreleased(key, unicode)
+	InputHandler:keyreleased(key, unicode)
+end
 
+function love.joystickpressed(joystick, button)
+	InputHandler:joystickpressed(joystick, button)
+end
 
+function love.joystickreleased(joystick, button)
+	InputHandler:joystickreleased(joystick, button)
+end
+
+function love.mousepressed(x, y, button)
+	InputHandler:mousepressed(x, y, button)
+end
+
+function love.mousereleased(x, y, button)
+	InputHandler:mousereleased(x, y, button)
+end
