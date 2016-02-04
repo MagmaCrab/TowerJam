@@ -8,8 +8,8 @@ function love.conf(t)
 	t.title = "Tower Jam"
 	io.stdout:setvbuf("no")
 	
-	t.screen.width = 768        
-	t.screen.height = 576       
+	t.screen.width = 768
+	t.screen.height = 576
 	t.screen.borderless = false  
 	t.screen.resizable = false  
 	t.screen.fullscreen = false 
