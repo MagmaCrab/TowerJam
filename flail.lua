@@ -61,7 +61,9 @@ function flail:attack(dt)
 end
 
 function flail:draw()
-	
+	love.graphics.setColor(0, 0, 0, 128)
+	love.graphics.ellipse("fill", math.floor(self.x),  math.floor(self.y)+2, 3, 2)
+	love.graphics.setColor(255, 255, 255, 255)
 	love.graphics.draw(self.image,math.floor(self.x)-4,math.floor(self.y)-4)
 end
 

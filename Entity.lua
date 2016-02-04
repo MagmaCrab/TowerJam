@@ -12,6 +12,8 @@ function Entity:create(x, y, image, animationSpeed, bound)
 	new.ySpeed = 0
 	new.speed = 50
 	new.ai = nil
+	new.hp = 6
+	self.damaged = false
 	new.animation = Animation:create(image, animationSpeed)
 	new.lastDir = 1
 
@@ -47,6 +49,7 @@ function Entity:update(dt)
 			self.ySpeed = self.ySpeed + self.yKnock
 		else
 			self.tKnock = 0
+			self.damaged = false
 		end
 	end
 
@@ -65,10 +68,15 @@ end
 
 function Entity:draw()
 	-- Draw shadow for dynamic objects
+	love.graphics.setColor(255, 255, 255, 255)
 	if self.dynamic then
 		love.graphics.setColor(0, 0, 0, 128)
 	    love.graphics.ellipse("fill", math.floor(self.x),  math.floor(self.y)+7, 7, 3)
-	    love.graphics.setColor(255, 255, 255, 255)
+	    if(self.damaged)then
+		    love.graphics.setColor(255, 0, 0, 255)
+		else
+			love.graphics.setColor(255, 255, 255, love.graphics.setColor(255, 255, 255, 255))
+		end
 	end
 	self.animation:draw(math.floor(self.x)-8, math.floor(self.y)-8)
 end
@@ -147,6 +155,10 @@ function Entity:knock(other,speed)
 	self.xKnock = dx*self.speed*s
 	self.yKnock = dy*self.speed*s
 	self.tKnock = 0.15
+
+	if(self == player and other.dynamic) then
+		self.damaged = true
+	end
 end
 
 function Entity:checkCollisionOther(other)

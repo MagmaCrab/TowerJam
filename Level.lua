@@ -29,8 +29,9 @@ function Level:update(dt)
 end
 
 function Level:draw()
-	entities_ordered = entities
-
+	entities_ordered = {}
+	entities_ordered = shallowcopy(entities)
+	table.insert(entities_ordered,flail)
 	local function order(obj1,obj2)
 		return obj1.y<obj2.y
 	end
@@ -39,7 +40,7 @@ function Level:draw()
 	for i,v in ipairs(entities_ordered) do
 		v:draw()
 	end
-	flail:draw()
+	--flail:draw()
 end
 
 function Level:generate(index)
@@ -61,4 +62,18 @@ function Level:generate(index)
 	for i=1, dif do
 		table.insert(entities, factory:slime(200, 200))
 	end
+end
+
+function shallowcopy(orig)
+    local orig_type = type(orig)
+    local copy
+    if orig_type == 'table' then
+        copy = {}
+        for orig_key, orig_value in pairs(orig) do
+            copy[orig_key] = orig_value
+        end
+    else -- number, string, boolean, etc
+        copy = orig
+    end
+    return copy
 end

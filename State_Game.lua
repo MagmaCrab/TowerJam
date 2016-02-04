@@ -30,7 +30,7 @@ function State_Game:create()
 
 	levelIndex = 0;
 	factory = Entity_Factory:create()
-	player = factory:player(100, 100)
+	player = factory:player(194, 32)
 	flail:create()
 --TODO intro animation
 	level = State_Game:nextLevel()
