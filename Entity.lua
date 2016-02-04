@@ -36,15 +36,16 @@ function Entity:update(dt)
 -- TODO collision checks
 	local oldx = self.x
 	local oldy = self.y
-	print(self.tKnock)
 
-	if(self.tKnock > 0) then
-		self.tKnock = self.tKnock - dt
+	if(self.dynamic) then
+		if(self.tKnock > 0) then
+			self.tKnock = self.tKnock - dt
 
-		self.xSpeed = self.xSpeed + self.xKnock
-		self.ySpeed = self.ySpeed + self.yKnock
-	else
-		self.tKnock = 0
+			self.xSpeed = self.xSpeed + self.xKnock
+			self.ySpeed = self.ySpeed + self.yKnock
+		else
+			self.tKnock = 0
+		end
 	end
 
 	self.x= self.x+(self.xSpeed*dt)
@@ -54,6 +55,9 @@ function Entity:update(dt)
 end
 
 function Entity:draw()
+	love.graphics.setColor(0, 0, 0, 128)
+    love.graphics.ellipse("fill", math.floor(self.x),  math.floor(self.y)+8, 6, 2) -- Draw white ellipse with 100 segments.
+    love.graphics.setColor(255, 255, 255, 255)
 	self.animation:draw(math.floor(self.x)-8, math.floor(self.y)-8)
 end
 
@@ -98,7 +102,12 @@ function Entity:checkCollisions(dt,oldx,oldy)
 	for i,v in ipairs(entities) do
 		if(v~=self) then
 			if(self:checkCollisionOther(v)) then
-				self:knock(v)
+				if(v.dynamic) then
+					self:knock(v)
+				else
+					self.x = oldx
+					self.y = oldy
+				end
 			end
 		end
 	end
