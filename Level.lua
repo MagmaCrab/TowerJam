@@ -16,8 +16,7 @@ function Level:create(index)
 end
 
 function Level:update(dt)
-	print(player.hp)
-
+	print(love.timer.getFPS( ))
 	for i,v in ipairs(entities) do
 		v:update(dt)
 	end
