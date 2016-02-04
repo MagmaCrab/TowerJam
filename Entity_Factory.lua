@@ -15,7 +15,7 @@ end
 
 function Entity_Factory:player(x, y)
 	local Entity = Entity:create(x, y, self.playerImage)
-	Entity.ai = Entity_AI:create("roam")
+	Entity.ai = Entity_AI:create("player")
 	Entity.dynamic = true
 	return Entity
 end
