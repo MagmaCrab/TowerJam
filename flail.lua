@@ -7,6 +7,7 @@ function flail:create()
 	self.active = false
 	self.timer = 0
 	self.dir = 1
+	self.bb = BoundingBox:create(-3,-3,6,6)
 end
 
 function flail:update(dt)
@@ -32,8 +33,8 @@ function flail:update(dt)
 		elseif(self.dir==4) then
 			dx,dy = 0,-1
 		end
-		dx = player.x + dx*16
-		dy = player.y + dy*16
+		dx = player.x + dx*24
+		dy = player.y + dy*24
 
 		self.x = self.x*0.98+dx*0.02
 		self.y = self.y*0.98+dy*0.02
@@ -48,13 +49,14 @@ function flail:update(dt)
 			self.y = self.y*0.98+dy*0.02
 		end
 	end
-	
 end
 
 function flail:attack(dt)
-	self.active = true
-	self.timer = 0.3
-	self.dir = player.lastDir
+	if(not self.active)then
+		self.active = true
+		self.timer = 0.3
+		self.dir = player.lastDir
+	end
 end
 
 function flail:draw()
@@ -63,4 +65,11 @@ function flail:draw()
 	end
 	love.graphics.ellipse("fill",math.floor(self.x),math.floor(self.y),3)
 	love.graphics.setColor(255, 255, 255)
+end
+
+function flail:getCorners()
+	local x1,y1 = self.x+self.bb.x , self.y+self.bb.y
+	local x2,y2 = self.x+self.bb.x+self.bb.w, self.y+self.bb.y+self.bb.h
+
+	return x1,y1,x2,y2
 end

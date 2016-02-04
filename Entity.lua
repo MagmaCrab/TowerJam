@@ -50,6 +50,13 @@ function Entity:update(dt)
 		end
 	end
 
+	--check flail for damage
+	if (self ~= player) then
+		if(self:checkCollisionOther(flail)) then
+			self:knock(player,5)
+		end
+	end
+
 	self.x= self.x+(self.xSpeed*dt)
 	self.y= self.y+(self.ySpeed*dt)
 
@@ -131,7 +138,8 @@ function Entity:getCorners()
 	return x1,y1,x2,y2
 end
 
-function Entity:knock(other)
+function Entity:knock(other,speed)
+	local s = speed or 1.6
 	local dx = self.x-other.x
 	local dy = self.y-other.y
 	local dist = (dx^2+dy^2)^0.5
@@ -139,8 +147,8 @@ function Entity:knock(other)
 	dx = dx/dist
 	dy = dy/dist
 
-	self.xKnock = dx*self.speed*1.6
-	self.yKnock = dy*self.speed*1.6
+	self.xKnock = dx*self.speed*s
+	self.yKnock = dy*self.speed*s
 	self.tKnock = 0.15
 end
 

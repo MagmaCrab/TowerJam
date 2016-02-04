@@ -12,7 +12,7 @@ function State_Game:create()
 	--						NAME		KEY		BUTTON		TYPE
 	State_Game.bindings =  {{"sample",	"",			3,		true},
 					   		{"Menu",	"escape",	10,		false},
-					   		{"Attack",	"space",	10,		false}}
+					   		{"Attack",	"space",	10,		true}}
 
 	--rooms
 	room = {love.image.newImageData("Media/rooms/room1.png"),
