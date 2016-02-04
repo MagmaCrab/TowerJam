@@ -2,23 +2,13 @@
 	Main player class
 --]]
 
-Player = {}
+player = {}
 
-function Player:create(x,y)
-	local new = {}
-	setmetatable(new, self)
-	self.__index = self
-
-	new.bb = BoundingBox:create(x+2,y+2,10,10)
-	new.friction = 0.95
-	new.xSpeed = 0
-	new.ySpeed = 0
-	new.speed = 30
-
-	return new;
+function player:create(x, y, image)
+	player = Entity:create(x, y, image)
 end
 
-function Player:update(dt)
+function player:update(dt)
 	if     love.keyboard.isDown("a") or love.keyboard.isDown("left")then
 		self.xSpeed = -self.speed
 	end
@@ -31,14 +21,12 @@ function Player:update(dt)
 	if     love.keyboard.isDown("s") or love.keyboard.isDown("down") then
 		self.ySpeed = self.speed
 	end
-	
+
+-- TODO collision checks
+
 	self.xSpeed = self.xSpeed*(1-dt)*self.friction
 	self.ySpeed = self.ySpeed*(1-dt)*self.friction
 	
 	self.bb.x= self.bb.x+(self.xSpeed*dt)
 	self.bb.y= self.bb.y+(self.ySpeed*dt)
-end
-
-function Player:draw()
-	love.graphics.rectangle("fill", (self.bb.x), (self.bb.y), 10, 10)
 end

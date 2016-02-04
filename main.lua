@@ -4,8 +4,7 @@
 
 require "animation"
 require "boundingbox"
-require "enemy_dynamic"
-require "enemy_static"
+require "entity"
 require "button"
 require "InputHandler"
 require "level"

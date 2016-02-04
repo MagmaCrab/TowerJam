@@ -1,6 +1,6 @@
-Enemy_Dynamic = {}
+Entity = {}
 
-function Enemy_Dynamic:create(x, y, link)
+function Entity:create(x, y, link)
 	local new = {}
 	setmetatable(new, self)
 	self.__index = self
@@ -10,13 +10,20 @@ function Enemy_Dynamic:create(x, y, link)
 	new.friction = 0.95
 	new.xSpeed = 0
 	new.ySpeed = 0
-	new.image = love.graphics.newImage(link) or love.graphics.newImage("Media/placeholder.png") 
+	new.image = love.graphics.newImage("Media/placeholder.png")
+
+	new.enemy 	= false
+	new.dynamic = false
 
 	return new
 end
 
-function Enemy_Dynamic:update(dt)
-	-- TODO AI --
+function Entity:update(dt)
+
+-- TODO AI
+
+-- TODO collision checks
+
 	self.xSpeed = self.xSpeed*(1-dt)*self.friction
 	self.ySpeed = self.ySpeed*(1-dt)*self.friction
 	
@@ -24,6 +31,6 @@ function Enemy_Dynamic:update(dt)
 	self.bb.y= self.bb.y+(self.ySpeed*dt)
 end
 
-function Enemy_Dynamic:draw()
+function Entity:draw()
 	love.graphics.draw(self.image, self.bb.x, self.bb.y)
 end
