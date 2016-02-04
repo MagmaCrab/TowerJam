@@ -1,6 +1,6 @@
 Level = {}
 
-function Level:create(index, player)
+function Level:create(index)
 	local new = {}
 	setmetatable(new, self)
 	self.__index = self
@@ -15,6 +15,7 @@ end
 
 function Level:update(dt)
 -- TODO collision detection
+
 	for i,v in ipairs(self.entities) do
 		v:update(dt)
 	end

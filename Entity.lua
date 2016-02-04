@@ -10,6 +10,7 @@ function Entity:create(x, y, link)
 	new.friction = 0.95
 	new.xSpeed = 0
 	new.ySpeed = 0
+	new.speed = 50
 	new.image = love.graphics.newImage("Media/placeholder.png")
 
 	new.enemy 	= false
@@ -32,5 +33,5 @@ function Entity:update(dt)
 end
 
 function Entity:draw()
-	love.graphics.draw(self.image, self.bb.x, self.bb.y)
+	love.graphics.draw(self.image, math.floor(self.bb.x), math.floor(self.bb.y))
 end

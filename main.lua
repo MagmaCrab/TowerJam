@@ -2,13 +2,14 @@
 	main game loop  
 ]]--
 
+
 require "animation"
 require "boundingbox"
 require "entity"
+require "player"
 require "button"
 require "InputHandler"
 require "level"
-require "player"
 require "State_Game"
 require "State_Main"
 require "State_Menu"

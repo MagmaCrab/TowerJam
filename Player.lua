@@ -2,11 +2,11 @@
 	Main player class
 --]]
 
-player = {}
+player = Entity:create(0, 0, image)
 
-function player:create(x, y, image)
-	player = Entity:create(x, y, image)
-end
+--function player:create(x, y, image)
+	--player = Entity:create(x, y, image)
+--end
 
 function player:update(dt)
 	if     love.keyboard.isDown("a") or love.keyboard.isDown("left")then

@@ -21,7 +21,7 @@ function State_Game:create()
 	background = love.graphics.newImage("media/level.png")
 
 	levelIndex = 0;
-	player = player:create(10, 10)
+	player:create(10, 10)
 --TODO intro animation
 	level = State_Game:nextLevel()
 	return new
@@ -45,7 +45,7 @@ end
 function State_Game:nextLevel()
 	levelIndex = levelIndex + 1
 	print("ascending to level "..levelIndex..".")
-	return Level:create(levelIndex, player)
+	return Level:create(levelIndex)
 end
 --input handling--
 function State_Game:key(name, set)
