@@ -21,7 +21,7 @@ function Level:update(dt)
 	for i,v in ipairs(entities) do
 		v:update(dt)
 	end
-	if #entities <= 1 and cleared == false then
+	if #entities <= 1 and cleared == false then 
 		cleared = true
 --TODO open door
 	end
@@ -29,7 +29,15 @@ function Level:update(dt)
 end
 
 function Level:draw()
-	for i,v in ipairs(entities) do
+	entities_ordered = entities
+
+	local function order(obj1,obj2)
+		return obj1.y<obj2.y
+	end
+	table.sort( entities_ordered, order  )
+
+
+	for i,v in ipairs(entities_ordered) do
 		v:draw()
 	end
 	flail:draw()
