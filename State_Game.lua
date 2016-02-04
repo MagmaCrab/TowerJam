@@ -11,7 +11,8 @@ function State_Game:create()
 	--this holds the bindings and name of the keys or buttons
 	--						NAME		KEY		BUTTON		TYPE
 	State_Game.bindings =  {{"sample",	"",			3,		true},
-					   		{"Menu",	"escape",	10,		false}}
+					   		{"Menu",	"escape",	10,		false},
+					   		{"Attack",	"space",	10,		false}}
 
 	--rooms
 	room = {love.image.newImageData("Media/rooms/room1.png"),
@@ -63,8 +64,8 @@ function State_Game:key(name, set)
 	if 		name == "Menu" then
 		stateIndex = 3
 		states[stateIndex]:reset()
-	elseif	name == " " then
-		
+	elseif	name == "Attack" then
+		flail:attack()
 	end
 end
 
