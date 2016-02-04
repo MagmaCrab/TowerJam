@@ -9,7 +9,7 @@ function Entity_Factory:create()
 	new.playImage  = love.graphics.newImage("Media/player.png")
 	new.rockImage  = love.graphics.newImage("Media/rock.png")
 	new.slimeImage = love.graphics.newImage("Media/slime.png")
-	new.batImage   = love.graphics.newImage("Media/placeholder2.png")
+	new.batImage   = love.graphics.newImage("Media/bat.png")
 	return new
 end
 
@@ -30,13 +30,16 @@ function Entity_Factory:slime(x, y)
 	Entity.ai = Entity_AI:create("appr", "roam", 70)
 	Entity.enemy   = true
 	Entity.dynamic = true
-	Entity.speed   = 25
+	Entity.speed   = 20
 	return Entity
 end
 
 function Entity_Factory:bat(x, y)
 	local Entity = Entity:create(x, y, self.batImage, 10)
+	Entity.ai = Entity_AI:create("roam")
 	Entity.enemy   = true
 	Entity.dynamic = true
+	Entity.speed   = 70
+	Entity.ai.difDir = .02
 	return Entity
 end

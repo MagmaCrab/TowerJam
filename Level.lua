@@ -58,9 +58,10 @@ function Level:generate(index)
 		end
 	end
 	-- add enemies
-	local dif = 2 + math.floor(index/3)
+	local dif = 7 + math.floor((index-.5)/3)
 	for i=1, dif do
-		table.insert(entities, factory:slime(200, 200))
+		loc = locations[love.math.random(#locations)]
+		table.insert(entities, factory:bat(loc[1]*tileSize, loc[2]*tileSize))
 	end
 end
 

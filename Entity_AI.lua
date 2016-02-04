@@ -12,6 +12,9 @@ function Entity_AI:create(active, passive, range)
 	setmetatable(new, self)
 	self.__index = self
 
+	new.dir = love.math.random(0, 2*math.pi)
+	new.difDir = 0.001
+	new.timer = 0
 	new.active  = active
 	new.passive = passive
 	new.range   = range or -1
@@ -26,11 +29,14 @@ function Entity_AI:update(parent)
 			current = self.passive
 	end
 	if 	   current == "player" then
-		Entity_AI:player(parent)
+		self:player(parent)
 	elseif current == "roam" then
-		Entity_AI:roam(parent)
+		self:roam(parent)
 	elseif current == "appr" then
-		Entity_AI:approach(parent)
+		self:approach(parent)
+	elseif current == "none" then
+		parent.xSpeed = 0
+		parent.ySpeed = 0
 	else
 		print("invalid AI type.")
 	end
@@ -67,12 +73,10 @@ end
 function Entity_AI:roam(parent)
 	local dx = 0
 	local dy = 0
-	--init roaming
-	if self.dir == nil then
-		self.dir = love.math.random(0, math.pi)
-	end
+
+	
 	--change dir
-	self.dir = self.dir + math.random(-0.001, 0.001)
+	self.dir = self.dir + math.random(-self.difDir, self.difDir)
 	dx = math.cos(self.dir)
 	dy = math.sin(self.dir)
 	parent.xSpeed = dx * parent.speed

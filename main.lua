@@ -21,7 +21,7 @@ function love.load()
 	font = love.graphics.newFont("media/runescape_uf.ttf",32)
 	love.graphics.setFont(font)
 	love.graphics.setDefaultFilter("nearest","nearest",1)
- 
+ 	love.math.setRandomSeed( os.time() )
 	--Gamestates
 	stateIndex = 2
 	states = {State_Main:create(), State_Game:create(), State_Menu:create()}
