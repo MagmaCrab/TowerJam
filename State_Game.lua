@@ -15,6 +15,7 @@ function State_Game:create()
 
 	--in game variables
 	pixelSize = 2
+	tileSize = 16
 	resx = love.graphics.getWidth()  / pixelSize
 	resy = love.graphics.getHeight() / pixelSize
 	canvas = love.graphics.newCanvas(resx, resy)

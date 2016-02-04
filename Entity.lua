@@ -13,6 +13,7 @@ function Entity:create(x, y, image)
 	new.speed = 50
 	new.ai = nil
 	new.image = image
+	new.lastDir = 1
 
 	new.enemy 	= false
 	new.dynamic = false

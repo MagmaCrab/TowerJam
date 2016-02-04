@@ -1,24 +1,27 @@
 Animation = {}
 
-function Animation:create(link, speed)
+function Animation:create(image, speed)
 	local new = {}
 	setmetatable(new, self)
 	self.__index = self
 
-	new.image = love.graphics.newImage(link)
+	new.image = image
+	new.dir    = 1	-- 1> 2v 3< 4^
 	new.speed = 1/speed
-	new.size  = new.image:getHeight()
 	new.sheet = {}
-	for i=0, (new.image:getWidth()/new.size) - 1 do
-		new.sheet[i] = love.graphics.newQuad(i*new.size, 0, new.size, new.size, new.image:getDimensions())
+	for i=1, (new.image:getWidth()/tileSize) do
+		for j=1, (new.image:getHeight()/tileSize) do
+			print(i,j)
+			new.sheet[i] = love.graphics.newQuad((i-1)*tileSize, (j-1)*tileSize, tileSize, tileSize, new.image:getDimensions())
+		end
 	end
 	new.current = 0
 	new.timer   = 0
 	return new
 end
 
-function Animation:draw(x, y, r, sx, sy)
-	love.graphics.draw(self.image, self.sheet[self.current], x, y, r, sx, sy)
+function Animation:draw(x, y)
+	love.graphics.draw(self.image, self.sheet[dir][self.current], x, y)
 end
 
 function Animation:update(dt)
