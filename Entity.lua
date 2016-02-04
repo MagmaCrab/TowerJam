@@ -5,9 +5,9 @@ function Entity:create(x, y, link)
 	setmetatable(new, self)
 	self.__index = self
 
-	new.bb = BoundingBox:create(x+2,y+2,10,10)
-	new.acc = 4
-	new.friction = 0.95
+	new.x = x
+	new.y = y
+	new.bb = BoundingBox:create(1,8,14,8)
 	new.xSpeed = 0
 	new.ySpeed = 0
 	new.speed = 50
@@ -24,14 +24,58 @@ function Entity:update(dt)
 -- TODO AI
 
 -- TODO collision checks
+	local oldx = self.x
+	local oldy = self.y
 
-	self.xSpeed = self.xSpeed*(1-dt)*self.friction
-	self.ySpeed = self.ySpeed*(1-dt)*self.friction
-	
-	self.bb.x= self.bb.x+(self.xSpeed*dt)
-	self.bb.y= self.bb.y+(self.ySpeed*dt)
+	self.x= self.x+(self.xSpeed*dt)
+	self.y= self.y+(self.ySpeed*dt)
+
+
+	self:checkCollision(dt,oldx,oldy)
 end
 
 function Entity:draw()
-	love.graphics.draw(self.image, math.floor(self.bb.x), math.floor(self.bb.y))
+	love.graphics.draw(self.image, math.floor(self.x), math.floor(self.y))
+	self.bb:draw()
+end
+
+function Entity:checkCollision(dt,oldx,oldy)
+	--collide with wall
+	local x1,y1 = self.x+self.bb.x , self.y+self.bb.y
+	local x2,y2 = self.x+self.bb.x+self.bb.w, self.y+self.bb.y+self.bb.h
+
+	if(y1<=24) then
+		self.y = oldy
+	elseif(y2>=(resy-24)) then
+		self.y = oldy
+	end
+
+	if(x1<=72) then
+		self.x = oldx
+	elseif(x2>=(resx-72)) then
+		self.x = oldx
+	end
+
+	if(x2+y2>=520 )then
+		self.x = oldx
+		self.y = oldy
+	end
+
+	if(x1-y2 <= -136 )then
+		self.x = oldx
+		self.y = oldy
+	end
+
+	if(x2-y1 >= 232 )then
+		self.x = oldx
+		self.y = oldy
+	end
+
+	if(x1+y1<=154 )then
+		self.x = oldx
+		self.y = oldy
+	end
+
+
+	--collide with other entities
 end

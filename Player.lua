@@ -2,31 +2,40 @@
 	Main player class
 --]]
 
-player = Entity:create(0, 0, image)
+player = Entity:create(200, 200, image)
 
 --function player:create(x, y, image)
 	--player = Entity:create(x, y, image)
 --end
 
 function player:update(dt)
-	if     love.keyboard.isDown("a") or love.keyboard.isDown("left")then
+	local l = love.keyboard.isDown("a") or love.keyboard.isDown("left")
+	local r = love.keyboard.isDown("d") or love.keyboard.isDown("right")
+	local u = love.keyboard.isDown("w") or love.keyboard.isDown("up")
+	local d = love.keyboard.isDown("s") or love.keyboard.isDown("down")
+
+	if	l then
 		self.xSpeed = -self.speed
-	end
-	if     love.keyboard.isDown("d") or love.keyboard.isDown("right") then
+	elseif     r then
 		self.xSpeed = self.speed
+	else
+		self.xSpeed = 0
 	end
-	if     love.keyboard.isDown("w") or love.keyboard.isDown("up") then
+	if     u then
 		self.ySpeed = -self.speed
-	end
-	if     love.keyboard.isDown("s") or love.keyboard.isDown("down") then
+	elseif     d then
 		self.ySpeed = self.speed
+	else
+		self.ySpeed = 0
 	end
 
--- TODO collision checks
+	local oldx = self.x
+	local oldy = self.y
 
-	self.xSpeed = self.xSpeed*(1-dt)*self.friction
-	self.ySpeed = self.ySpeed*(1-dt)*self.friction
-	
-	self.bb.x= self.bb.x+(self.xSpeed*dt)
-	self.bb.y= self.bb.y+(self.ySpeed*dt)
+	self.x= self.x+(self.xSpeed*dt)
+	self.y= self.y+(self.ySpeed*dt)
+-- TODO collision checks
+	self:checkCollision(dt,oldx,oldy)
+
+
 end
