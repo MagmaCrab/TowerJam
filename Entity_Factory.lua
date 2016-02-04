@@ -8,25 +8,25 @@ function Entity_Factory:create()
 	-- load images
 	new.playImage  = love.graphics.newImage("Media/placeholder.png")
 	new.rockImage  = love.graphics.newImage("Media/placeholder3.png")
-	new.slimeImage = love.graphics.newImage("Media/placeholder2.png")
+	new.slimeImage = love.graphics.newImage("Media/slime.png")
 	new.batImage   = love.graphics.newImage("Media/placeholder2.png")
 	return new
 end
 
 function Entity_Factory:player(x, y)
-	local Entity = Entity:create(x, y, self.playImage)
+	local Entity = Entity:create(x, y, self.playImage, 1)
 	Entity.ai = Entity_AI:create("player")
 	Entity.dynamic = true
 	return Entity
 end
 
 function Entity_Factory:rock(x, y)
-	local Entity = Entity:create(x, y, self.rockImage)
+	local Entity = Entity:create(x, y, self.rockImage, 1)
 	return Entity
 end
 
 function Entity_Factory:slime(x, y)
-	local Entity = Entity:create(x, y, self.slimeImage)
+	local Entity = Entity:create(x, y, self.slimeImage, 5)
 	Entity.ai = Entity_AI:create("appr", "roam", 70)
 	Entity.enemy   = true
 	Entity.dynamic = true
@@ -35,7 +35,7 @@ function Entity_Factory:slime(x, y)
 end
 
 function Entity_Factory:bat(x, y)
-	local Entity = Entity:create(x, y, self.batImage)
+	local Entity = Entity:create(x, y, self.batImage, 10)
 	Entity.enemy   = true
 	Entity.dynamic = true
 	return Entity

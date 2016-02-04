@@ -1,6 +1,6 @@
 Entity = {}
 
-function Entity:create(x, y, image)
+function Entity:create(x, y, image, animationSpeed)
 	local new = {}
 	setmetatable(new, self)
 	self.__index = self
@@ -12,16 +12,20 @@ function Entity:create(x, y, image)
 	new.ySpeed = 0
 	new.speed = 50
 	new.ai = nil
-	new.image = image
+	new.animation = Animation:create(image, animationSpeed)
 	new.lastDir = 1
 
 	new.enemy 	= false
 	new.dynamic = false
+	new.active  = true
 
 	return new
 end
 
 function Entity:update(dt)
+	if self.active then
+		self.animation:update(dt)
+	end
 	if self.ai ~= nil then
 		self.ai:update(self)
 	end
@@ -36,7 +40,7 @@ function Entity:update(dt)
 end
 
 function Entity:draw()
-	love.graphics.draw(self.image, math.floor(self.x)-8, math.floor(self.y)-8)
+	self.animation:draw(math.floor(self.x)-8, math.floor(self.y)-8)
 end
 
 function Entity:checkCollision(dt,oldx,oldy)
