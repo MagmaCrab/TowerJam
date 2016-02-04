@@ -14,7 +14,8 @@ function Entity_AI:create(active, passive, range)
 
 	new.dir = love.math.random(0, 2*math.pi)
 	new.difDir = 0.001
-	new.timer = 0
+	new.maxTimer = 1
+	new.timer = love.math.random(new.maxTimer)
 	new.active  = active
 	new.passive = passive
 	new.range   = range or -1
@@ -22,18 +23,18 @@ function Entity_AI:create(active, passive, range)
 	return new
 end
 
-function Entity_AI:update(parent)
+function Entity_AI:update(parent, dt)
 	-- set to correct ai
 	local current = self.active
 	if self.range > 0 and ((parent.x-player.x)^2+(parent.y-player.y)^2)^0.5 > self.range then
 			current = self.passive
 	end
 	if 	   current == "player" then
-		self:player(parent)
+		self:player(parent, dt)
 	elseif current == "roam" then
-		self:roam(parent)
+		self:roam(parent, dt)
 	elseif current == "appr" then
-		self:approach(parent)
+		self:approach(parent, dt)
 	elseif current == "none" then
 		parent.xSpeed = 0
 		parent.ySpeed = 0
@@ -42,7 +43,7 @@ function Entity_AI:update(parent)
 	end
 end
 
-function Entity_AI:player(parent)
+function Entity_AI:player(parent, dt)
 	local dx = 0
 	local dy = 0
 	parent.active = false
@@ -70,11 +71,9 @@ function Entity_AI:player(parent)
 	parent.ySpeed = dy * parent.speed
 end
 
-function Entity_AI:roam(parent)
+function Entity_AI:roam(parent, dt)
 	local dx = 0
 	local dy = 0
-
-	
 	--change dir
 	self.dir = self.dir + math.random(-self.difDir, self.difDir)
 	dx = math.cos(self.dir)
@@ -83,11 +82,25 @@ function Entity_AI:roam(parent)
 	parent.ySpeed = dy * parent.speed
 end
 
-function Entity_AI:approach(parent)
+function Entity_AI:approach(parent, dt)
 	local dist = ((parent.x-player.x)^2+(parent.y-player.y)^2)^0.5 
 	local dx = (player.x-parent.x) / dist
 	local dy = (player.y-parent.y) / dist
 
+	parent.xSpeed = dx * parent.speed
+	parent.ySpeed = dy * parent.speed
+end
+
+function Entity_AI:roam(parent, dt)
+	local dx = 0
+	local dy = 0
+	self.timer = self.timer - dt
+	if self.timer <= 0 then
+		self.timer = self.maxTimer
+		self.dir = math.random(0,2*math.pi)
+	end
+	dx = math.cos(self.dir)
+	dy = math.sin(self.dir)
 	parent.xSpeed = dx * parent.speed
 	parent.ySpeed = dy * parent.speed
 end
