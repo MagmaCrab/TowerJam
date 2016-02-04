@@ -14,6 +14,7 @@ require "level"
 require "State_Game"
 require "State_Main"
 require "State_Menu"
+require "flail"
 
 function love.load()
 	--fonts loading

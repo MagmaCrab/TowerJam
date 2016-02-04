@@ -28,6 +28,8 @@ end
 
 -- Checks for collision and runs, if needed, the collision method.
 -- Return: if there is an intersection
+
+--[[
 function BoundingBox:check(x, y, w, h)
 	self.sx = 0
 	self.sy = 0
@@ -49,3 +51,4 @@ function BoundingBox:check(x, y, w, h)
 		return false
 	end
 end
+]]

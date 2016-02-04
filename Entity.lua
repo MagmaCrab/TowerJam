@@ -7,7 +7,7 @@ function Entity:create(x, y, link)
 
 	new.x = x
 	new.y = y
-	new.bb = BoundingBox:create(1,8,14,8)
+	new.bb = BoundingBox:create(-7,0,14,8)
 	new.xSpeed = 0
 	new.ySpeed = 0
 	new.speed = 50
@@ -35,14 +35,12 @@ function Entity:update(dt)
 end
 
 function Entity:draw()
-	love.graphics.draw(self.image, math.floor(self.x), math.floor(self.y))
-	self.bb:draw()
+	love.graphics.draw(self.image, math.floor(self.x)-8, math.floor(self.y)-8)
 end
 
 function Entity:checkCollision(dt,oldx,oldy)
 	--collide with wall
-	local x1,y1 = self.x+self.bb.x , self.y+self.bb.y
-	local x2,y2 = self.x+self.bb.x+self.bb.w, self.y+self.bb.y+self.bb.h
+	local x1,y1,x2,y2 = self:getCorners()
 
 	if(y1<=24) then
 		self.y = oldy
@@ -79,3 +77,11 @@ function Entity:checkCollision(dt,oldx,oldy)
 
 	--collide with other entities
 end
+
+function Entity:getCorners()
+	local x1,y1 = self.x+self.bb.x , self.y+self.bb.y
+	local x2,y2 = self.x+self.bb.x+self.bb.w, self.y+self.bb.y+self.bb.h
+
+	return x1,y1,x2,y2
+end
+

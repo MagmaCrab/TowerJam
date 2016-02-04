@@ -23,13 +23,14 @@ function Level:update(dt)
 		cleared = true
 --TODO open door
 	end
-
+	flail:update(dt)
 end
 
 function Level:draw()
 	for i,v in ipairs(self.entities) do
 		v:draw()
 	end
+	flail:draw()
 end
 
 function Level:generate(index)

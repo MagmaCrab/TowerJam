@@ -23,12 +23,15 @@ function State_Game:create()
 	levelIndex = 0;
 	factory = Entity_Factory:create()
 	player = factory:player(100, 100)
+	flail:create()
 --TODO intro animation
 	level = State_Game:nextLevel()
 	return new
 end
 
 function State_Game:update(dt)
+	mouseX = math.floor(love.mouse.getX( )/pixelSize)
+	mouseY = math.floor(love.mouse.getY( )/pixelSize)
 	level:update(dt)
 end
 
