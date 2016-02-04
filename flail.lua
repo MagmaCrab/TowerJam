@@ -59,7 +59,7 @@ end
 function flail:attack(dt)
 	if(not self.active)then
 		self.active = true
-		self.timer = 0.3
+		self.timer = 0.2
 		self.dir = player.lastDir
 	end
 end

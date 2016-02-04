@@ -16,7 +16,7 @@ function Level:create(index)
 end
 
 function Level:update(dt)
--- TODO collision detection
+	print(player.hp)
 
 	for i,v in ipairs(entities) do
 		v:update(dt)
@@ -26,6 +26,14 @@ function Level:update(dt)
 --TODO open door
 	end
 	flail:update(dt)
+
+	for i,v in ipairs(entities) do
+		if(v~=player and v.hp<=0) then
+			effects:add(v.x,v.y)
+			table.remove(entities,i)
+		end
+	end
+	effects:update(dt)
 end
 
 function Level:draw()
@@ -50,7 +58,7 @@ function Level:draw()
 	for i,v in ipairs(entities_ordered) do
 		v:draw()
 	end
-	--flail:draw()
+	effects:draw()
 end
 
 function Level:generate(index)

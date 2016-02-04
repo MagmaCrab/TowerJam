@@ -16,7 +16,8 @@ function Animation:create(image, speed)
 		end
 	end
 	new.current = 1
-	new.timer   = 0
+	new.ended = false
+	new.timer   = math.random(1)
 	return new
 end
 
@@ -31,6 +32,7 @@ function Animation:update(dt)
 		self.current = self.current + 1
 		if self.current > #self.sheet then
 			self.current = 1
+			self.ended = true
 		end
 	end
 end
@@ -38,4 +40,5 @@ end
 function Animation:reset()
 	self.current = 1
 	self.timer = 0
+	self.ended = false
 end

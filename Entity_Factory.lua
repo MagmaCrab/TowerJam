@@ -14,33 +14,38 @@ function Entity_Factory:create()
 end
 
 function Entity_Factory:player(x, y)
-	local Entity = Entity:create(x, y, self.playImage, 10)
-	Entity.ai = Entity_AI:create("player")
-	Entity.dynamic = true
-	return Entity
+	local entity = Entity:create(x, y, self.playImage, 10)
+	entity.ai = Entity_AI:create("player")
+	entity.dynamic = true
+	entity.hp   = 12
+	entity.damage = 3
+	return entity
 end
 
 function Entity_Factory:rock(x, y)
-	local Entity = Entity:create(x, y, self.rockImage, 1, BoundingBox:create(-8,-6,16,14))
-	return Entity
+	local entity = Entity:create(x, y, self.rockImage, 1, BoundingBox:create(-8,-6,16,14))
+	return entity
 end
 
 function Entity_Factory:slime(x, y)
-	local Entity = Entity:create(x, y, self.slimeImage, 5)
-	Entity.ai = Entity_AI:create("appr", "roam", 70)
-	Entity.enemy   = true
-	Entity.dynamic = true
-	Entity.speed   = 20
-	return Entity
+	local entity = Entity:create(x, y, self.slimeImage, 5)
+	entity.ai = Entity_AI:create("appr", "roam", 70)
+	entity.enemy   = true
+	entity.dynamic = true
+	entity.speed   = 20
+	entity.hp   = 11
+	entity.damage = 2
+	return entity
 end
 
 function Entity_Factory:bat(x, y)
-	local Entity = Entity:create(x, y, self.batImage, 15)
-	Entity.ai = Entity_AI:create("roam")
-	Entity.enemy   = true
-	Entity.dynamic = true
-	Entity.flying = true
-	Entity.speed   = 70
-	Entity.ai.difDir = .02
-	return Entity
+	local entity = Entity:create(x, y, self.batImage, 15)
+	entity.ai = Entity_AI:create("roam")
+	entity.enemy   = true
+	entity.dynamic = true
+	entity.flying = true
+	entity.speed   = 70
+	entity.hp   = 4
+	entity.ai.difDir = .02
+	return entity
 end

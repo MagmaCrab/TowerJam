@@ -13,7 +13,8 @@ function Entity:create(x, y, image, animationSpeed, bound)
 	new.speed = 50
 	new.ai = nil
 	new.hp = 6
-	self.damaged = false
+	new.damage = 1
+	new.damaged = false
 	new.animation = Animation:create(image, animationSpeed)
 	new.lastDir = 1
 
@@ -55,10 +56,11 @@ function Entity:update(dt)
 	end
 
 	--check flail for damage
-	if (self ~= player and flail.active) then
+	if (self ~= player and flail.active and (not self.damaged)) then
 		if(self:checkCollisionOther(flail)) then
 			self:knock(player,5)
 			self.damaged = true
+			self.hp =self.hp - player.damage
 		end
 	end
 
@@ -73,7 +75,7 @@ function Entity:draw()
 	love.graphics.setColor(255, 255, 255, 255)
 	if self.dynamic then
 		love.graphics.setColor(0, 0, 0, 128)
-	    love.graphics.ellipse("fill", math.floor(self.x),  math.floor(self.y)+7, 7, 3)
+	    love.graphics.ellipse("fill", math.floor(self.x),  math.floor(self.y)+7, 5, 2)
 	    if(self.damaged)then
 		    love.graphics.setColor(255, 0, 0, 255)
 		else
@@ -122,7 +124,7 @@ function Entity:checkCollisions(dt,oldx,oldy)
 
 	--collide with other entities
 	for i,v in ipairs(entities) do
-		if v~=self and (not v.flying) and (not self.flying) and self:checkCollisionOther(v) then
+		if v~=self and (not self.flying) and self:checkCollisionOther(v) then
 			if(v.dynamic) then
 				--collisions with dynamic objs resolved with knockback
 				self:knock(v)
@@ -159,8 +161,9 @@ function Entity:knock(other,speed)
 	self.yKnock = dy*self.speed*s
 	self.tKnock = 0.15
 
-	if(self == player and other.dynamic) then
+	if(self == player and other.dynamic and (not self.damaged)) then
 		self.damaged = true
+		self.hp = self.hp - other.damage
 	end
 end
 
