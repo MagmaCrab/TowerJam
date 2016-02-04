@@ -24,6 +24,7 @@ function Entity:create(x, y, image, animationSpeed, bound)
 	new.enemy 	= false
 	new.dynamic = false
 	new.active  = true
+	new.flying  = false
 
 	return new
 end
@@ -80,6 +81,7 @@ function Entity:draw()
 		end
 	end
 	self.animation:draw(math.floor(self.x)-8, math.floor(self.y)-8)
+	love.graphics.setColor(255, 255, 255, 255)
 end
 
 function Entity:checkCollisions(dt,oldx,oldy)
@@ -120,7 +122,7 @@ function Entity:checkCollisions(dt,oldx,oldy)
 
 	--collide with other entities
 	for i,v in ipairs(entities) do
-		if v~=self and self:checkCollisionOther(v) then
+		if v~=self and (not v.flying) and (not self.flying) and self:checkCollisionOther(v) then
 			if(v.dynamic) then
 				--collisions with dynamic objs resolved with knockback
 				self:knock(v)

@@ -33,7 +33,17 @@ function Level:draw()
 	entities_ordered = shallowcopy(entities)
 	table.insert(entities_ordered,flail)
 	local function order(obj1,obj2)
-		return obj1.y<obj2.y
+		local y1 = obj1.y
+		local y2 = obj2.y
+		if(not obj1.dynamic) then
+			y1=y1-32
+		end
+
+		if(not obj2.dynamic) then
+			y2=y2-32
+		end
+
+		return (y1<y2)
 	end
 	table.sort(entities_ordered, order)
 

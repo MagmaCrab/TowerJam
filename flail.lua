@@ -7,6 +7,7 @@ function flail:create()
 	self.active = false
 	self.timer = 0
 	self.dir = 1
+	self.dynamic = true
 	self.bb = BoundingBox:create(-3,-3,6,6)
 	self.image  = love.graphics.newImage("Media/flail.png")
 end

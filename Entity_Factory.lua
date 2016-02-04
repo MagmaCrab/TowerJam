@@ -39,6 +39,7 @@ function Entity_Factory:bat(x, y)
 	Entity.ai = Entity_AI:create("roam")
 	Entity.enemy   = true
 	Entity.dynamic = true
+	Entity.flying = true
 	Entity.speed   = 70
 	Entity.ai.difDir = .02
 	return Entity
