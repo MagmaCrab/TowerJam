@@ -1,6 +1,6 @@
 Entity = {}
 
-function Entity:create(x, y, link)
+function Entity:create(x, y, image)
 	local new = {}
 	setmetatable(new, self)
 	self.__index = self
@@ -12,7 +12,7 @@ function Entity:create(x, y, link)
 	new.ySpeed = 0
 	new.speed = 50
 	new.ai = nil
-	new.image = love.graphics.newImage("Media/placeholder.png")
+	new.image = image
 
 	new.enemy 	= false
 	new.dynamic = false

@@ -1,13 +1,15 @@
 Level = {}
 
+entities = {}
+
 function Level:create(index)
 	local new = {}
 	setmetatable(new, self)
 	self.__index = self
 	
-	new.entities = {}
+	entities = {}
 	new.index = index
-	table.insert(new.entities, player)
+	table.insert(entities, player)
 	Level:generate(index)
 	new.cleared = false
 	return new
@@ -16,10 +18,10 @@ end
 function Level:update(dt)
 -- TODO collision detection
 
-	for i,v in ipairs(self.entities) do
+	for i,v in ipairs(entities) do
 		v:update(dt)
 	end
-	if #self.entities <= 1 and cleared == false then
+	if #entities <= 1 and cleared == false then
 		cleared = true
 --TODO open door
 	end
@@ -27,12 +29,12 @@ function Level:update(dt)
 end
 
 function Level:draw()
-	for i,v in ipairs(self.entities) do
+	for i,v in ipairs(entities) do
 		v:draw()
 	end
 	flail:draw()
 end
 
 function Level:generate(index)
---TODO generate level
+	table.insert(entities, factory:slime(200, 200))
 end

@@ -23,7 +23,7 @@ function Entity_AI:update(parent)
 	-- set to correct ai
 	local current = self.active
 	if self.range > 0 and ((parent.x-player.x)^2+(parent.y-player.y)^2)^0.5 > self.range then
-			current = passive
+			current = self.passive
 	end
 	if 	   current == "player" then
 		Entity_AI:player(parent)
@@ -32,7 +32,7 @@ function Entity_AI:update(parent)
 	elseif current == "appr" then
 		Entity_AI:approach(parent)
 	else
-		print(current .." is an invalid AI type.")
+		print("invalid AI type.")
 	end
 end
 
@@ -72,8 +72,8 @@ end
 
 function Entity_AI:approach(parent)
 	local dist = ((parent.x-player.x)^2+(parent.y-player.y)^2)^0.5 
-	local dx = (parent.x-player.x) / dist
-	local dy = (parent.y-player.y) / dist
+	local dx = (player.x-parent.x) / dist
+	local dy = (player.y-parent.y) / dist
 
 	parent.xSpeed = dx * parent.speed
 	parent.ySpeed = dy * parent.speed
