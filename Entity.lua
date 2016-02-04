@@ -54,9 +54,10 @@ function Entity:update(dt)
 	end
 
 	--check flail for damage
-	if (self ~= player) then
+	if (self ~= player and flail.active) then
 		if(self:checkCollisionOther(flail)) then
 			self:knock(player,5)
+			self.damaged = true
 		end
 	end
 
