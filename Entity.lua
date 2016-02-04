@@ -1,13 +1,13 @@
 Entity = {}
 
-function Entity:create(x, y, image, animationSpeed)
+function Entity:create(x, y, image, animationSpeed, bound)
 	local new = {}
 	setmetatable(new, self)
 	self.__index = self
 
 	new.x = x
 	new.y = y
-	new.bb = BoundingBox:create(-7,0,14,8)
+	new.bb = bound or BoundingBox:create(-7,-1,14,9)
 	new.xSpeed = 0
 	new.ySpeed = 0
 	new.speed = 50
@@ -33,11 +33,12 @@ function Entity:update(dt)
 	if self.ai ~= nil then
 		self.ai:update(self)
 	end
--- TODO collision checks
+	--movement
 	local oldx = self.x
 	local oldy = self.y
 
-	if(self.dynamic) then
+	--knockback
+	if(self.dynamic) then  --only dynamic objs have knockback
 		if(self.tKnock > 0) then
 			self.tKnock = self.tKnock - dt
 
@@ -56,7 +57,7 @@ end
 
 function Entity:draw()
 	love.graphics.setColor(0, 0, 0, 128)
-    love.graphics.ellipse("fill", math.floor(self.x),  math.floor(self.y)+8, 6, 2) -- Draw white ellipse with 100 segments.
+    love.graphics.ellipse("fill", math.floor(self.x),  math.floor(self.y)+7, 7, 3) -- Draw white ellipse with 100 segments.
     love.graphics.setColor(255, 255, 255, 255)
 	self.animation:draw(math.floor(self.x)-8, math.floor(self.y)-8)
 end
@@ -103,10 +104,16 @@ function Entity:checkCollisions(dt,oldx,oldy)
 		if(v~=self) then
 			if(self:checkCollisionOther(v)) then
 				if(v.dynamic) then
+					--collisions with dynamic objs resolved with knockback
 					self:knock(v)
 				else
-					self.x = oldx
-					self.y = oldy
+					--collsisions with static objs resolved with minimal bbox intersection
+					local dx,dy = self:checkCollisionOtherDelta(v)
+					if(math.abs(dx)<(math.abs(dy))) then
+						self.x = self.x + dx
+					else
+						self.y = self.y + dy
+					end
 				end
 			end
 		end
@@ -143,4 +150,28 @@ function Entity:checkCollisionOther(other)
 	end
 	return false
 end
+
+function Entity:checkCollisionOtherDelta(other)
+	local sx1,sy1,sx2,sy2 = self:getCorners()
+	local ox1,oy1,ox2,oy2 = other:getCorners()
+
+	local dx,dy = 0,0
+
+	if  sx1 < ox2 and ox1 < sx2
+	and sy1 < oy2 and oy1 < sy2 then
+		if sx1 <= ox1 then
+			dx = ox1 - (sx2 + 0.01)		
+		else
+			dx = ox2 - (sx1 + 0.01)
+		end
+		if sy1 <= oy1 then
+			dy = oy1 - (sy2 + 0.01)	
+		else
+			dy = oy2 - (sy1 + 0.01)
+		end
+	end
+
+	return dx,dy
+end
+
 

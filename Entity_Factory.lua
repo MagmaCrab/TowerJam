@@ -7,7 +7,7 @@ function Entity_Factory:create()
 
 	-- load images
 	new.playImage  = love.graphics.newImage("Media/placeholder.png")
-	new.rockImage  = love.graphics.newImage("Media/placeholder3.png")
+	new.rockImage  = love.graphics.newImage("Media/rock.png")
 	new.slimeImage = love.graphics.newImage("Media/slime.png")
 	new.batImage   = love.graphics.newImage("Media/placeholder2.png")
 	return new
@@ -21,7 +21,7 @@ function Entity_Factory:player(x, y)
 end
 
 function Entity_Factory:rock(x, y)
-	local Entity = Entity:create(x, y, self.rockImage, 1)
+	local Entity = Entity:create(x, y, self.rockImage, 1, BoundingBox:create(-8,-6,16,14))
 	return Entity
 end
 
