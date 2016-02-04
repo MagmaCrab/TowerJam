@@ -35,7 +35,7 @@ function Entity:update(dt)
 		self.animation:update(dt)
 	end
 	if self.ai ~= nil then
-		self.ai:update(self)
+		self.ai:update(self, dt)
 	end
 	--movement
 	local oldx = self.x

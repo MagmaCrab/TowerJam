@@ -71,7 +71,11 @@ function Level:generate(index)
 	local dif = 7 + math.floor((index-.5)/3)
 	for i=1, dif do
 		loc = locations[love.math.random(#locations)]
-		table.insert(entities, factory:bat(loc[1]*tileSize, loc[2]*tileSize))
+		if math.random() < .7 then
+			table.insert(entities, factory:slime(loc[1]*tileSize, loc[2]*tileSize))
+		else
+			table.insert(entities, factory:bat(loc[1]*tileSize, loc[2]*tileSize))
+		end
 	end
 end
 

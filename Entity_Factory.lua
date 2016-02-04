@@ -35,7 +35,7 @@ function Entity_Factory:slime(x, y)
 end
 
 function Entity_Factory:bat(x, y)
-	local Entity = Entity:create(x, y, self.batImage, 10)
+	local Entity = Entity:create(x, y, self.batImage, 15)
 	Entity.ai = Entity_AI:create("roam")
 	Entity.enemy   = true
 	Entity.dynamic = true
