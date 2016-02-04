@@ -8,6 +8,7 @@ function flail:create()
 	self.timer = 0
 	self.dir = 1
 	self.bb = BoundingBox:create(-3,-3,6,6)
+	self.image  = love.graphics.newImage("Media/flail.png")
 end
 
 function flail:update(dt)
@@ -60,11 +61,8 @@ function flail:attack(dt)
 end
 
 function flail:draw()
-	if(self.active) then
-		love.graphics.setColor(0, 0, 0)
-	end
-	love.graphics.ellipse("fill",math.floor(self.x),math.floor(self.y),3)
-	love.graphics.setColor(255, 255, 255)
+	
+	love.graphics.draw(self.image,math.floor(self.x)-4,math.floor(self.y)-4)
 end
 
 function flail:getCorners()
