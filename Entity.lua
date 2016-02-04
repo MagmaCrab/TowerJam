@@ -7,7 +7,7 @@ function Entity:create(x, y, image, animationSpeed, bound)
 
 	new.x = x
 	new.y = y
-	new.bb = bound or BoundingBox:create(-7,-1,14,9)
+	new.bb = bound or BoundingBox:create(-7,-4,14,14)
 	new.xSpeed = 0
 	new.ySpeed = 0
 	new.speed = 50
@@ -77,54 +77,51 @@ function Entity:checkCollisions(dt,oldx,oldy)
 	--collide with wall
 	local x1,y1,x2,y2 = self:getCorners()
 
-	if(y1<=24) then
+	if y1 <= 24 then
 		self.y = oldy
-	elseif(y2>=(resy-24)) then
-		self.y = oldy
-	end
-
-	if(x1<=72) then
-		self.x = oldx
-	elseif(x2>=(resx-72)) then
-		self.x = oldx
-	end
-
-	if(x2+y2>=520 )then
-		self.x = oldx
+	elseif y2 >= resy-24 then
 		self.y = oldy
 	end
 
-	if(x1-y2 <= -136 )then
+	if x1 <= 72 then
+		self.x = oldx
+	elseif x2 >= resx-72 then
+		self.x = oldx
+	end
+
+	if x2+y2>=520 then
 		self.x = oldx
 		self.y = oldy
 	end
 
-	if(x2-y1 >= 232 )then
+	if x1-y2 <= -136 then
 		self.x = oldx
 		self.y = oldy
 	end
 
-	if(x1+y1<=154 )then
+	if x2-y1 >= 232 then
 		self.x = oldx
 		self.y = oldy
 	end
 
+	if x1+y1 <= 154 then
+		self.x = oldx
+		self.y = oldy
+	end
 
 	--collide with other entities
 	for i,v in ipairs(entities) do
-		if(v~=self) then
-			if(self:checkCollisionOther(v)) then
-				if(v.dynamic) then
-					--collisions with dynamic objs resolved with knockback
-					self:knock(v)
+		if v~=self and self:checkCollisionOther(v) then
+			if(v.dynamic) then
+				--collisions with dynamic objs resolved with knockback
+				self:knock(v)
+			else
+				--collsisions with static objs resolved with minimal bbox intersection
+				local dx,dy = self:checkCollisionOtherDelta(v)
+				if(math.abs(dx)<(math.abs(dy))) then
+					self.x = self.x + dx
 				else
-					--collsisions with static objs resolved with minimal bbox intersection
-					local dx,dy = self:checkCollisionOtherDelta(v)
-					if(math.abs(dx)<(math.abs(dy))) then
-						self.x = self.x + dx
-					else
-						self.y = self.y + dy
-					end
+					self.y = self.y + dy
 				end
 			end
 		end
