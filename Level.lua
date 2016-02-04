@@ -49,7 +49,6 @@ function Level:generate(index)
 	for x=0, room:getWidth()-1 do
 		for y=0, room:getHeight()-1 do
 			local r,g,b = room:getPixel(x, y)
-			print(r,g,b)
 			if     r == 255 and g == 255 and b == 255 then
 				table.insert(entities, factory:rock(x*tileSize+8, y*tileSize+8))
 			elseif r == 255 and g == 0   and b == 0 then

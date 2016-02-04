@@ -6,7 +6,7 @@ function Entity_Factory:create()
 	self.__index = self
 
 	-- load images
-	new.playImage  = love.graphics.newImage("Media/placeholder.png")
+	new.playImage  = love.graphics.newImage("Media/player.png")
 	new.rockImage  = love.graphics.newImage("Media/rock.png")
 	new.slimeImage = love.graphics.newImage("Media/slime.png")
 	new.batImage   = love.graphics.newImage("Media/placeholder2.png")
@@ -14,7 +14,7 @@ function Entity_Factory:create()
 end
 
 function Entity_Factory:player(x, y)
-	local Entity = Entity:create(x, y, self.playImage, 1)
+	local Entity = Entity:create(x, y, self.playImage, 10)
 	Entity.ai = Entity_AI:create("player")
 	Entity.dynamic = true
 	return Entity

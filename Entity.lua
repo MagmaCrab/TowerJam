@@ -28,6 +28,7 @@ end
 
 function Entity:update(dt)
 	if self.active then
+		self.animation.dir = self.lastDir
 		self.animation:update(dt)
 	end
 	if self.ai ~= nil then
@@ -37,8 +38,8 @@ function Entity:update(dt)
 	local oldx = self.x
 	local oldy = self.y
 
-	--knockback
-	if(self.dynamic) then  --only dynamic objs have knockback
+	-- Give dynamic entities knockback
+	if self.dynamic then
 		if(self.tKnock > 0) then
 			self.tKnock = self.tKnock - dt
 
@@ -56,9 +57,12 @@ function Entity:update(dt)
 end
 
 function Entity:draw()
-	love.graphics.setColor(0, 0, 0, 128)
-    love.graphics.ellipse("fill", math.floor(self.x),  math.floor(self.y)+7, 7, 3) -- Draw white ellipse with 100 segments.
-    love.graphics.setColor(255, 255, 255, 255)
+	-- Draw shadow for dynamic objects
+	if self.dynamic then
+		love.graphics.setColor(0, 0, 0, 128)
+	    love.graphics.ellipse("fill", math.floor(self.x),  math.floor(self.y)+7, 7, 3)
+	    love.graphics.setColor(255, 255, 255, 255)
+	end
 	self.animation:draw(math.floor(self.x)-8, math.floor(self.y)-8)
 end
 

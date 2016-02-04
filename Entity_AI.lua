@@ -39,17 +39,26 @@ end
 function Entity_AI:player(parent)
 	local dx = 0
 	local dy = 0
+	parent.active = false
 	if     love.keyboard.isDown("a") or love.keyboard.isDown("left")then
 		dx = -1
+		parent.active = true
+		parent.lastDir = 3
 	end
 	if     love.keyboard.isDown("d") or love.keyboard.isDown("right") then
 		dx = 1
+		parent.active = true
+		parent.lastDir = 1
 	end
 	if     love.keyboard.isDown("w") or love.keyboard.isDown("up") then
 		dy = -1
+		parent.active = true
+		parent.lastDir = 4
 	end
 	if     love.keyboard.isDown("s") or love.keyboard.isDown("down") then
 		dy = 1
+		parent.active = true
+		parent.lastDir = 2
 	end
 	parent.xSpeed = dx * parent.speed
 	parent.ySpeed = dy * parent.speed
