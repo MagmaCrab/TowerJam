@@ -1,6 +1,6 @@
 --[[
 	Main player class
---]]
+--
 
 player = Entity:create(200, 200, image)
 
@@ -39,3 +39,5 @@ function player:update(dt)
 
 
 end
+
+--]]

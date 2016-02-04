@@ -21,8 +21,8 @@ end
 
 function Entity_AI:update(x, y)
 	-- set to correct ai
-	local current = active
-	if range > 0 and ((x-player.bb.x)^2+(y-player.bb.y)^2)^0.5 > range then
+	local current = self.active
+	if self.range > 0 and ((x-player.bb.x)^2+(y-player.bb.y)^2)^0.5 > self.range then
 			current = passive
 	end
 	local dx = 0
@@ -34,7 +34,7 @@ function Entity_AI:update(x, y)
 	elseif current == "appr" then
 		dx, dy = Entity_AI:approach(x, y)
 	else
-		print(current.." is an invalid AI type.")
+		--print(current .." is an invalid AI type.")
 	end
 	return dx, dy
 end
@@ -46,13 +46,13 @@ function Entity_AI:player(x, y)
 		dx = -1
 	end
 	if     love.keyboard.isDown("d") or love.keyboard.isDown("right") then
-		dx = +1
+		dx = 1
 	end
 	if     love.keyboard.isDown("w") or love.keyboard.isDown("up") then
 		dy = -1
 	end
 	if     love.keyboard.isDown("s") or love.keyboard.isDown("down") then
-		dy = +1
+		dy = 1
 	end
 	return dx, dy
 end
@@ -63,7 +63,7 @@ function Entity_AI:roam(x, y)
 		self.dir = love.math.random(0, math.pi)
 	end
 	--change dir
-	self.dir = self.dir + love.math.random(-0.1, 0.1)
+	self.dir = self.dir + love.math.random(-0.01, 0.01)
 	local dx = math.cos(self.dir)
 	local dy = math.sin(self.dir)
 	return dx, dy

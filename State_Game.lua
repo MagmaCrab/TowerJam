@@ -21,7 +21,8 @@ function State_Game:create()
 	background = love.graphics.newImage("media/level.png")
 
 	levelIndex = 0;
-	--player:create(10, 10)
+	factory = Entity_Factory:create()
+	player = factory:player(100, 100)
 --TODO intro animation
 	level = State_Game:nextLevel()
 	return new

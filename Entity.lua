@@ -11,6 +11,7 @@ function Entity:create(x, y, link)
 	new.xSpeed = 0
 	new.ySpeed = 0
 	new.speed = 50
+	new.ai = nil
 	new.image = love.graphics.newImage("Media/placeholder.png")
 
 	new.enemy 	= false
@@ -20,16 +21,18 @@ function Entity:create(x, y, link)
 end
 
 function Entity:update(dt)
-
--- TODO AI
-
+	if self.ai ~= nil then
+		self.xSpeed, self.ySpeed = self.ai:update(self.x, self.y)
+	end
 -- TODO collision checks
 	local oldx = self.x
 	local oldy = self.y
 
+	self.xSpeed = self.xSpeed * self.speed
+	self.ySpeed = self.ySpeed * self.speed
+
 	self.x= self.x+(self.xSpeed*dt)
 	self.y= self.y+(self.ySpeed*dt)
-
 
 	self:checkCollision(dt,oldx,oldy)
 end

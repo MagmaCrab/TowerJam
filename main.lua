@@ -6,6 +6,8 @@
 require "animation"
 require "boundingbox"
 require "entity"
+require "entity_ai"
+require "entity_factory"
 require "player"
 require "button"
 require "InputHandler"
