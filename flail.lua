@@ -10,6 +10,7 @@ function flail:create()
 	self.dynamic = true
 	self.bb = BoundingBox:create(-3,-3,6,6)
 	self.image  = love.graphics.newImage("Media/flail.png")
+	self.imageBit  = love.graphics.newImage("Media/flailBit.png")
 end
 
 function flail:update(dt)
@@ -65,7 +66,13 @@ function flail:draw()
 	love.graphics.setColor(0, 0, 0, 128)
 	love.graphics.ellipse("fill", math.floor(self.x),  math.floor(self.y)+2, 3, 2)
 	love.graphics.setColor(255, 255, 255, 255)
-	love.graphics.draw(self.image,math.floor(self.x)-4,math.floor(self.y)-4)
+	
+	for i=1,5 do
+		local l = i/5.0
+
+		love.graphics.draw(self.imageBit,math.floor(self.x*l+player.x*(1-l))-1,math.floor(self.y*l+player.y*(1-l))-1)
+	end
+	love.graphics.draw(self.image,math.floor(self.x)-3,math.floor(self.y)-3)
 end
 
 function flail:getCorners()
