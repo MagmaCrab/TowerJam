@@ -8,6 +8,7 @@ function flail:create()
 	self.timer = 0
 	self.dir = 1
 	self.dynamic = true
+	self.h = 0
 	self.bb = BoundingBox:create(-3,-3,6,6)
 	self.image  = love.graphics.newImage("Media/flail.png")
 	self.imageBit  = love.graphics.newImage("Media/flailBit.png")
@@ -37,21 +38,22 @@ function flail:update(dt)
 			dx,dy = 0,-1
 		end
 		dx = player.x + dx*24
-		dy = player.y + dy*24
+		dy = player.y+5 + dy*24
 
 		self.x = self.x*0.98+dx*0.02
 		self.y = self.y*0.98+dy*0.02
 	else
 		dx = player.x - self.x
-		dy = player.y - self.y
+		dy = player.y+5 - self.y
 		if((dx^2+dy^2)^0.5>=length)then
 			local angle1 = math.atan2(dy, dx)
 			dx = player.x - (math.cos(angle1) * length);
-			dy = player.y - (math.sin(angle1) * length);
+			dy = player.y+5 - (math.sin(angle1) * length);
 			self.x = self.x*0.98+dx*0.02
 			self.y = self.y*0.98+dy*0.02
 		end
 	end
+	self.h = self.timer*20
 end
 
 function flail:attack(dt)
@@ -70,9 +72,9 @@ function flail:draw()
 	for i=1,5 do
 		local l = i/5.0
 
-		love.graphics.draw(self.imageBit,math.floor(self.x*l+player.x*(1-l))-1,math.floor(self.y*l+player.y*(1-l))-1)
+		love.graphics.draw(self.imageBit,math.floor(self.x*l+player.x*(1-l))-1,math.floor((self.y-self.h)*l+(player.y+5)*(1-l))-1)
 	end
-	love.graphics.draw(self.image,math.floor(self.x)-3,math.floor(self.y)-3)
+	love.graphics.draw(self.image,math.floor(self.x)-3,math.floor(self.y-self.h)-3)
 end
 
 function flail:getCorners()
