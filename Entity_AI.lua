@@ -19,27 +19,24 @@ function Entity_AI:create(active, passive, range)
 	return new
 end
 
-function Entity_AI:update(x, y)
+function Entity_AI:update(parent)
 	-- set to correct ai
 	local current = self.active
-	if self.range > 0 and ((x-player.bb.x)^2+(y-player.bb.y)^2)^0.5 > self.range then
+	if self.range > 0 and ((parent.x-player.x)^2+(parent.y-player.y)^2)^0.5 > self.range then
 			current = passive
 	end
-	local dx = 0
-	local dy = 0
 	if 	   current == "player" then
-		dx, dy = Entity_AI:player(x, y)
+		Entity_AI:player(parent)
 	elseif current == "roam" then
-		dx, dy = Entity_AI:roam(x, y)
+		Entity_AI:roam(parent)
 	elseif current == "appr" then
-		dx, dy = Entity_AI:approach(x, y)
+		Entity_AI:approach(parent)
 	else
-		--print(current .." is an invalid AI type.")
+		print(current .." is an invalid AI type.")
 	end
-	return dx, dy
 end
 
-function Entity_AI:player(x, y)
+function Entity_AI:player(parent)
 	local dx = 0
 	local dy = 0
 	if     love.keyboard.isDown("a") or love.keyboard.isDown("left")then
@@ -54,25 +51,30 @@ function Entity_AI:player(x, y)
 	if     love.keyboard.isDown("s") or love.keyboard.isDown("down") then
 		dy = 1
 	end
-	return dx, dy
+	parent.xSpeed = dx * parent.speed
+	parent.ySpeed = dy * parent.speed
 end
 
-function Entity_AI:roam(x, y)
+function Entity_AI:roam(parent)
+	local dx = 0
+	local dy = 0
 	--init roaming
 	if self.dir == nil then
 		self.dir = love.math.random(0, math.pi)
 	end
 	--change dir
-	self.dir = self.dir + love.math.random(-0.01, 0.01)
-	local dx = math.cos(self.dir)
-	local dy = math.sin(self.dir)
-	return dx, dy
+	self.dir = self.dir + love.math.random(-0.001, 0.001)
+	dx = math.cos(self.dir)
+	dy = math.sin(self.dir)
+	parent.xSpeed = dx * parent.speed
+	parent.ySpeed = dy * parent.speed
 end
 
-function Entity_AI:approach(x, y)
-	local dist = ((x-player.bb.x)^2+(y-player.bb.y)^2)^0.5 
-	local dx = (x-player.bb.x) / dist
-	local dy = (y-player.bb.y) / dist
+function Entity_AI:approach(parent)
+	local dist = ((parent.x-player.x)^2+(parent.y-player.y)^2)^0.5 
+	local dx = (parent.x-player.x) / dist
+	local dy = (parent.y-player.y) / dist
 
-	return dx, dy
+	parent.xSpeed = dx * parent.speed
+	parent.ySpeed = dy * parent.speed
 end

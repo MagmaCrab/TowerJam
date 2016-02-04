@@ -22,14 +22,11 @@ end
 
 function Entity:update(dt)
 	if self.ai ~= nil then
-		self.xSpeed, self.ySpeed = self.ai:update(self.x, self.y)
+		self.ai:update(self)
 	end
 -- TODO collision checks
 	local oldx = self.x
 	local oldy = self.y
-
-	self.xSpeed = self.xSpeed * self.speed
-	self.ySpeed = self.ySpeed * self.speed
 
 	self.x= self.x+(self.xSpeed*dt)
 	self.y= self.y+(self.ySpeed*dt)
