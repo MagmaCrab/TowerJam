@@ -63,7 +63,7 @@ function Entity_AI:roam(parent)
 		self.dir = love.math.random(0, math.pi)
 	end
 	--change dir
-	self.dir = self.dir + love.math.random(-0.001, 0.001)
+	self.dir = self.dir + math.random(-0.001, 0.001)
 	dx = math.cos(self.dir)
 	dy = math.sin(self.dir)
 	parent.xSpeed = dx * parent.speed

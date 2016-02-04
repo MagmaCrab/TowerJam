@@ -13,6 +13,12 @@ function State_Game:create()
 	State_Game.bindings =  {{"sample",	"",			3,		true},
 					   		{"Menu",	"escape",	10,		false}}
 
+	--rooms
+	room = {love.image.newImageData("Media/rooms/room1.png"),
+			love.image.newImageData("Media/rooms/room2.png"),
+			love.image.newImageData("Media/rooms/room3.png"),
+			love.image.newImageData("Media/rooms/room4.png"),
+			love.image.newImageData("Media/rooms/room5.png")}
 	--in game variables
 	pixelSize = 2
 	tileSize = 16
@@ -42,7 +48,7 @@ function State_Game:draw()
 
 	love.graphics.draw(background)
 	level:draw()
-
+	
 	love.graphics.setCanvas()
 	love.graphics.draw(canvas, 0, 0, 0, pixelSize)
 end
