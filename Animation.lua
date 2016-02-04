@@ -21,7 +21,6 @@ function Animation:create(image, speed)
 end
 
 function Animation:draw(x, y)
-	print(self.dir ,self.current)
 	love.graphics.draw(self.image, self.sheet[self.current][self.dir], x, y)
 end
 
