@@ -15,11 +15,9 @@ function Level:create(index)
 	Level:generate(index)
 	new.cleared = false
 	items:create()
-
-	flailSound = love.sound.newSoundData("media/flail.wav",static)
-	hitSound = love.sound.newSoundData("media/hit.wav",static)
-	damageSound = love.sound.newSoundData("media/damage.wav",static)
-	killSound = love.sound.newSoundData("media/kill.wav",static)
+	-- Create doors
+	doorTop = Door:create(176,   0, false)
+	doorDown= Door:create(176, 255, true)
 	return new
 end
 
@@ -43,7 +41,9 @@ function Level:update(dt)
 	for i,v in ipairs(entities) do
 		if(v~=player and v.death) then
 			effects:add(v.x,v.y)
-			items:add(v.x,v.y)
+			if math.random() < .3 then
+				items:add(v.x,v.y)
+			end
 			table.remove(entities,i)
 			playSound(killSound)
 		end
@@ -53,6 +53,9 @@ end
 
 function Level:draw()
 	items:draw()
+	-- Draw doors
+	doorTop:draw()
+	doorDown:draw()
 
 	entities_ordered = {}
 	entities_ordered = shallowcopy(entities)
@@ -74,9 +77,13 @@ function Level:draw()
 
 	for i,v in ipairs(entities_ordered) do
 		v:draw()
-	end
-	
+	end	
 	effects:draw()
+
+
+	-- Draw doors
+	doorTop:drawTop()
+	doorDown:drawTop()
 end
 
 function Level:generate(index)

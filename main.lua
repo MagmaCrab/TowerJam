@@ -5,6 +5,7 @@
 
 require "animation"
 require "boundingbox"
+require "door"
 require "entity"
 require "entity_ai"
 require "entity_factory"

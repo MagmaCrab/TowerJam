@@ -16,9 +16,15 @@ function State_Game:create()
 
 	-- Images
 	background 	= love.graphics.newImage("Media/level.png")
-	gui 		= love.graphics.newImage("Media/gui.png")
-	health 		= love.graphics.newImage("Media/health.png")
-	damage 		= love.graphics.newImage("Media/damage.png")
+	guiImage	= love.graphics.newImage("Media/gui.png")
+	healthImage = love.graphics.newImage("Media/health.png")
+	damageImage = love.graphics.newImage("Media/damage.png")
+
+
+	flailSound  = love.sound.newSoundData("media/flail.wav",static)
+	hitSound    = love.sound.newSoundData("media/hit.wav",static)
+	damageSound = love.sound.newSoundData("media/damage.wav",static)
+	killSound   = love.sound.newSoundData("media/kill.wav",static)
 
 	-- Rooms
 	room = {love.image.newImageData("Media/rooms/room1.png"),
@@ -27,6 +33,7 @@ function State_Game:create()
 			love.image.newImageData("Media/rooms/room4.png"),
 			love.image.newImageData("Media/rooms/room5.png")}
 	-- In game variables
+	Door:init()
 	pixelSize = 2
 	tileSize = 16
 	resx = love.graphics.getWidth()  / pixelSize
@@ -53,12 +60,12 @@ function State_Game:draw()
 	love.graphics.clear( )
 	love.graphics.draw(background)
 	level:draw()
-	love.graphics.draw(gui, 1, 250)
+	love.graphics.draw(guiImage, 1, 250)
 	for i=1, maxHealth do
 		if i <= player.hp then
-			love.graphics.draw(health, i*5+1, 274)
+			love.graphics.draw(healthImage, i*5+1, 274)
 		else
-			love.graphics.draw(damage, i*5+1, 274)
+			love.graphics.draw(damageImage, i*5+1, 274)
 		end
 	end
 	love.graphics.setCanvas()
