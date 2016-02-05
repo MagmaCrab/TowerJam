@@ -15,11 +15,10 @@ function Door:create(x, y, lower)
 end
 
 function Door:init()
-	print("eh")
 	self.init = true
 	self.topImage = love.graphics.newImage("Media/doorTop.png")
 	self.openImage = love.graphics.newImage("Media/doorOpen.png")
-	self.closedImage = love.graphics.newImage("Media/doorOpen.png")
+	self.closedImage = love.graphics.newImage("Media/doorClosed.png")
 end
 
 function Door:open()
@@ -34,16 +33,16 @@ function Door:draw()
 		im = self.openImage
 	end
 	if self.lower then
-		love.graphics.draw(im, self.x, self.y)
-	else
 		love.graphics.draw(im, self.x, self.y, 0, 1, -1)
+	else
+		love.graphics.draw(im, self.x, self.y)
 	end
 end
 
 function Door:drawTop()
 	if self.lower then
-		love.graphics.draw(self.topImage, self.x, self.y)
-	else
 		love.graphics.draw(self.topImage, self.x, self.y, 0, 1, -1)
+	else
+		love.graphics.draw(self.topImage, self.x, self.y)
 	end
 end

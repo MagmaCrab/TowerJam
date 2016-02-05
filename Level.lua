@@ -17,7 +17,7 @@ function Level:create(index)
 	items:create()
 	-- Create doors
 	doorTop = Door:create(176,   0, false)
-	doorDown= Door:create(176, 255, true)
+	doorDown= Door:create(176, 288, true)
 	return new
 end
 
@@ -27,18 +27,19 @@ function Level:update(dt)
 		flicker_timer = 0
 		flicker = 1-flicker
 	end
+
 	items:update(dt)
-	--print(love.timer.getFPS( ))
+
 	for i,v in ipairs(entities) do
 		v:update(dt)
 	end
-	if #entities <= 1 and cleared == false then 
-		cleared = true
---TODO open door
-	end
-	flail:update(dt)
 
+	flail:update(dt)
+	local enemiesCount = 0
 	for i,v in ipairs(entities) do
+		if v.enemy then
+			enemiesCount = enemiesCount + 1
+		end
 		if(v~=player and v.death) then
 			effects:add(v.x,v.y)
 			if math.random() < .3 then
@@ -46,6 +47,14 @@ function Level:update(dt)
 			end
 			table.remove(entities,i)
 			playSound(killSound)
+		end
+	end
+	if enemiesCount <= 0 and self.cleared == false then 
+		self.cleared = true
+		if self.index%2 == 1 then
+			doorTop.open = true
+		else 
+			doorDown.open = true
 		end
 	end
 	effects:update(dt)
@@ -101,7 +110,7 @@ function Level:generate(index)
 		end
 	end
 	-- add enemies
-	local dif = 7 + math.floor((index-.5)/3)
+	local dif = 2 + math.floor((index-.5)/3)
 	for i=1, dif do
 		loc = locations[love.math.random(#locations)]
 		if math.random() < .7 then
