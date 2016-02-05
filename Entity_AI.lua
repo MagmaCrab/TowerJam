@@ -14,8 +14,8 @@ function Entity_AI:create(active, passive, range)
 
 	new.dir = love.math.random(0, 2*math.pi)
 	new.difDir = 0.001
-	new.maxTimer = 1
-	new.timer = love.math.random(new.maxTimer)
+	new.maxTimer = 0.3
+	new.timer = math.random()*new.maxTimer
 	new.active  = active
 	new.passive = passive
 	new.range   = range or -1
@@ -33,8 +33,10 @@ function Entity_AI:update(parent, dt)
 		self:player(parent, dt)
 	elseif current == "roam" then
 		self:roam(parent, dt)
-	elseif current == "appr" then
+	elseif current == "approach" then
 		self:approach(parent, dt)
+	elseif current == "explore" then
+		self:explore(parent, dt)
 	elseif current == "none" then
 		parent.xSpeed = 0
 		parent.ySpeed = 0
@@ -91,7 +93,7 @@ function Entity_AI:approach(parent, dt)
 	parent.ySpeed = dy * parent.speed
 end
 
-function Entity_AI:roam(parent, dt)
+function Entity_AI:explore(parent, dt)
 	local dx = 0
 	local dy = 0
 	self.timer = self.timer - dt

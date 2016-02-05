@@ -14,7 +14,7 @@ function Entity_Factory:create()
 end
 
 function Entity_Factory:player(x, y)
-	local entity = Entity:create(x, y, self.playImage, 10)
+	local entity = Entity:create(x, y, self.playImage, 10, BoundingBox:create(-4,0,8,9))
 	entity.ai = Entity_AI:create("player")
 	entity.dynamic = true
 	entity.hp   = 12
@@ -29,7 +29,7 @@ end
 
 function Entity_Factory:slime(x, y)
 	local entity = Entity:create(x, y, self.slimeImage, 5)
-	entity.ai = Entity_AI:create("appr", "roam", 70)
+	entity.ai = Entity_AI:create("approach", "roam", 70)
 	entity.enemy   = true
 	entity.dynamic = true
 	entity.speed   = 20
@@ -40,11 +40,11 @@ end
 
 function Entity_Factory:bat(x, y)
 	local entity = Entity:create(x, y, self.batImage, 15)
-	entity.ai = Entity_AI:create("roam")
+	entity.ai = Entity_AI:create("explore")
 	entity.enemy   = true
 	entity.dynamic = true
 	entity.flying = true
-	entity.speed   = 70
+	entity.speed   = 50
 	entity.hp   = 4
 	entity.ai.difDir = .02
 	return entity
