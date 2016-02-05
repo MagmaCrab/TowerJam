@@ -14,23 +14,28 @@ function State_Game:create()
 					   		{"Menu",	"escape",	10,		false},
 					   		{"Attack",	"space",	10,		true}}
 
-	--rooms
+	-- Images
+	background 	= love.graphics.newImage("Media/level.png")
+	health 		= love.graphics.newImage("Media/health.png")
+	damage 		= love.graphics.newImage("Media/damage.png")
+
+	-- Rooms
 	room = {love.image.newImageData("Media/rooms/room1.png"),
 			love.image.newImageData("Media/rooms/room2.png"),
 			love.image.newImageData("Media/rooms/room3.png"),
 			love.image.newImageData("Media/rooms/room4.png"),
 			love.image.newImageData("Media/rooms/room5.png")}
-	--in game variables
+	-- In game variables
 	pixelSize = 2
 	tileSize = 16
 	resx = love.graphics.getWidth()  / pixelSize
 	resy = love.graphics.getHeight() / pixelSize
 	canvas = love.graphics.newCanvas(resx, resy)
-	background = love.graphics.newImage("media/level.png")
 
 	levelIndex = 0;
 	factory = Entity_Factory:create()
 	player = factory:player(194, 32)
+	maxHealth = player.hp
 	flail:create()
 	effects:create()
 --TODO intro animation
@@ -45,14 +50,23 @@ function State_Game:update(dt)
 end
 
 function State_Game:draw()
+	-- Draw level
 	love.graphics.setCanvas(canvas)
 	love.graphics.clear( )
-
 	love.graphics.draw(background)
 	level:draw()
-	
+	for i=1, maxHealth do
+		if i <= player.hp then
+			love.graphics.draw(health, i*5, 276)
+		else
+			love.graphics.draw(damage, i*5, 276)
+		end
+	end
 	love.graphics.setCanvas()
 	love.graphics.draw(canvas, 0, 0, 0, pixelSize)
+	love.graphics.setColor(0,0,0)
+	-- Draw GUI
+	love.graphics.print("Lvl: "..levelIndex, 10, 0)
 end
 
 function State_Game:nextLevel()
