@@ -33,14 +33,7 @@ function State_Game:create()
 	resy = love.graphics.getHeight() / pixelSize
 	canvas = love.graphics.newCanvas(resx, resy)
 
-	levelIndex = 0;
-	factory = Entity_Factory:create()
-	player = factory:player(194, 32)
-	maxHealth = player.hp
-	flail:create()
-	effects:create()
---TODO intro animation
-	level = State_Game:nextLevel()
+	self:reset()
 	return new
 end
 
@@ -88,6 +81,17 @@ function State_Game:key(name, set)
 	elseif	name == "Attack" then
 		flail:attack()
 	end
+end
+
+function State_Game:reset()
+	levelIndex = 0;
+	factory = Entity_Factory:create()
+	player = factory:player(194, 32)
+	maxHealth = player.hp
+	flail:create()
+	effects:create()
+--TODO intro animation
+	level = State_Game:nextLevel()
 end
 
 --unused input handling

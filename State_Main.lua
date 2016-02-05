@@ -51,6 +51,7 @@ end
 function State_Main:key(name)
 	if 		name == "Continue" then
 		stateIndex = 2
+
 	elseif	name == "Quit" then
 		print("Thanks for playing, shutting down system")
 		love.event.quit()
@@ -60,6 +61,7 @@ end
 function State_Main:button(name, set)
 	if 	name == "start game" then
 		stateIndex = 2
+		states[stateIndex]:reset()
 	elseif name == "quit game" then
 		print("Thanks for playing, shutting down system")
 		love.event.quit()
