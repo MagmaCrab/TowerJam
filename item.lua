@@ -2,6 +2,9 @@ items = {}
 
 function items:create()
 	items.image = love.graphics.newImage("Media/heart.png")
+	for i,v in ipairs(self) do
+		table.remove(self,i)
+	end
 end
 
 function items:add(x,y,type)
@@ -25,6 +28,8 @@ end
 
 function items:draw()
 	for i,v in ipairs(self) do
-		love.graphics.draw(self.image, math.floor(v.x), math.floor(v.y))
+		if(v.timer>2 or flicker == 1) then
+			love.graphics.draw(self.image, math.floor(v.x), math.floor(v.y))
+		end
 	end
 end
