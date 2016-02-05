@@ -75,6 +75,7 @@ end
 
 function flail:attack(dt)
 	if(self.timer==0)then
+		playSound(flailSound)
 		self.h = 8
 		self.active = true
 		--self.timer = 0.2

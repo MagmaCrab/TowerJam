@@ -66,6 +66,7 @@ function Entity:update(dt)
 			self:knock(player,6)
 			self.damaged = true
 			self.hp =self.hp - player.damage
+			playSound(hitSound)
 		end
 	end
 
@@ -171,6 +172,7 @@ function Entity:knock(other,speed)
 	if(self == player and other.dynamic and (not self.damaged)) then
 		self.damaged = true
 		self.hp = self.hp - other.damage
+		playSound(damageSound)
 	end
 end
 

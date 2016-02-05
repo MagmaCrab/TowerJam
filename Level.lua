@@ -14,6 +14,11 @@ function Level:create(index)
 	table.insert(entities, player)
 	Level:generate(index)
 	new.cleared = false
+
+	flailSound = love.sound.newSoundData("media/flail.wav",static)
+	hitSound = love.sound.newSoundData("media/hit.wav",static)
+	damageSound = love.sound.newSoundData("media/damage.wav",static)
+	killSound = love.sound.newSoundData("media/kill.wav",static)
 	return new
 end
 
@@ -38,6 +43,7 @@ function Level:update(dt)
 		if(v~=player and v.death) then
 			effects:add(v.x,v.y)
 			table.remove(entities,i)
+			playSound(killSound)
 		end
 	end
 	effects:update(dt)
