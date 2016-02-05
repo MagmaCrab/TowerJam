@@ -15,12 +15,29 @@ function flail:create()
 end
 
 function flail:update(dt)
-	if(self.timer > 0) then
-			self.timer = self.timer - dt
-		else
-			self.timer = 0
-			self.active = false
-		end
+	--heigth
+	if(self.h > 0) then
+		self.h = self.h - 30*dt
+	else
+		self.h = 0
+	end
+
+	--timer calculations
+	if(self.active) then
+		self.timer = self.timer + dt
+	else
+		self.timer = self.timer - dt
+	end
+
+	if(self.timer < 0) then
+		self.timer = 0
+	end
+
+	if(self.timer > 0.2) then
+		self.active = false
+	end
+
+
 
 	local length = 8
 
@@ -53,13 +70,14 @@ function flail:update(dt)
 			self.y = self.y*0.98+dy*0.02
 		end
 	end
-	self.h = self.timer*20
+	
 end
 
 function flail:attack(dt)
-	if(not self.active)then
+	if(self.timer==0)then
+		self.h = 8
 		self.active = true
-		self.timer = 0.2
+		--self.timer = 0.2
 		self.dir = player.lastDir
 	end
 end

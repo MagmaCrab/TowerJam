@@ -7,6 +7,8 @@ function Level:create(index)
 	setmetatable(new, self)
 	self.__index = self
 	
+	flicker_timer = 0
+	flicker = 0
 	entities = {}
 	new.index = index
 	table.insert(entities, player)
@@ -16,7 +18,13 @@ function Level:create(index)
 end
 
 function Level:update(dt)
-	print(love.timer.getFPS( ))
+	flicker_timer = flicker_timer+dt
+	if(flicker_timer>0.05) then
+		flicker_timer = 0
+		flicker = 1-flicker
+	end
+
+	--print(love.timer.getFPS( ))
 	for i,v in ipairs(entities) do
 		v:update(dt)
 	end
@@ -27,7 +35,7 @@ function Level:update(dt)
 	flail:update(dt)
 
 	for i,v in ipairs(entities) do
-		if(v~=player and v.hp<=0) then
+		if(v~=player and v.death) then
 			effects:add(v.x,v.y)
 			table.remove(entities,i)
 		end

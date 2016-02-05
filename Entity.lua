@@ -18,6 +18,8 @@ function Entity:create(x, y, image, animationSpeed, bound)
 	new.animation = Animation:create(image, animationSpeed)
 	new.lastDir = 1
 
+	new.death = false
+
 	new.xKnock = 0
 	new.yKnock = 0
 	new.tKnock = 0
@@ -52,13 +54,16 @@ function Entity:update(dt)
 		else
 			self.tKnock = 0
 			self.damaged = false
+			if(self.hp<=0) then
+				self.death = true
+			end
 		end
 	end
 
 	--check flail for damage
 	if (self ~= player and flail.active and (not self.damaged)) then
 		if(self:checkCollisionOther(flail)) then
-			self:knock(player,5)
+			self:knock(player,6)
 			self.damaged = true
 			self.hp =self.hp - player.damage
 		end
@@ -76,13 +81,15 @@ function Entity:draw()
 	if self.dynamic then
 		love.graphics.setColor(0, 0, 0, 128)
 	    love.graphics.ellipse("fill", math.floor(self.x),  math.floor(self.y)+7, 5, 2)
-	    if(self.damaged)then
+		if(self.damaged)then
 		    love.graphics.setColor(255, 0, 0, 255)
 		else
 			love.graphics.setColor(255, 255, 255, love.graphics.setColor(255, 255, 255, 255))
 		end
 	end
-	self.animation:draw(math.floor(self.x)-8, math.floor(self.y)-8)
+	if(self.hp>0 or flicker==1)then
+		self.animation:draw(math.floor(self.x)-8, math.floor(self.y)-8)
+	end
 	love.graphics.setColor(255, 255, 255, 255)
 end
 
@@ -159,7 +166,7 @@ function Entity:knock(other,speed)
 
 	self.xKnock = dx*self.speed*s
 	self.yKnock = dy*self.speed*s
-	self.tKnock = 0.15
+	self.tKnock = 0.25
 
 	if(self == player and other.dynamic and (not self.damaged)) then
 		self.damaged = true
