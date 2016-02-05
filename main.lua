@@ -17,6 +17,7 @@ require "State_Main"
 require "State_Menu"
 require "flail"
 require "effects"
+require "item"
 
 function love.load()
 	--fonts loading
