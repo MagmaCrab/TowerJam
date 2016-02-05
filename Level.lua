@@ -14,6 +14,7 @@ function Level:create(index)
 	table.insert(entities, player)
 	Level:generate(index)
 	new.cleared = false
+	items:create()
 
 	flailSound = love.sound.newSoundData("media/flail.wav",static)
 	hitSound = love.sound.newSoundData("media/hit.wav",static)
@@ -28,7 +29,7 @@ function Level:update(dt)
 		flicker_timer = 0
 		flicker = 1-flicker
 	end
-
+	items:update(dt)
 	--print(love.timer.getFPS( ))
 	for i,v in ipairs(entities) do
 		v:update(dt)
@@ -42,6 +43,7 @@ function Level:update(dt)
 	for i,v in ipairs(entities) do
 		if(v~=player and v.death) then
 			effects:add(v.x,v.y)
+			items:add(v.x,v.y)
 			table.remove(entities,i)
 			playSound(killSound)
 		end
@@ -50,6 +52,8 @@ function Level:update(dt)
 end
 
 function Level:draw()
+	items:draw()
+
 	entities_ordered = {}
 	entities_ordered = shallowcopy(entities)
 	table.insert(entities_ordered,flail)
@@ -71,6 +75,7 @@ function Level:draw()
 	for i,v in ipairs(entities_ordered) do
 		v:draw()
 	end
+	
 	effects:draw()
 end
 
