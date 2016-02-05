@@ -16,6 +16,7 @@ function State_Game:create()
 
 	-- Images
 	background 	= love.graphics.newImage("Media/level.png")
+	gui 		= love.graphics.newImage("Media/gui.png")
 	health 		= love.graphics.newImage("Media/health.png")
 	damage 		= love.graphics.newImage("Media/damage.png")
 
@@ -47,6 +48,10 @@ function State_Game:update(dt)
 	mouseX = math.floor(love.mouse.getX( )/pixelSize)
 	mouseY = math.floor(love.mouse.getY( )/pixelSize)
 	level:update(dt)
+	if player.hp <= 0 then
+		stateIndex = 4
+		states[stateIndex]:reset()
+	end
 end
 
 function State_Game:draw()
@@ -55,18 +60,19 @@ function State_Game:draw()
 	love.graphics.clear( )
 	love.graphics.draw(background)
 	level:draw()
+	love.graphics.draw(gui, 1, 250)
 	for i=1, maxHealth do
 		if i <= player.hp then
-			love.graphics.draw(health, i*5, 276)
+			love.graphics.draw(health, i*5+1, 274)
 		else
-			love.graphics.draw(damage, i*5, 276)
+			love.graphics.draw(damage, i*5+1, 274)
 		end
 	end
 	love.graphics.setCanvas()
 	love.graphics.draw(canvas, 0, 0, 0, pixelSize)
 	love.graphics.setColor(0,0,0)
 	-- Draw GUI
-	love.graphics.print("Lvl: "..levelIndex, 10, 0)
+	love.graphics.print("Lvl: "..30-levelIndex, 8, 508)
 end
 
 function State_Game:nextLevel()

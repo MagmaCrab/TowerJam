@@ -11,6 +11,7 @@ require "entity_factory"
 require "button"
 require "InputHandler"
 require "level"
+require "State_End"
 require "State_Game"
 require "State_Main"
 require "State_Menu"
@@ -25,7 +26,7 @@ function love.load()
  	love.math.setRandomSeed( os.time() )
 	--Gamestates
 	stateIndex = 2
-	states = {State_Main:create(), State_Game:create(), State_Menu:create()}
+	states = {State_Main:create(), State_Game:create(), State_Menu:create(), State_End:create()}
 	
 	print("System succesfully started")
 end
