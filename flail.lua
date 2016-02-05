@@ -8,13 +8,27 @@ function flail:create()
 	self.timer = 0
 	self.dir = 1
 	self.dynamic = true
+	self.swirl = false
 	self.h = 0
 	self.bb = BoundingBox:create(-3,-3,6,6)
 	self.image  = love.graphics.newImage("Media/flail.png")
+	self.imageCharge  = love.graphics.newImage("Media/flailCharge.png")
 	self.imageBit  = love.graphics.newImage("Media/flailBit.png")
 end
 
 function flail:update(dt)
+	if love.keyboard.isDown("space") then
+		timer_swirl = timer_swirl + dt
+		if(timer_swirl > 2)then
+			timer_swirl = 0
+			self:attackswirl()
+		end
+	else
+		timer_swirl = 0
+	end
+
+
+
 	--heigth
 	if(self.h > 0) then
 		self.h = self.h - 30*dt
@@ -35,6 +49,7 @@ function flail:update(dt)
 
 	if(self.timer > 0.2) then
 		self.active = false
+		self.swirl = false
 	end
 
 
@@ -71,15 +86,27 @@ function flail:update(dt)
 		end
 	end
 	
+	if(self.swirl) then
+		self.x = math.sin(math.pi*2*(self.timer/0.2))*20 + player.x
+		self.y = math.cos(math.pi*2*(self.timer/0.2))*20 + player.y
+	end
 end
 
-function flail:attack(dt)
+function flail:attack()
 	if(self.timer==0)then
 		playSound(flailSound)
 		self.h = 8
 		self.active = true
 		--self.timer = 0.2
 		self.dir = player.lastDir
+	end
+end
+
+function flail:attackswirl()
+	if(self.timer==0)then
+		playSound(flailSound)
+		self.active = true
+		self.swirl = true
 	end
 end
 
@@ -94,6 +121,10 @@ function flail:draw()
 		love.graphics.draw(self.imageBit,math.floor(self.x*l+player.x*(1-l))-1,math.floor((self.y-self.h)*l+(player.y+5)*(1-l))-1)
 	end
 	love.graphics.draw(self.image,math.floor(self.x)-3,math.floor(self.y-self.h)-3)
+
+	if(timer_swirl > 0.5 and flicker == 1)then
+		love.graphics.draw(self.imageCharge,math.floor(self.x)-3,math.floor(self.y-self.h)-3)
+	end
 end
 
 function flail:getCorners()

@@ -20,7 +20,7 @@ function State_Game:create()
 	healthImage = love.graphics.newImage("Media/health.png")
 	damageImage = love.graphics.newImage("Media/damage.png")
 
-
+	-- Sounds
 	flailSound  = love.sound.newSoundData("media/flail.wav",static)
 	hitSound    = love.sound.newSoundData("media/hit.wav",static)
 	damageSound = love.sound.newSoundData("media/damage.wav",static)
@@ -95,6 +95,7 @@ function State_Game:reset()
 	factory = Entity_Factory:create()
 	player = factory:player(194, 32)
 	maxHealth = player.hp
+	timer_swirl = 0
 	flail:create()
 	effects:create()
 --TODO intro animation
