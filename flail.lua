@@ -19,7 +19,7 @@ end
 function flail:update(dt)
 	if love.keyboard.isDown("space") then
 		timer_swirl = timer_swirl + dt
-		if(timer_swirl > 2)then
+		if(timer_swirl > 1.6)then
 			timer_swirl = 0
 			self:attackswirl()
 		end
@@ -88,7 +88,7 @@ function flail:update(dt)
 	
 	if(self.swirl) then
 		self.x = math.sin(math.pi*2*(self.timer/0.2))*20 + player.x
-		self.y = math.cos(math.pi*2*(self.timer/0.2))*20 + player.y
+		self.y = math.cos(math.pi*2*(self.timer/0.2))*12 + player.y + 5
 	end
 end
 

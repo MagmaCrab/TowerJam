@@ -1,0 +1,12 @@
+Casper
+[ ] muziek
+[ ] meer sound fx
+[ ] deur animatie om naar volgend level te gaan
+[ ] overgangen tussen screens
+
+Hidde
+[ ] level difficulty control
+[ ] upgrades
+[ ] selection screen voor upgrades
+[ ] meer enemies
+[ ] menu screen

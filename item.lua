@@ -21,7 +21,7 @@ function items:update(dt)
 	for i,v in ipairs(self) do
 		local x1,y1,x2,y2 = player:getCorners()
 
-		if(x1-2<v.x and x2+2>v.x and y1-2<v.y and y2+2>v.y) then
+		if(x1-2<v.x and x2+2>v.x and y1-7<v.y and y2+7>v.y) then
 			v.timer = 0
 			if(player.hp<maxHealth)then
 				player.hp = player.hp+1

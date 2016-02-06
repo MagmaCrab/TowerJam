@@ -31,7 +31,7 @@ function Entity:create(x, y, image, animationSpeed, bound)
 
 	return new
 end
-
+ 
 function Entity:update(dt)
 	if self.active then
 		self.animation.dir = self.lastDir
@@ -98,7 +98,7 @@ function Entity:checkCollisions(dt,oldx,oldy)
 	--collide with wall
 	local x1,y1,x2,y2 = self:getCorners()
 
-	if y1 <= 24 then
+	if y1 <= 24 and (not level.cleared) then
 		self.y = oldy
 	elseif y2 >= resy-24 then
 		self.y = oldy
