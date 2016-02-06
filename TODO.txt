@@ -10,3 +10,12 @@ Hidde
 [ ] selection screen voor upgrades
 [ ] meer enemies
 [ ] menu screen
+
+
+EXTRA
+[ ] Extra hazards
+[ ] Meerdere tiles
+[ ] Level variatie (cracks in de muren etc.)
+[ ] Intro + endgame cutscenes
+[ ] breakable pots
+[ ] extra score/ collectibles?
