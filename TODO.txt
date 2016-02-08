@@ -2,8 +2,9 @@ Casper
 [ ] muziek
 [ ] meer sound fx
 [ ] deur animatie om naar volgend level te gaan
-[ ] overgangen tussen screens
-[ ] add items to z-ordering
+[x] overgangen tussen screens
+[-] add items to z-ordering
+[ ] meerdere dust fx
 
 Hidde
 [ ] menu fixen (options doet niets?)

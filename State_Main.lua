@@ -65,10 +65,14 @@ end
 
 function State_Main:button(name, set)
 	if 	name == "start game" then
-		stateIndex = 2
-		states[stateIndex]:reset()
+		transition:go(self.button_start)
 	elseif name == "quit game" then
 		print("Thanks for playing, shutting down system")
-		love.event.quit()
+		transition:go(love.event.quit)
 	end
+end
+
+function State_Main.button_start()
+	stateIndex = 2
+	states[stateIndex]:reset()
 end

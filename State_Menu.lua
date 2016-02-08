@@ -74,7 +74,7 @@ function State_Menu:button(name,set)
 	if 		name == "continue" then
 		stateIndex = 2
 	elseif name == "back to main menu" then
-		stateIndex = 1
+		transition:go(function () stateIndex = 1 end)
 	elseif name == "borderless" then
 		if set == "on" then
 			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {borderless  = true})

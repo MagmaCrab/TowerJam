@@ -26,7 +26,7 @@ function effects:draw()
 		self.animation:draw(math.floor(self.x)-8, math.floor(self.y)-8)
 	end
 	--draw clouds
-	love.graphics.setColor(255, 255, 255)
+	love.graphics.setColor(81, 43, 39)
 	for i,v in ipairs(self.clouds) do
 		v:draw()
 	end

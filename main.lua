@@ -3,22 +3,23 @@
 ]]--
 
 
-require "animation"
-require "boundingbox"
-require "door"
-require "entity"
-require "entity_ai"
-require "entity_factory"
-require "button"
+require "Animation"
+require "BoundingBox"
+require "Door"
+require "Entity"
+require "Entity_AI"
+require "Entity_Factory"
+require "Button"
 require "InputHandler"
-require "level"
+require "Level"
 require "State_End"
 require "State_Game"
 require "State_Main"
 require "State_Menu"
-require "flail"
-require "effects"
-require "item"
+require "Flail"
+require "Effects"
+require "Item"
+require "Transition"
 
 function love.load()
 	--fonts loading
@@ -28,13 +29,15 @@ function love.load()
 	love.graphics.setDefaultFilter("nearest","nearest",1)
  	love.math.setRandomSeed( os.time() )
 	--Gamestates
-	stateIndex = 2
+	stateIndex = 1
 	states = {State_Main:create(), State_Game:create(), State_Menu:create(), State_End:create()}
 	
+	transition:create()
 	print("System succesfully started")
 end
 
 function love.update(dt)
+	transition:update(dt)
 	states[stateIndex]:update(dt)
 end
 
@@ -45,6 +48,7 @@ function love.draw()
 	love.graphics.setColor(255, 255, 255)
 	
 	states[stateIndex]:draw()	
+	transition:draw()
 end
 
 		--callbacks--

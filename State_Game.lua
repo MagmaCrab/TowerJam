@@ -10,9 +10,10 @@ function State_Game:create()
 	self.__index = self
 	--this holds the bindings and name of the keys or buttons
 	--						NAME		KEY		BUTTON		TYPE
-	State_Game.bindings =  {{"sample",	"",			3,		true},
-					   		{"Menu",	"escape",	10,		false},
-					   		{"Attack",	"space",	10,		true}}
+	State_Game.bindings =  {--[[{"sample",	"",			3,		true },]]--
+					   			{"Menu",	"escape",	10,		false},
+					   			{"Attack",	"space",	10,		true },
+					   			{"Enter",	"return",	10,		true }}
 
 	-- Images
 	background 	= love.graphics.newImage("Media/level.png")
@@ -45,8 +46,6 @@ function State_Game:create()
 end
 
 function State_Game:update(dt)
-	print(love.timer.getFPS())
-
 	mouseX = math.floor(love.mouse.getX( )/pixelSize)
 	mouseY = math.floor(love.mouse.getY( )/pixelSize)
 	level:update(dt)
@@ -81,10 +80,10 @@ function State_Game:draw()
 	
 end
 
-function State_Game:nextLevel()
+function State_Game.nextLevel()
 	levelIndex = levelIndex + 1
 	print("ascending to level "..levelIndex..".")
-	return Level:create(levelIndex)
+	level = Level:create(levelIndex)
 end
 --input handling--
 function State_Game:key(name, set)
@@ -93,6 +92,8 @@ function State_Game:key(name, set)
 		states[stateIndex]:reset()
 	elseif	name == "Attack" then
 		flail:attack()
+	elseif	name == "Enter" then
+		transition:go(self.nextLevel)
 	end
 end
 
@@ -105,7 +106,7 @@ function State_Game:reset()
 	flail:create()
 	effects:create()
 --TODO intro animation
-	level = State_Game:nextLevel()
+	self:nextLevel()
 end
 
 --unused input handling

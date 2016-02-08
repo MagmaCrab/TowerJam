@@ -133,6 +133,6 @@ function flail:getCorners()
 end
 
 function flail:move(dx,dy,dt)
-	self.x = self.x*(1-dt*7)+dx*dt*7
-	self.y = self.y*(1-dt*7)+dy*dt*7
+	self.x = self.x*(1-dt*10)+dx*dt*10
+	self.y = self.y*(1-dt*10)+dy*dt*10
 end

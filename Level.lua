@@ -9,10 +9,11 @@ function Level:create(index)
 	
 	flicker_timer = 0
 	flicker = 0
+
 	entities = {}
 	new.index = index
 	table.insert(entities, player)
-	Level:generate(index)
+	new:generate(index)
 	new.cleared = false
 	items:create()
 	-- Create doors
@@ -61,7 +62,7 @@ function Level:update(dt)
 end
 
 function Level:draw()
-	items:draw()
+	
 	-- Draw doors
 	doorTop:draw()
 	doorDown:draw()
@@ -87,6 +88,8 @@ function Level:draw()
 	for i,v in ipairs(entities_ordered) do
 		v:draw()
 	end	
+
+	items:draw()
 	effects:draw()
 
 

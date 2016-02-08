@@ -34,6 +34,7 @@ function State_End:update(dt)
 end
 
 function State_End:draw()
+	love.graphics.setFont(font)
 	--draw background and menu
 	love.graphics.draw(screenshot,0,0)
 	love.graphics.setColor(0,0,0,200)
