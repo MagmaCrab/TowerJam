@@ -72,8 +72,7 @@ function flail:update(dt)
 		dx = player.x + dx*24
 		dy = player.y+5 + dy*24
 
-		self.x = self.x*0.98+dx*0.02
-		self.y = self.y*0.98+dy*0.02
+		self:move(dx,dy,dt)
 	else
 		dx = player.x - self.x
 		dy = player.y+5 - self.y
@@ -81,8 +80,7 @@ function flail:update(dt)
 			local angle1 = math.atan2(dy, dx)
 			dx = player.x - (math.cos(angle1) * length);
 			dy = player.y+5 - (math.sin(angle1) * length);
-			self.x = self.x*0.98+dx*0.02
-			self.y = self.y*0.98+dy*0.02
+			self:move(dx,dy,dt)
 		end
 	end
 	
@@ -132,4 +130,9 @@ function flail:getCorners()
 	local x2,y2 = self.x+self.bb.x+self.bb.w, self.y+self.bb.y+self.bb.h
 
 	return x1,y1,x2,y2
+end
+
+function flail:move(dx,dy,dt)
+	self.x = self.x*(1-dt*7)+dx*dt*7
+	self.y = self.y*(1-dt*7)+dy*dt*7
 end

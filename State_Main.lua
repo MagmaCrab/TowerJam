@@ -8,6 +8,8 @@ function State_Main:create()
 	local new = {}
 	setmetatable(new,self)
 	self.__index = self
+
+	main_background = love.graphics.newImage("Media/menu_bg.png")
 	--buttons
 	con = Button:create("start game",{} ,love.graphics.getHeight()-160)
 	opt = Button:create("options"   ,{} ,love.graphics.getHeight()-110)
@@ -30,6 +32,9 @@ function State_Main:update(dt)
 end
 
 function State_Main:draw()
+	love.graphics.setFont(font)
+
+	love.graphics.draw(main_background,0,0,0,2)
 	--draw buttons
 	for i,v in ipairs(self.buttons) do
 		v:draw()

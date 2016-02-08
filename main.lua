@@ -23,6 +23,7 @@ require "item"
 function love.load()
 	--fonts loading
 	font = love.graphics.newFont("media/runescape_uf.ttf",32)
+	font_gui = love.graphics.newFont("media/runescape_uf.ttf",16)
 	love.graphics.setFont(font)
 	love.graphics.setDefaultFilter("nearest","nearest",1)
  	love.math.setRandomSeed( os.time() )

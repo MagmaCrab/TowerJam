@@ -8,6 +8,8 @@ function State_Menu:create()
 	local new = {}
 	setmetatable(new,self)
 	self.__index = self
+
+	
 	
 	--initialise all buttons for the menu 
 	con = Button:create("continue",{},200)
@@ -36,6 +38,7 @@ function State_Menu:update(dt)
 end
 
 function State_Menu:draw()
+	love.graphics.setFont(font)
 	--draw background and menu
 	love.graphics.draw(screenshot,0,0)
 	love.graphics.setColor(0,0,0,200)
@@ -74,9 +77,9 @@ function State_Menu:button(name,set)
 		stateIndex = 1
 	elseif name == "borderless" then
 		if set == "on" then
-			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {borderless = true})
+			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {borderless  = true})
 		else
-			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {borderless = false})
+			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {borderless  = false})
 		end
 	end
 end

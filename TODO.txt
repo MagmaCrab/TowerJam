@@ -3,8 +3,10 @@ Casper
 [ ] meer sound fx
 [ ] deur animatie om naar volgend level te gaan
 [ ] overgangen tussen screens
+[ ] add items to z-ordering
 
 Hidde
+[ ] menu fixen (options doet niets?)
 [ ] level difficulty control
 [ ] upgrades
 [ ] selection screen voor upgrades
@@ -16,6 +18,7 @@ EXTRA
 [ ] Extra hazards
 [ ] Meerdere tiles
 [ ] Level variatie (cracks in de muren etc.)
+[x] achtergrond menu
 [ ] Intro + endgame cutscenes
 [ ] breakable pots
 [ ] extra score/ collectibles?

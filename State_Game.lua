@@ -45,6 +45,8 @@ function State_Game:create()
 end
 
 function State_Game:update(dt)
+	print(love.timer.getFPS())
+
 	mouseX = math.floor(love.mouse.getX( )/pixelSize)
 	mouseY = math.floor(love.mouse.getY( )/pixelSize)
 	level:update(dt)
@@ -68,11 +70,15 @@ function State_Game:draw()
 			love.graphics.draw(damageImage, i*5+1, 274)
 		end
 	end
-	love.graphics.setCanvas()
-	love.graphics.draw(canvas, 0, 0, 0, pixelSize)
 	love.graphics.setColor(0,0,0)
 	-- Draw GUI
-	love.graphics.print("Lvl: "..30-levelIndex, 8, 508)
+	love.graphics.setFont(font_gui)
+	love.graphics.print("Lvl: "..30-levelIndex, 4, 254)
+
+	love.graphics.setCanvas()
+	love.graphics.setColor(255,255,255)
+	love.graphics.draw(canvas, 0, 0, 0, pixelSize)
+	
 end
 
 function State_Game:nextLevel()
