@@ -15,6 +15,7 @@ function Level:create(index)
 	table.insert(entities, player)
 	new:generate(index)
 	new.cleared = false
+	new.walkStairs = false
 	items:create()
 	-- Create doors
 	doorTop = Door:create(176,   0, false)
@@ -58,6 +59,11 @@ function Level:update(dt)
 			doorDown.open = true
 		end
 	end
+	--conditions for starting animation to go to next room
+	if(level.cleared and player.x > 192-4 and player.x < 192+4 and ((player.y>256-2 and self.index%2 == 0) or (player.y<32+2 and self.index%2 == 1)) ) then
+		level.walkStairs = true
+		transition:go(states[stateIndex].nextLevel)
+	end
 	effects:update(dt)
 end
 
@@ -94,6 +100,7 @@ function Level:draw()
 
 
 	-- Draw doors
+	love.graphics.setColor(255, 255, 255)
 	doorTop:drawTop()
 	doorDown:drawTop()
 end
@@ -121,6 +128,19 @@ function Level:generate(index)
 		else
 			table.insert(entities, factory:bat(loc[1]*tileSize, loc[2]*tileSize))
 		end
+	end
+
+	--set player at right location and orientation
+	if self.index%2 == 1 then
+		player.x = 192
+		player.y = 256-4
+		player.animation.dir  = 4
+		player.lastDir  = 4
+	else
+		player.x = 192
+		player.y = 32+4
+		player.animation.dir  = 2
+		player.lastDir  = 2
 	end
 end
 

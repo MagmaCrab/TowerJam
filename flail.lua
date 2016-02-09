@@ -2,8 +2,8 @@ flail = {}
 
 
 function flail:create()
-	self.x = 50
-	self.y = 50
+	self.x = resx/2
+	self.y = resy/2
 	self.active = false
 	self.timer = 0
 	self.dir = 1

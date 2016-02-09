@@ -1,7 +1,9 @@
+[ ] verwijder enter als go to next level 'cheat'
+
 Casper
 [ ] muziek
 [ ] meer sound fx
-[ ] deur animatie om naar volgend level te gaan
+[x] deur animatie om naar volgend level te gaan
 [x] overgangen tussen screens
 [-] add items to z-ordering
 [ ] meerdere dust fx

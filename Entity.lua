@@ -98,18 +98,19 @@ function Entity:checkCollisions(dt,oldx,oldy)
 	--collide with wall
 	local x1,y1,x2,y2 = self:getCorners()
 
-	if y1 <= 24 and (not level.cleared) then
-		self.y = oldy
-	elseif y2 >= resy-24 then
-		self.y = oldy
-	end
+	if(not level.walkStairs) then
+		if y1 <= 24 then
+			self.y = oldy
+		elseif y2 >= resy-24 then
+			self.y = oldy
+		end
 
-	if x1 <= 72 then
-		self.x = oldx
-	elseif x2 >= resx-72 then
-		self.x = oldx
+		if x1 <= 72 then
+			self.x = oldx
+		elseif x2 >= resx-72 then
+			self.x = oldx
+		end
 	end
-
 	if x2+y2>=520 then
 		self.x = oldx
 		self.y = oldy

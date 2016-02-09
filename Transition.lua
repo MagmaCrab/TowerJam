@@ -31,6 +31,8 @@ function transition:update(dt)
 		self.active = false
 		if(self.action) then
 			self.action()
+		else
+			print("nil function in transition")
 		end
 	end
 end

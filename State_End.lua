@@ -37,7 +37,7 @@ function State_End:draw()
 	love.graphics.setFont(font)
 	--draw background and menu
 	love.graphics.draw(screenshot,0,0)
-	love.graphics.setColor(0,0,0,200)
+	love.graphics.setColor(50,0,0,200)
 	love.graphics.rectangle("fill",0,0,love.graphics.getWidth(),love.graphics.getHeight())	
 	love.graphics.setColor(255,255,255)
 	love.graphics.printf("GAME OVER",0,100,768,"center")
@@ -62,7 +62,7 @@ end
 
 function State_End:key(name)
 	if 		name == "Back" then
-		stateIndex = 2
+		transition:go(function () stateIndex = 2 end)
 	end
 end
 
