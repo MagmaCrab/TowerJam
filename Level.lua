@@ -60,7 +60,7 @@ function Level:update(dt)
 		end
 	end
 	--conditions for starting animation to go to next room
-	if(level.cleared and player.x > 192-4 and player.x < 192+4 and ((player.y>256-2 and self.index%2 == 0) or (player.y<32+2 and self.index%2 == 1)) ) then
+	if(level.cleared and player.x > 192-3 and player.x < 192+3 and ((player.y>256-2 and self.index%2 == 0) or (player.y<32-2 and self.index%2 == 1)) ) then
 		level.walkStairs = true
 		transition:go(states[stateIndex].nextLevel)
 	end

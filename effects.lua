@@ -47,7 +47,7 @@ function Cloud:create()
 	
 	new.x = math.random()*(resx+64)-32
 	new.y = math.random()*(resy+32)-16
-	new.w = 0.85
+	new.w = 0.75
 	return new
 end
 
