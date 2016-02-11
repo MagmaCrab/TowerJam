@@ -13,7 +13,8 @@ function State_Game:create()
 	State_Game.bindings =  {--[[{"sample",	"",			3,		true },]]--
 					   			{"Menu",	"escape",	10,		false},
 					   			{"Attack",	"space",	10,		true },
-					   			{"Enter",	"return",	10,		true }}
+					   			{"Enter",	"return",	10,		true },
+					   			{"Test",	"q",    	10,		true }}
 
 	-- Images
 	background 	= love.graphics.newImage("Media/level.png")
@@ -34,12 +35,12 @@ function State_Game:create()
 			love.image.newImageData("Media/rooms/room4.png"),
 			love.image.newImageData("Media/rooms/room5.png")}
 
-	UHealth = Upgrade:create("Max Health + 2", 5)
-	UFlail  = Upgrade:create("Swing Attack", 1)
-	UReach  = Upgrade:create("Farther Reach", 3)
-	Uheal   = Upgrade:create("Fully Heal", 10)
-	USpeed  = Upgrade:create("Move Faster", 3)
-	UDamage = Upgrade:create("More Damage", 3)
+	uHealth = Upgrade:create("Max Health + 2", 5)
+	uFlail  = Upgrade:create("Swing Attack", 1)
+	uReach  = Upgrade:create("Farther Reach", 3)
+	uheal   = Upgrade:create("Fully Heal", 10)
+	uSpeed  = Upgrade:create("Move Faster", 3)
+	uDamage = Upgrade:create("More Damage", 3)
 
 	-- In game variables
 	Door:init()
@@ -100,8 +101,11 @@ function State_Game:key(name, set)
 		states[stateIndex]:reset()
 	elseif	name == "Attack" then
 		flail:attack()
+	-- DEBUG functions
 	elseif	name == "Enter" then
 		transition:go(self.nextLevel)
+	elseif  name == "Test" then
+		uSpeed:nextLevel()
 	end
 end
 

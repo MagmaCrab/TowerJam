@@ -65,7 +65,7 @@ function Entity:update(dt)
 		if(self:checkCollisionOther(flail)) then
 			self:knock(player,6)
 			self.damaged = true
-			self.hp =self.hp - player.damage
+			self.hp =self.hp - player.damage + uDamage.level*2
 			playSound(hitSound)
 		end
 	end

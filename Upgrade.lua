@@ -2,7 +2,7 @@ Upgrade = {}
 
 function Upgrade:create(description, maxLevel)
 	local new = {}
-	setmetatable(new,self)
+	setmetatable(new, self)
 	self.__index = self
 
 	new.description = description
@@ -13,8 +13,9 @@ function Upgrade:create(description, maxLevel)
 end
 
 function Upgrade:nextLevel()
-	if self.maxLevel < self.level then
+	if self.maxLevel > self.level then
 		self.level = self.level + 1
+		print(self.description.." upgraded.")
 	end
 end
 
