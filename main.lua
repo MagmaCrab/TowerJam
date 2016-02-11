@@ -20,6 +20,7 @@ require "Flail"
 require "Effects"
 require "Item"
 require "Transition"
+require "upgrade"
 
 function love.load()
 	--fonts loading

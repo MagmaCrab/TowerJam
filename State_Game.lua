@@ -33,6 +33,14 @@ function State_Game:create()
 			love.image.newImageData("Media/rooms/room3.png"),
 			love.image.newImageData("Media/rooms/room4.png"),
 			love.image.newImageData("Media/rooms/room5.png")}
+
+	UHealth = Upgrade:create("Max Health + 2", 5)
+	UFlail  = Upgrade:create("Swing Attack", 1)
+	UReach  = Upgrade:create("Farther Reach", 3)
+	Uheal   = Upgrade:create("Fully Heal", 10)
+	USpeed  = Upgrade:create("Move Faster", 3)
+	UDamage = Upgrade:create("More Damage", 3)
+
 	-- In game variables
 	Door:init()
 	pixelSize = 2

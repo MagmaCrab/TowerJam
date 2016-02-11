@@ -15,10 +15,5 @@ function love.conf(t)
 	t.screen.fullscreen = false 
 	t.screen.vsync = false       
 	t.screen.fsaa = 0   
-	--t.screen.icon = 0
-
-	--disable unused modules
-	
-	--t.modules.joystick = false           -- Enable the joystick module (boolean)
-    --t.modules.physics = false            -- Enable the physics module (boolean)
+	t.screen.icon = "Media/rock.png"
 end

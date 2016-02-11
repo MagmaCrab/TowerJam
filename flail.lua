@@ -11,13 +11,14 @@ function flail:create()
 	self.swirl = false
 	self.h = 0
 	self.bb = BoundingBox:create(-3,-3,6,6)
-	self.image  = love.graphics.newImage("Media/flail.png")
+
+	self.image  	  = love.graphics.newImage("Media/flail.png")
 	self.imageCharge  = love.graphics.newImage("Media/flailCharge.png")
-	self.imageBit  = love.graphics.newImage("Media/flailBit.png")
+	self.imageBit     = love.graphics.newImage("Media/flailBit.png")
 end
 
 function flail:update(dt)
-	if love.keyboard.isDown("space") then
+	if love.keyboard.isDown("space") and UFlail == 1 then
 		timer_swirl = timer_swirl + dt
 		if(timer_swirl > 1.6)then
 			timer_swirl = 0
@@ -26,8 +27,6 @@ function flail:update(dt)
 	else
 		timer_swirl = 0
 	end
-
-
 
 	--heigth
 	if(self.h > 0) then
@@ -52,10 +51,7 @@ function flail:update(dt)
 		self.swirl = false
 	end
 
-
-
 	local length = 8
-
 	local dx,dy = 0,0
 
 	if(self.active) then
@@ -77,9 +73,9 @@ function flail:update(dt)
 		dx = player.x - self.x
 		dy = player.y+5 - self.y
 		if((dx^2+dy^2)^0.5>=length)then
-			local angle1 = math.atan2(dy, dx)
-			dx = player.x - (math.cos(angle1) * length);
-			dy = player.y+5 - (math.sin(angle1) * length);
+			local angle = math.atan2(dy, dx)
+			dx = player.x   - math.cos(angle) * length;
+			dy = player.y+5 - math.sin(angle) * length;
 			self:move(dx,dy,dt)
 		end
 	end
@@ -115,7 +111,6 @@ function flail:draw()
 	
 	for i=1,5 do
 		local l = i/5.0
-
 		love.graphics.draw(self.imageBit,math.floor(self.x*l+player.x*(1-l))-1,math.floor((self.y-self.h)*l+(player.y+5)*(1-l))-1)
 	end
 	love.graphics.draw(self.image,math.floor(self.x)-3,math.floor(self.y-self.h)-3)

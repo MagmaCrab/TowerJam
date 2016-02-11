@@ -120,7 +120,7 @@ function Level:generate(index)
 		end
 	end
 	-- add enemies
-	local dif = 2 + math.floor((index-.5)/3)
+	local dif = 3 + 2*math.floor((index-.5)/3)
 	for i=1, dif do
 		loc = locations[love.math.random(#locations)]
 		if math.random() < .7 then

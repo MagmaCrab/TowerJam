@@ -1,6 +1,6 @@
 Before release!
 [ ] verwijder enter als go to next level 'cheat'
-[ ] icon
+[x] icon
 [ ] executable fixen
 [ ] win condition
 
@@ -15,7 +15,7 @@ Casper
 Hidde
 [ ] menu fixen (options doet niets?)
 [ ] level difficulty control
-[ ] upgrades
+[-] upgrades
 [ ] selection screen voor upgrades
 [ ] meer enemies
 [ ] menu screen
