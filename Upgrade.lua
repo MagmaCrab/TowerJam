@@ -7,8 +7,6 @@ function Upgrade:load()
 	uHeal   = Upgrade:create("Fully Heal", 30)
 	uSpeed  = Upgrade:create("Move Faster", 3)	--done
 	uDamage = Upgrade:create("More Damage", 3)	--done
-
-	uHealth.level = 5
 end
 
 function Upgrade:create(description, maxLevel)

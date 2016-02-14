@@ -101,6 +101,8 @@ function Entity_AI:approach(parent, dt)
 	local dx = (player.x-parent.x) / dist
 	local dy = (player.y-parent.y) / dist
 
+	self.dir = math.atan2(dy,dx)
+
 	parent.xSpeed = dx * parent.speed
 	parent.ySpeed = dy * parent.speed
 end

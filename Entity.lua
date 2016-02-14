@@ -140,11 +140,11 @@ function Entity:checkCollisions(dt,oldx,oldy)
 
 	--collide with other entities
 	for i,v in ipairs(entities) do
-		if v~=self and (not self.flying) and (not v.flying) and self:checkCollisionOther(v) then
+		if v~=self and (not self.flying) and self:checkCollisionOther(v) then
 			if(v.dynamic) then
 				--collisions with dynamic objs resolved with knockback
 				self:knock(v)
-			else
+			elseif (not v.flying) then
 				--collsisions with static objs resolved with minimal bbox intersection
 				local dx,dy = self:checkCollisionOtherDelta(v)
 				if(math.abs(dx)<(math.abs(dy))) then

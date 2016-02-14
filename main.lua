@@ -30,7 +30,7 @@ function love.load()
 	love.graphics.setDefaultFilter("nearest","nearest",1)
  	love.math.setRandomSeed( os.time() )
 	--Gamestates
-	stateIndex = 1
+	stateIndex = 2
 	states = {State_Main:create(), State_Game:create(), State_Menu:create(), State_End:create()}
 	
 	transition:create()

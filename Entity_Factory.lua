@@ -9,6 +9,7 @@ function Entity_Factory:create()
 	new.playImage  = love.graphics.newImage("Media/player.png")
 	new.rockImage  = love.graphics.newImage("Media/rock.png")
 	new.slimeImage = love.graphics.newImage("Media/slime.png")
+	new.slimeBigImage = love.graphics.newImage("Media/slimeBig.png")
 	new.batImage   = love.graphics.newImage("Media/bat.png")
 	new.barImage   = love.graphics.newImage("Media/bar.png")
 	new.barTopImage= love.graphics.newImage("Media/barTop.png")
@@ -42,16 +43,29 @@ function Entity_Factory:barTop(x, y)
 	return entity
 end
 
-function Entity_Factory:slime(x, y)
-	local entity = Entity:create(x, y, self.slimeImage, 5)
+function Entity_Factory:slimeBig(x, y)
+	local entity = Entity:create(x, y, self.slimeBigImage, 3)
 	entity.ai = Entity_AI:create("approach", "roam", 50)
+	entity.bigSlime = true
 	entity.enemy   = true
 	entity.dynamic = true
-	entity.speed   = 25
+	entity.speed   = 16
 	entity.hp   = 9
 	entity.damage = 2
 	return entity
 end
+
+function Entity_Factory:slime(x, y)
+	local entity = Entity:create(x, y, self.slimeImage, 5, BoundingBox:create(-6,-4,12,12))
+	entity.ai = Entity_AI:create("approach", "roam", 50)
+	entity.enemy   = true
+	entity.dynamic = true
+	entity.speed   = 20
+	entity.hp   = 5
+	entity.damage = 1
+	return entity
+end
+
 
 function Entity_Factory:bat(x, y)
 	local entity = Entity:create(x, y, self.batImage, 15)

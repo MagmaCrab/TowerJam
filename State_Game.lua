@@ -107,7 +107,7 @@ function State_Game:key(name, set)
 end
 
 function State_Game:reset()
-	levelIndex = -1;
+	levelIndex = -1 --SET TO -1
 	factory = Entity_Factory:create()
 	player = factory:player(194, 32)
 	maxHealth = player.hp

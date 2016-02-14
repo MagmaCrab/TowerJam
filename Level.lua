@@ -47,6 +47,11 @@ function Level:update(dt)
 			if (math.random() < .3) and not v.noDrop then
 				items:add(v.x,v.y)
 			end
+			if(v.bigSlime) then
+				table.insert(entities, factory:slime(v.x, v.y))
+				table.insert(entities, factory:slime(v.x+1, v.y))
+			end
+
 			table.remove(entities,i)
 			playSound(killSound)
 		end
@@ -140,13 +145,15 @@ function Level:generate(index)
 		local dif = 3 + 2*math.floor((index-.5)/3)
 		for i=1, dif do
 			loc = locations[love.math.random(#locations)]
-			if math.random() < .7 then
+			local r = math.random()
+
+			if r < .2 then
+				table.insert(entities, factory:slimeBig(loc[1]*tileSize, loc[2]*tileSize))
+			elseif r< .7 then
 				table.insert(entities, factory:slime(loc[1]*tileSize, loc[2]*tileSize))
 			else
 				table.insert(entities, factory:bat(loc[1]*tileSize, loc[2]*tileSize))
 			end
-		
-
 		end
 	else
 		for x=4, room:getWidth()-5 do

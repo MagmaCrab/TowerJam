@@ -32,7 +32,7 @@ function effects:draw()
 		end
 	end
 	--draw clouds
-	love.graphics.setColor(81, 43, 39)
+	love.graphics.setColor(60, 40, 40)
 	for i,v in ipairs(self.clouds) do
 		v:draw()
 	end
