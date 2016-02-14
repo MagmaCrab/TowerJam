@@ -29,3 +29,7 @@ EXTRA
 [ ] Intro + endgame cutscenes
 [ ] breakable pots
 [ ] extra score/ collectibles?
+
+
+Enemy HP calculatie:
+https://docs.google.com/spreadsheets/d/1Gr_7ezPX56n81JdBWa1fO_FWFfUtLhf8C41edkUVd3M/edit?usp=sharing
