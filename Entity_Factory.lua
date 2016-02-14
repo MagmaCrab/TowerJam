@@ -47,21 +47,22 @@ function Entity_Factory:slimeBig(x, y)
 	local entity = Entity:create(x, y, self.slimeBigImage, 3)
 	entity.ai = Entity_AI:create("approach", "roam", 50)
 	entity.bigSlime = true
+	entity.noDrop = true
 	entity.enemy   = true
 	entity.dynamic = true
 	entity.speed   = 16
-	entity.hp   = 9
+	entity.hp   = 13
 	entity.damage = 2
 	return entity
 end
 
 function Entity_Factory:slime(x, y)
-	local entity = Entity:create(x, y, self.slimeImage, 5, BoundingBox:create(-6,-4,12,12))
+	local entity = Entity:create(x, y, self.slimeImage, 5, BoundingBox:create(-5,-1,10,9))
 	entity.ai = Entity_AI:create("approach", "roam", 50)
 	entity.enemy   = true
 	entity.dynamic = true
 	entity.speed   = 20
-	entity.hp   = 5
+	entity.hp   = 9
 	entity.damage = 1
 	return entity
 end
