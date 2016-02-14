@@ -81,8 +81,8 @@ function Entity_AI:player(parent, dt)
 			parent.lastDir = 2
 		end
 	end
-	parent.xSpeed = dx * (parent.speed + uSpeed.level*6)
-	parent.ySpeed = dy * (parent.speed + uSpeed.level*6)
+	parent.xSpeed = dx * (parent.speed + uSpeed.level*10)
+	parent.ySpeed = dy * (parent.speed + uSpeed.level*10)
 end
 
 function Entity_AI:roam(parent, dt)

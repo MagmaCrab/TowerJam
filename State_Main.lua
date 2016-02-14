@@ -9,6 +9,9 @@ function State_Main:create()
 	setmetatable(new,self)
 	self.__index = self
 
+	self.timer = 0
+	self.go = false
+
 	main_background = love.graphics.newImage("Media/menu_bg.png")
 	--buttons
 	con = Button:create("start game",{} ,love.graphics.getHeight()-160)
@@ -29,12 +32,23 @@ function State_Main:update(dt)
 	for i,v in ipairs(self.buttons) do
 		v:update()
 	end
+
+	if(self.timer > 0.2) then
+		
+		--self.go = false
+		transition:go(self.button_start)
+		--self.button_start()
+	end
+	if(self.go) then
+		self.timer = self.timer + dt/2
+	end
+	
 end
 
 function State_Main:draw()
 	love.graphics.setFont(font)
 
-	love.graphics.draw(main_background,0,0,0,2)
+	love.graphics.draw(main_background,-self.timer*1600,-self.timer*50,0,2+self.timer*5)
 	--draw buttons
 	for i,v in ipairs(self.buttons) do
 		v:draw()
@@ -65,7 +79,7 @@ end
 
 function State_Main:button(name, set)
 	if 	name == "start game" then
-		transition:go(self.button_start)
+		self.go = true
 	elseif name == "quit game" then
 		print("Thanks for playing, shutting down system")
 		transition:go(love.event.quit)
@@ -73,6 +87,8 @@ function State_Main:button(name, set)
 end
 
 function State_Main.button_start()
+	states[stateIndex].timer = 0
+	states[stateIndex].go = false
 	stateIndex = 2
 	states[stateIndex]:reset()
 end

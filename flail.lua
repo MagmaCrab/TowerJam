@@ -18,9 +18,9 @@ function flail:create()
 end
 
 function flail:update(dt)
-	if love.keyboard.isDown("space") and uFlail.level == 1 then
+	if love.keyboard.isDown("space") and uFlail.level ~= 0 then
 		timer_swirl = timer_swirl + dt
-		if(timer_swirl > 1.6)then
+		if(timer_swirl > 1.3)then
 			timer_swirl = 0
 			self:attackswirl()
 		end

@@ -44,13 +44,15 @@ function Level:update(dt)
 		end
 		if(v~=player and v.death) then
 			effects:add(v.x,v.y)
-			if math.random() < .3 then
+			if (math.random() < .3) and not v.noDrop then
 				items:add(v.x,v.y)
 			end
 			table.remove(entities,i)
 			playSound(killSound)
 		end
 	end
+	print(enemiesCount)
+	print(self.cleared)
 	if enemiesCount <= 0 and self.cleared == false then 
 		self.cleared = true
 		if self.index%2 == 1 then
@@ -70,7 +72,9 @@ end
 function Level:draw()
 	
 	-- Draw doors
-	doorTop:draw()
+	if(levelIndex~=0) then
+		doorTop:draw()
+	end
 	doorDown:draw()
 
 	entities_ordered = {}
@@ -79,12 +83,20 @@ function Level:draw()
 	local function order(obj1,obj2)
 		local y1 = obj1.y
 		local y2 = obj2.y
-		if(not obj1.dynamic) then
-			y1=y1-32
+		if(obj1.flying) then
+			y1=y1+32
 		end
 
-		if(not obj2.dynamic) then
-			y2=y2-32
+		if(obj2.flying) then
+			y2=y2+32
+		end
+
+		if(obj1.dynamic) then
+			y1=y1+16
+		end
+
+		if(obj2.dynamic) then
+			y2=y2+16
 		end
 
 		return (y1<y2)
@@ -101,33 +113,49 @@ function Level:draw()
 
 	-- Draw doors
 	love.graphics.setColor(255, 255, 255)
-	doorTop:drawTop()
+	
+	if(levelIndex~=0) then
+		doorTop:drawTop()
+	end
 	doorDown:drawTop()
 end
 
 function Level:generate(index)
 	local room = room[love.math.random(#room)]
 	local locations = {}
-	-- add rocks
-	for x=0, room:getWidth()-1 do
-		for y=0, room:getHeight()-1 do
-			local r,g,b = room:getPixel(x, y)
-			if     r == 255 and g == 255 and b == 255 then
-				table.insert(entities, factory:rock(x*tileSize+8, y*tileSize+8))
-			elseif r == 255 and g == 0   and b == 0 then
-				table.insert(locations, {x, y})
+	
+	if(levelIndex~=0) then
+		-- add rocks
+		for x=0, room:getWidth()-1 do
+			for y=0, room:getHeight()-1 do
+				local r,g,b = room:getPixel(x, y)
+				if     r == 255 and g == 255 and b == 255 then
+					table.insert(entities, factory:rock(x*tileSize+8, y*tileSize+8))
+				elseif r == 255 and g == 0   and b == 0 then
+					table.insert(locations, {x, y})
+				end
 			end
 		end
-	end
-	-- add enemies
-	local dif = 3 + 2*math.floor((index-.5)/3)
-	for i=1, dif do
-		loc = locations[love.math.random(#locations)]
-		if math.random() < .7 then
-			table.insert(entities, factory:slime(loc[1]*tileSize, loc[2]*tileSize))
-		else
-			table.insert(entities, factory:bat(loc[1]*tileSize, loc[2]*tileSize))
+		-- add enemies
+		local dif = 3 + 2*math.floor((index-.5)/3)
+		for i=1, dif do
+			loc = locations[love.math.random(#locations)]
+			if math.random() < .7 then
+				table.insert(entities, factory:slime(loc[1]*tileSize, loc[2]*tileSize))
+			else
+				table.insert(entities, factory:bat(loc[1]*tileSize, loc[2]*tileSize))
+			end
+		
+
 		end
+	else
+		for x=4, room:getWidth()-5 do
+			--for y=0, room:getHeight()-1 do
+
+				table.insert(entities, factory:barTop(x*tileSize+8, 7*tileSize+8))
+				table.insert(entities, factory:bar(x*tileSize+8, 8*tileSize+8))
+			end
+		--end
 	end
 
 	--set player at right location and orientation
@@ -142,6 +170,8 @@ function Level:generate(index)
 		player.animation.dir  = 2
 		player.lastDir  = 2
 	end
+
+
 end
 
 function shallowcopy(orig)

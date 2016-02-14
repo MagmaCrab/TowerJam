@@ -25,6 +25,7 @@ function Entity:create(x, y, image, animationSpeed, bound)
 	new.tKnock = 0
 
 	new.enemy 	= false
+	new.noDrop = false
 	new.dynamic = false
 	new.active  = true
 	new.flying  = false
@@ -65,7 +66,13 @@ function Entity:update(dt)
 		if(self:checkCollisionOther(flail)) then
 			self:knock(player,6)
 			self.damaged = true
-			self.hp =self.hp - player.damage + uDamage.level*2
+			self.hp =self.hp - (player.damage + uDamage.level)
+			playSound(hitSound)
+		end
+	end
+	if (self.breakable and flail.active) then
+		if(self:checkCollisionOther(flail)) then
+			self.death = true
 			playSound(hitSound)
 		end
 	end
@@ -133,7 +140,7 @@ function Entity:checkCollisions(dt,oldx,oldy)
 
 	--collide with other entities
 	for i,v in ipairs(entities) do
-		if v~=self and (not self.flying) and self:checkCollisionOther(v) then
+		if v~=self and (not self.flying) and (not v.flying) and self:checkCollisionOther(v) then
 			if(v.dynamic) then
 				--collisions with dynamic objs resolved with knockback
 				self:knock(v)

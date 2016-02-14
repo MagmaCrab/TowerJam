@@ -10,7 +10,7 @@ Casper
 [x] deur animatie om naar volgend level te gaan
 [x] overgangen tussen screens
 [-] add items to z-ordering
-[ ] meerdere dust fx
+[x] meerdere dust fx
 
 Hidde
 [ ] menu fixen (options doet niets?)

@@ -1,5 +1,16 @@
 Upgrade = {}
 
+function Upgrade:load()
+	uHealth = Upgrade:create("Max Health + 2", 5)
+	uFlail  = Upgrade:create("Charge Attack", 1) --done
+	uReach  = Upgrade:create("Farther Reach", 3)
+	uHeal   = Upgrade:create("Fully Heal", 30)
+	uSpeed  = Upgrade:create("Move Faster", 3)	--done
+	uDamage = Upgrade:create("More Damage", 3)	--done
+
+	uHealth.level = 5
+end
+
 function Upgrade:create(description, maxLevel)
 	local new = {}
 	setmetatable(new, self)
@@ -8,7 +19,6 @@ function Upgrade:create(description, maxLevel)
 	new.description = description
 	new.maxLevel = maxLevel
 	new.level = 0
-
 	return new
 end
 

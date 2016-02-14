@@ -4,7 +4,7 @@ function effects:create()
 	-- load images
 	self.dustImg  = love.graphics.newImage("Media/dust.png")
 
-	self.animation = Animation:create(self.dustImg, 10)
+	
 	self.x = 0
 	self.y = 0
 	self.clouds = {}
@@ -14,7 +14,9 @@ function effects:create()
 end
 
 function effects:update(dt)
-	self.animation:update(dt)
+	for i,v in ipairs(self) do
+		v.animation:update(dt)
+	end
 	for i,v in ipairs(self.clouds) do
 		v:update(dt)
 	end
@@ -22,8 +24,12 @@ end
 
 function effects:draw()
 	--draw effects
-	if(not self.animation.ended) then
-		self.animation:draw(math.floor(self.x)-8, math.floor(self.y)-8)
+	for i,v in ipairs(self) do
+		if(not v.animation.ended) then
+			v.animation:draw(math.floor(v.x)-8, math.floor(v.y)-8)
+		else 
+			table.remove(self,i)
+		end
 	end
 	--draw clouds
 	love.graphics.setColor(81, 43, 39)
@@ -33,9 +39,12 @@ function effects:draw()
 end
 
 function effects:add(x,y)
-	self.x = x
-	self.y = y 
-	self.animation:reset()
+	local t = {}
+	t.x = x
+	t.y = y
+	t.animation = Animation:create(self.dustImg, 10)
+	t.animation:reset()
+	table.insert(self,t)
 end
 
 Cloud = {}

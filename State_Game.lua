@@ -35,12 +35,9 @@ function State_Game:create()
 			love.image.newImageData("Media/rooms/room4.png"),
 			love.image.newImageData("Media/rooms/room5.png")}
 
-	uHealth = Upgrade:create("Max Health + 2", 5)
-	uFlail  = Upgrade:create("Swing Attack", 1)
-	uReach  = Upgrade:create("Farther Reach", 3)
-	uheal   = Upgrade:create("Fully Heal", 10)
-	uSpeed  = Upgrade:create("Move Faster", 3)
-	uDamage = Upgrade:create("More Damage", 3)
+	
+
+	Upgrade:load()
 
 	-- In game variables
 	Door:init()
@@ -110,7 +107,7 @@ function State_Game:key(name, set)
 end
 
 function State_Game:reset()
-	levelIndex = 0;
+	levelIndex = -1;
 	factory = Entity_Factory:create()
 	player = factory:player(194, 32)
 	maxHealth = player.hp

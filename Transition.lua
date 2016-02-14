@@ -10,8 +10,8 @@ function transition:update(dt)
 	local add = 0
 
 	self.subtimer = self.subtimer + dt
-	if(self.subtimer >= 0.15) then
-		add = 0.24
+	if(self.subtimer >= 0.1) then
+		add = 0.09
 		self.subtimer = 0
 	end	
 
