@@ -170,8 +170,15 @@ function Entity:knock(other,speed)
 	local dy = self.y-other.y
 	local dist = (dx^2+dy^2)^0.5
 
+	if(dist>0) then
+
 	dx = dx/dist
 	dy = dy/dist
+
+	else
+		dx = 1
+		dy = 0
+	end
 
 	self.xKnock = dx*self.speed*s
 	self.yKnock = dy*self.speed*s

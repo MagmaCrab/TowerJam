@@ -39,6 +39,7 @@ function Level:update(dt)
 	flail:update(dt)
 	local enemiesCount = 0
 	for i,v in ipairs(entities) do
+
 		if v.enemy then
 			enemiesCount = enemiesCount + 1
 		end
@@ -56,8 +57,7 @@ function Level:update(dt)
 			playSound(killSound)
 		end
 	end
-	print(enemiesCount)
-	print(self.cleared)
+
 	if enemiesCount <= 0 and self.cleared == false then 
 		self.cleared = true
 		if self.index%2 == 1 then
