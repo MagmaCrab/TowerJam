@@ -16,8 +16,8 @@ function Button:create(name,cycle,y)
 	new.index = 1
 
 	
-	hoverSound = love.sound.newSoundData("media/hover.wav",static)
-	clickSound = love.sound.newSoundData("media/click.wav",static)
+	hoverSound = love.sound.newSoundData("Media/hover.wav",static)
+	clickSound = love.sound.newSoundData("Media/click.wav",static)
 	return new
 end
 

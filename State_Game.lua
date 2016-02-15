@@ -23,10 +23,10 @@ function State_Game:create()
 	damageImage = love.graphics.newImage("Media/damage.png")
 
 	-- Sounds
-	flailSound  = love.sound.newSoundData("media/flail.wav",static)
-	hitSound    = love.sound.newSoundData("media/hit.wav",static)
-	damageSound = love.sound.newSoundData("media/damage.wav",static)
-	killSound   = love.sound.newSoundData("media/kill.wav",static)
+	flailSound  = love.sound.newSoundData("Media/flail.wav",static)
+	hitSound    = love.sound.newSoundData("Media/hit.wav",static)
+	damageSound = love.sound.newSoundData("Media/damage.wav",static)
+	killSound   = love.sound.newSoundData("Media/kill.wav",static)
 
 	-- Rooms
 	room = {love.image.newImageData("Media/rooms/room1.png"),
