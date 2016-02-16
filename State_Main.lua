@@ -9,8 +9,8 @@ function State_Main:create()
 	setmetatable(new,self)
 	self.__index = self
 
-	self.timer = 0
-	self.go = false
+	new.timer = 0
+	new.go = false
 
 	main_background = love.graphics.newImage("Media/menu_bg.png")
 	--buttons
@@ -21,7 +21,7 @@ function State_Main:create()
 	new.buttons = { con, opt, qut}
 	--this holds the bindings and name of the keys or buttons
 	--					NAME			KEY		BUTTON	PRESSED
-	State_Main.bindings =  {{"Continue",	"",		3,		true},
+	new.bindings =  {{"Continue",	"",		3,		true},
 					    {"Quit",		"escape",	5,		false}}
 	
 	return new

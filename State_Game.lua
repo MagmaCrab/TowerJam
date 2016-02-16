@@ -10,7 +10,7 @@ function State_Game:create()
 	self.__index = self
 	--this holds the bindings and name of the keys or buttons
 	--						NAME		KEY		BUTTON		TYPE
-	State_Game.bindings =  {--[[{"sample",	"",			3,		true },]]--
+	new.bindings =  {--[[{"sample",	"",			3,		true },]]--
 					   			{"Menu",	"escape",	10,		false},
 					   			{"Attack",	"space",	10,		true },
 					   			{"Enter",	"return",	10,		true },
@@ -47,7 +47,7 @@ function State_Game:create()
 	resy = love.graphics.getHeight() / pixelSize
 	canvas = love.graphics.newCanvas(resx, resy)
 
-	self:reset()
+	new:reset()
 	return new
 end
 
@@ -87,9 +87,13 @@ function State_Game:draw()
 end
 
 function State_Game.nextLevel()
-	levelIndex = levelIndex + 1
-	print("ascending to level "..levelIndex..".")
-	level = Level:create(levelIndex)
+	if(levelIndex == 10) then
+		transition:go(function () stateIndex = 5 end)
+	else
+		levelIndex = levelIndex + 1
+		print("ascending to level "..levelIndex..".")
+		level = Level:create(levelIndex)
+	end
 end
 --input handling--
 function State_Game:key(name, set)
@@ -100,14 +104,20 @@ function State_Game:key(name, set)
 		flail:attack()
 	-- DEBUG functions
 	elseif	name == "Enter" then
-		transition:go(self.nextLevel)
+		if (debug) then
+			transition:go(self.nextLevel)
+		end
 	elseif  name == "Test" then
 		uSpeed:nextLevel()
 	end
 end
 
 function State_Game:reset()
-	levelIndex = -1 --SET TO -1
+	if (debug) then
+		levelIndex = 0
+	else
+		levelIndex = -1 --SET TO -1
+	end
 	factory = Entity_Factory:create()
 	player = factory:player(194, 32)
 	maxHealth = player.hp

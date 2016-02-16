@@ -19,14 +19,14 @@ function State_Menu:create()
 	new.buttons = { con, bor, qut}
 	--this holds the bindings and name of the keys or buttons
 	--					NAME		KEY		BUTTON	PRESSED
-	State_Menu.bindings =  	{{"Back",	"escape",	10,		false}
+	new.bindings =  	{{"Back",	"escape",	10,		false}
 						}
-	State_Menu:reset()
+	new:reset()
 	return new
 end
 
 function State_Menu:reset()
-	temp       = love.graphics.newScreenshot()
+	local temp       = love.graphics.newScreenshot()
 	screenshot = love.graphics.newImage(temp )
 end
 

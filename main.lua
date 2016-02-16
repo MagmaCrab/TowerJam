@@ -16,11 +16,14 @@ require "State_End"
 require "State_Game"
 require "State_Main"
 require "State_Menu"
+require "State_Win"
 require "Flail"
 require "Effects"
 require "Item"
 require "Transition"
 require "Upgrade"
+
+debug = true
 
 function love.load()
 	--fonts loading
@@ -30,8 +33,12 @@ function love.load()
 	love.graphics.setDefaultFilter("nearest","nearest",1)
  	love.math.setRandomSeed( os.time() )
 	--Gamestates
-	stateIndex = 2
-	states = {State_Main:create(), State_Game:create(), State_Menu:create(), State_End:create()}
+	if(debug) then
+		stateIndex = 2
+	else
+		stateIndex = 1
+	end
+	states = {State_Main:create(), State_Game:create(), State_Menu:create(), State_End:create(), State_Win:create()}
 	
 	transition:create()
 	print("System succesfully started")

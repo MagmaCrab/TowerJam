@@ -177,8 +177,6 @@ function Level:generate(index)
 		player.animation.dir  = 2
 		player.lastDir  = 2
 	end
-
-
 end
 
 function shallowcopy(orig)
