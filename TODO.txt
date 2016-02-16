@@ -9,7 +9,7 @@ Casper
 [ ] meer sound fx
 [x] deur animatie om naar volgend level te gaan
 [x] overgangen tussen screens
-[-] add items to z-ordering
+[ ] add items to z-ordering
 [x] meerdere dust fx
 
 Hidde

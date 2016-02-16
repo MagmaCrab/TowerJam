@@ -45,9 +45,13 @@ function Level:update(dt)
 		end
 		if(v~=player and v.death) then
 			effects:add(v.x,v.y)
+
 			if (math.random() < .3) and not v.noDrop then
-				items:add(v.x,v.y)
+				items:add(v.x,v.y,"hp")
+			elseif(v.xp>0) then
+				items:add(v.x,v.y,"xp",v.xp)
 			end
+
 			if(v.bigSlime) then
 				table.insert(entities, factory:slime(v.x, v.y))
 				table.insert(entities, factory:slime(v.x+1, v.y))
@@ -126,7 +130,11 @@ function Level:draw()
 end
 
 function Level:generate(index)
+	local prevIndex = tileIndex
 	tileIndex = love.math.random(#tile)
+	while(tileIndex == prevIndex) do
+		tileIndex = love.math.random(#tile)
+	end
 
 	local room = room[love.math.random(#room)]
 	local locations = {}

@@ -10,7 +10,7 @@ function flail:create()
 	self.dynamic = true
 	self.swirl = false
 	self.h = 0
-	self.bb = BoundingBox:create(-3,-3,6,6)
+	self.bb = BoundingBox:create(-4,-4,7,7)
 
 	self.image  	  = love.graphics.newImage("Media/flail.png")
 	self.imageCharge  = love.graphics.newImage("Media/flailCharge.png")

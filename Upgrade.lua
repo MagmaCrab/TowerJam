@@ -24,6 +24,8 @@ function Upgrade:nextLevel()
 	if self.maxLevel > self.level then
 		self.level = self.level + 1
 		print(self.description.." upgraded.")
+		player.xp = 0
+		xpNext = xpNext + 12
 	end
 end
 

@@ -13,6 +13,7 @@ function Entity:create(x, y, image, animationSpeed, bound)
 	new.speed = 50
 	new.ai = nil
 	new.hp = 6
+	new.xp = 0
 	new.damage = 1
 	new.damaged = false
 	new.animation = Animation:create(image, animationSpeed)

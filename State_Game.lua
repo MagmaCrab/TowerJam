@@ -70,6 +70,11 @@ function State_Game:update(dt)
 		stateIndex = 4
 		states[stateIndex]:reset()
 	end
+
+	if player.xp>=xpNext then
+		player.xp=xpNext
+		upgrade_available = true
+	end
 end
 
 function State_Game:draw()
@@ -85,11 +90,17 @@ function State_Game:draw()
 	love.graphics.draw(guiImage, 1, 250)
 	for i=1, maxHealth do
 		if i <= player.hp then
-			love.graphics.draw(healthImage, i*5+1, 274)
+			love.graphics.draw(healthImage, i*5+2, 273)
 		else
-			love.graphics.draw(damageImage, i*5+1, 274)
+			love.graphics.draw(damageImage, i*5+2, 273)
 		end
 	end
+	if(upgrade_available and flicker == 0) then
+		love.graphics.setColor(255,255,255)
+	else
+		love.graphics.setColor(255,223,66)
+	end
+	love.graphics.line(6.5, 283.5, 6.5+math.floor((player.xp/xpNext)*64), 283.5)
 	love.graphics.setColor(0,0,0)
 	-- Draw GUI
 	love.graphics.setFont(font_gui)
@@ -131,15 +142,18 @@ function State_Game:reset()
 	if (debug) then
 		levelIndex = 0
 	else
-		levelIndex = -1 --SET TO -1
+		levelIndex = -1
 	end
 	factory = Entity_Factory:create()
 	player = factory:player(194, 32)
 	maxHealth = player.hp
+
+
+	xpNext = 12
+	upgrade_available = false
 	timer_swirl = 0
 	flail:create()
 	effects:create()
---TODO intro animation
 	self:nextLevel()
 end
 

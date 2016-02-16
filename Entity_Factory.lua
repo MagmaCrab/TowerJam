@@ -63,6 +63,7 @@ function Entity_Factory:slime(x, y)
 	entity.dynamic = true
 	entity.speed   = 20
 	entity.hp   = 9
+	entity.xp = 2
 	entity.damage = 1
 	return entity
 end
@@ -76,6 +77,7 @@ function Entity_Factory:bat(x, y)
 	entity.flying = true
 	entity.speed   = 50
 	entity.hp   = 4
+	entity.xp = 1
 	entity.ai.difDir = .02
 	return entity
 end
