@@ -148,6 +148,10 @@ function Level:generate(index)
 					table.insert(entities, factory:rock(x*tileSize+8, y*tileSize+8))
 				elseif r == 255 and g == 0   and b == 0 then
 					table.insert(locations, {x, y})
+				elseif r == 0 and g == 255   and b == 0 then
+					table.insert(entities, factory:barrel(x*tileSize+8, y*tileSize+8))
+				elseif r == 0 and g == 0   and b == 255 then
+					
 				end
 			end
 		end

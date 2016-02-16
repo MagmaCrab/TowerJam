@@ -5,7 +5,7 @@ Before release!
 [x] win condition
 
 Casper
-[ ] muziek
+[-] muziek
 [ ] meer sound fx
 [x] deur animatie om naar volgend level te gaan
 [x] overgangen tussen screens
@@ -25,8 +25,8 @@ EXTRA
 [ ] Level variatie (cracks in de muren etc.)
 [x] achtergrond menu
 [-] Intro + endgame cutscenes
-[ ] breakable pots
-[ ] extra score/ collectibles?
+[x] breakable pots
+[x] extra score/ collectibles? --> XP
 
 Enemy HP calculatie:
 (Aantal hits nodig voor kill)

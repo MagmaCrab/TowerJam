@@ -13,6 +13,7 @@ function Entity_Factory:create()
 	new.batImage   = love.graphics.newImage("Media/bat.png")
 	new.barImage   = love.graphics.newImage("Media/bar.png")
 	new.barTopImage= love.graphics.newImage("Media/barTop.png")
+	new.barrelImage   = love.graphics.newImage("Media/barrel.png")
 	return new
 end
 
@@ -34,6 +35,13 @@ function Entity_Factory:bar(x, y)
 	local entity = Entity:create(x, y, self.barImage, 1, BoundingBox:create(-8,-6,16,14))
 	entity.breakable = true
 	entity.noDrop = true
+	return entity
+end
+
+function Entity_Factory:barrel(x, y)
+	local entity = Entity:create(x, y, self.barrelImage, 1, BoundingBox:create(-8,-6,16,14))
+	entity.breakable = true
+	entity.xp = math.random(4)
 	return entity
 end
 

@@ -25,7 +25,7 @@ function items:update(dt)
 	for i,v in ipairs(self) do
 		local x1,y1,x2,y2 = player:getCorners()
 
-		if(x1-2<v.x and x2+2>v.x and y1-8<v.y and y2+3>v.y) then
+		if(x1-2<v.x and x2+2>v.x and y1-8<v.y and y2+1>v.y) then
 			v.timer = 0
 			if(v.type == "hp") then
 				if(player.hp<maxHealth)then
@@ -46,7 +46,7 @@ end
 function items:draw()
 	for i,v in ipairs(self) do
 		love.graphics.setColor(0, 0, 0, 128)
-			love.graphics.ellipse("fill", math.floor(v.x)+0.5,  math.floor(v.y+2.5)+0.5, 3, 1.5)
+			love.graphics.ellipse("fill", math.floor(v.x)+0.5,  math.floor(v.y+2.5)+0.5, 2.5, 1.5)
 			love.graphics.setColor(255, 255, 255, 255)
 		if v.type == "hp" then
 			
