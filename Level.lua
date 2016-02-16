@@ -126,6 +126,8 @@ function Level:draw()
 end
 
 function Level:generate(index)
+	tileIndex = love.math.random(#tile)
+
 	local room = room[love.math.random(#room)]
 	local locations = {}
 	

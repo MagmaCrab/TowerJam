@@ -1,8 +1,8 @@
 Before release!
-[ ] verwijder enter als go to next level 'cheat'
+[x] verwijder enter als go to next level 'cheat'
 [x] icon
-[ ] executable fixen
-[ ] win condition
+[x] executable fixen
+[x] win condition
 
 Casper
 [ ] muziek
@@ -18,18 +18,15 @@ Hidde
 [-] upgrades
 [ ] selection screen voor upgrades
 [ ] meer enemies
-[ ] menu screen
-
 
 EXTRA
 [ ] Extra hazards
-[ ] Meerdere tiles
+[x] Meerdere tiles
 [ ] Level variatie (cracks in de muren etc.)
 [x] achtergrond menu
-[ ] Intro + endgame cutscenes
+[-] Intro + endgame cutscenes
 [ ] breakable pots
 [ ] extra score/ collectibles?
-
 
 Enemy HP calculatie:
 (Aantal hits nodig voor kill)

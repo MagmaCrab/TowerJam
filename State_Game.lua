@@ -8,6 +8,15 @@ function State_Game:create()
 	local new = {}
 	setmetatable(new,self)
 	self.__index = self
+
+	-- In game variables
+	Door:init()
+	pixelSize = 2
+	tileSize = 16
+	resx = love.graphics.getWidth()  / pixelSize
+	resy = love.graphics.getHeight() / pixelSize
+	canvas = love.graphics.newCanvas(resx, resy)
+
 	--this holds the bindings and name of the keys or buttons
 	--						NAME		KEY		BUTTON		TYPE
 	new.bindings =  {--[[{"sample",	"",			3,		true },]]--
@@ -22,6 +31,17 @@ function State_Game:create()
 	healthImage = love.graphics.newImage("Media/health.png")
 	damageImage = love.graphics.newImage("Media/damage.png")
 
+	tile 	= {	love.graphics.newImage("Media/tile1.png"),
+				love.graphics.newImage("Media/tile2.png"),
+				love.graphics.newImage("Media/tile3.png"),
+				love.graphics.newImage("Media/tile4.png"),
+				love.graphics.newImage("Media/tile5.png"),
+				love.graphics.newImage("Media/tile6.png")}
+	tileIndex = 1
+	for i in ipairs(tile) do
+		tile[i]:setWrap("repeat", "repeat")
+	end
+	tileQuad = love.graphics.newQuad( 0, 0, resy, resy, 16, 16)
 	-- Sounds
 	flailSound  = love.sound.newSoundData("Media/flail.wav",static)
 	hitSound    = love.sound.newSoundData("Media/hit.wav",static)
@@ -38,15 +58,6 @@ function State_Game:create()
 	
 
 	Upgrade:load()
-
-	-- In game variables
-	Door:init()
-	pixelSize = 2
-	tileSize = 16
-	resx = love.graphics.getWidth()  / pixelSize
-	resy = love.graphics.getHeight() / pixelSize
-	canvas = love.graphics.newCanvas(resx, resy)
-
 	new:reset()
 	return new
 end
@@ -64,7 +75,11 @@ end
 function State_Game:draw()
 	-- Draw level
 	love.graphics.setCanvas(canvas)
+
 	love.graphics.clear( )
+
+	love.graphics.draw( tile[tileIndex], tileQuad , 64, 0)
+
 	love.graphics.draw(background)
 	level:draw()
 	love.graphics.draw(guiImage, 1, 250)
@@ -87,7 +102,7 @@ function State_Game:draw()
 end
 
 function State_Game.nextLevel()
-	if(levelIndex == 10) then
+	if(levelIndex == 30) then
 		transition:go(function () stateIndex = 5 end)
 	else
 		levelIndex = levelIndex + 1
