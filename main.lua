@@ -17,6 +17,7 @@ require "State_Game"
 require "State_Main"
 require "State_Menu"
 require "State_Win"
+require "State_LevelUp"
 require "Flail"
 require "Effects"
 require "Item"
@@ -39,7 +40,7 @@ function love.load()
 	else
 		stateIndex = 1
 	end
-	states = {State_Main:create(), State_Game:create(), State_Menu:create(), State_End:create(), State_Win:create()}
+	states = {State_Main:create(), State_Game:create(), State_Menu:create(), State_End:create(), State_Win:create(), State_LevelUp:create()}
 	
 	transition:create()
 	print("System succesfully started")

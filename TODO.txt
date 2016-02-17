@@ -14,7 +14,7 @@ Casper
 
 Hidde
 [ ] menu fixen (options doet niets?)
-[ ] level difficulty control
+[ ] level difficulty control <- moet dat?
 [-] upgrades
 [ ] selection screen voor upgrades
 [-] meer enemies
@@ -27,6 +27,8 @@ EXTRA
 [-] Intro + endgame cutscenes
 [x] breakable pots
 [x] extra score/ collectibles? --> XP
+[ ] death screen / win screen prentje
+[ ] Betere pot placing
 
 Enemy HP calculatie:
 (Aantal hits nodig voor kill)

@@ -114,6 +114,14 @@ function State_Game:draw()
 end
 
 function State_Game.nextLevel()
+	--level up
+	if upgrade_available then
+		player.xp = 0
+		xpNext = math.floor(xpNext * 1.3) -- 12, 15, 19, 24, ...
+		upgrade_available = false
+		transition:go(function () stateIndex = 6 end)
+	end
+
 	if(levelIndex == 30) then
 		transition:go(function () stateIndex = 5 end)
 	else
@@ -135,7 +143,8 @@ function State_Game:key(name, set)
 			transition:go(self.nextLevel)
 		end
 	elseif  name == "Test" then
-		uSpeed:nextLevel()
+		player.xp = player.xp + 1
+		--uSpeed:nextLevel()
 	end
 end
 
@@ -148,7 +157,6 @@ function State_Game:reset()
 	factory = Entity_Factory:create()
 	player = factory:player(194, 32)
 	maxHealth = player.hp
-
 
 	xpNext = 12
 	upgrade_available = false
