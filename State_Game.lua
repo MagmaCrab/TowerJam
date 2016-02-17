@@ -90,9 +90,9 @@ function State_Game:draw()
 	love.graphics.draw(guiImage, 1, 250)
 	for i=1, maxHealth do
 		if i <= player.hp then
-			love.graphics.draw(healthImage, i*5+2, 273)
+			love.graphics.draw(healthImage, i*5+1, 273)
 		else
-			love.graphics.draw(damageImage, i*5+2, 273)
+			love.graphics.draw(damageImage, i*5+1, 273)
 		end
 	end
 	if(upgrade_available and flicker == 0) then

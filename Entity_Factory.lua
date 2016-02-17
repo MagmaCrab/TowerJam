@@ -18,7 +18,7 @@ function Entity_Factory:create()
 end
 
 function Entity_Factory:player(x, y)
-	local entity = Entity:create(x, y, self.playImage, 10, BoundingBox:create(-4,0,8,9))
+	local entity = Entity:create(x, y, self.playImage, 10, BoundingBox:create(-5,0,10,9))
 	entity.ai = Entity_AI:create("player")
 	entity.dynamic = true
 	entity.hp   = 12
