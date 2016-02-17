@@ -37,6 +37,8 @@ function Entity_AI:update(parent, dt)
 		self:approach(parent, dt)
 	elseif current == "explore" then
 		self:explore(parent, dt)
+	elseif current == "run" then
+		self:run(parent, dt)
 	elseif current == "none" then
 		parent.xSpeed = 0
 		parent.ySpeed = 0
@@ -105,6 +107,17 @@ function Entity_AI:approach(parent, dt)
 
 	parent.xSpeed = dx * parent.speed
 	parent.ySpeed = dy * parent.speed
+end
+
+function Entity_AI:run(parent, dt)
+	local dist = ((parent.x-player.x)^2+(parent.y-player.y)^2)^0.5 
+	local dx = (player.x-parent.x) / dist
+	local dy = (player.y-parent.y) / dist
+
+	self.dir = math.atan2(dy,dx)
+
+	parent.xSpeed = -dx * parent.speed
+	parent.ySpeed = -dy * parent.speed
 end
 
 function Entity_AI:explore(parent, dt)

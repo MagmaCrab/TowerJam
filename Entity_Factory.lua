@@ -66,11 +66,11 @@ function Entity_Factory:slimeBig(x, y)
 end
 
 function Entity_Factory:octo(x, y)
-	local entity = Entity:create(x, y, self.octoImage, 3, BoundingBox:create(-5,-1,10,9))
-	entity.ai = Entity_AI:create("roam")
+	local entity = Entity:create(x, y, self.octoImage, 6, BoundingBox:create(-5,-1,10,9))
+	entity.ai = Entity_AI:create("run", "roam", 50)
 	entity.enemy   = true
 	entity.dynamic = true
-	entity.speed   = 10
+	entity.speed   = 12
 	entity.flying = true
 	entity.hp   = 12
 	entity.xp = 3
@@ -85,7 +85,7 @@ function Entity_Factory:slime(x, y)
 	entity.dynamic = true
 	entity.speed   = 20
 	entity.hp   = 9
-	entity.xp = 2
+	entity.xp = math.random(2)
 	entity.damage = 1
 	return entity
 end
