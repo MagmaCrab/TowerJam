@@ -17,7 +17,7 @@ Hidde
 [ ] level difficulty control
 [-] upgrades
 [ ] selection screen voor upgrades
-[ ] meer enemies
+[-] meer enemies
 
 EXTRA
 [ ] Extra hazards

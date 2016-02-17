@@ -22,6 +22,7 @@ require "Effects"
 require "Item"
 require "Transition"
 require "Upgrade"
+require "Bullet"
 
 debug = true
 

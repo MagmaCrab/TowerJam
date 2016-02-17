@@ -58,6 +58,7 @@ function State_Game:create()
 	
 
 	Upgrade:load()
+	bullets:create()
 	new:reset()
 	return new
 end
