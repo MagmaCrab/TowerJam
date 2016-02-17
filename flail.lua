@@ -65,8 +65,8 @@ function flail:update(dt)
 		elseif(self.dir==4) then
 			dx,dy = 0,-1
 		end
-		dx = player.x + dx*24
-		dy = player.y+5 + dy*24
+		dx = player.x +   dx*(24+8*uReach.level)
+		dy = player.y+5 + dy*(24+8*uReach.level)
 
 		self:move(dx,dy,dt)
 	else

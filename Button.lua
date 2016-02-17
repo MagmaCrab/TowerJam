@@ -4,7 +4,7 @@
 
 Button = {}
 
-function Button:create(name,cycle,y)
+function Button:create(name,cycle,y, extraInfo)
 	local new = {}
 	setmetatable(new,self)
 	self.__index = self
@@ -14,6 +14,8 @@ function Button:create(name,cycle,y)
 	new.cycle = cycle
 	new.hover = false
 	new.index = 1
+	new.extraInfo = extraInfo
+
 
 	
 	hoverSound = love.sound.newSoundData("Media/hover.wav",static)
@@ -35,7 +37,11 @@ function Button:draw()
 	else
 		text = self.name..": "..self.cycle[self.index]
 	end
-	love.graphics.printf(text, 0, self.y, love.graphics.getWidth(), "center")
+	if(self.extraInfo) then
+		love.graphics.printf(text .. "  (" .. self.extraInfo .. ")", 0, self.y, love.graphics.getWidth(), "center")
+	else
+		love.graphics.printf(text, 0, self.y, love.graphics.getWidth(), "center")
+	end
 end
 
 function Button:update()

@@ -23,6 +23,7 @@ function Entity_Factory:player(x, y)
 	entity.ai = Entity_AI:create("player")
 	entity.dynamic = true
 	entity.hp   = 12
+	entity.xp = 0
 	entity.damage = 3
 	return entity
 end

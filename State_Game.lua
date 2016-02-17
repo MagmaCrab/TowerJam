@@ -115,10 +115,11 @@ end
 
 function State_Game.nextLevel()
 	--level up
-	if upgrade_available then
+	if upgrade_available and (levelIndex ~= 30) then
 		player.xp = 0
-		xpNext = math.floor(xpNext * 1.3) -- 12, 15, 19, 24, ...
+		xpNext = xpNext + 5 -- 12, 15, 19, 24, ...
 		upgrade_available = false
+		states[6]:reset()
 		transition:go(function () stateIndex = 6 end)
 	end
 
@@ -143,7 +144,9 @@ function State_Game:key(name, set)
 			transition:go(self.nextLevel)
 		end
 	elseif  name == "Test" then
-		player.xp = player.xp + 1
+		if (debug) then
+			player.xp = player.xp + 10
+		end
 		--uSpeed:nextLevel()
 	end
 end

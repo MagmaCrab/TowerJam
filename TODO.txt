@@ -1,34 +1,18 @@
-Before release!
-[x] verwijder enter als go to next level 'cheat'
-[x] icon
-[x] executable fixen
-[x] win condition
-
-Casper
 [-] muziek
 [ ] meer sound fx
-[x] deur animatie om naar volgend level te gaan
-[x] overgangen tussen screens
 [ ] add items to z-ordering
-[x] meerdere dust fx
-
-Hidde
 [ ] menu fixen (options doet niets?)
-[ ] level difficulty control <- moet dat?
-[-] upgrades
-[ ] selection screen voor upgrades
 [-] meer enemies
+
+[ ] level design/ xp scaling/ enemy spawn formule
 
 EXTRA
 [ ] Extra hazards
-[x] Meerdere tiles
 [ ] Level variatie (cracks in de muren etc.)
-[x] achtergrond menu
-[-] Intro + endgame cutscenes
-[x] breakable pots
-[x] extra score/ collectibles? --> XP
-[ ] death screen / win screen prentje
+[ ] Endgame cutscene
+[ ] Death screen / win screen prentje
 [ ] Betere pot placing
+
 
 Enemy HP calculatie:
 (Aantal hits nodig voor kill)

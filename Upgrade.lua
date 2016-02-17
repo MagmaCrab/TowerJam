@@ -2,11 +2,11 @@ Upgrade = {}
 
 function Upgrade:load()
 	uHealth = Upgrade:create("Max Health + 2", 5)
-	uFlail  = Upgrade:create("Charge Attack", 1) --done
-	uReach  = Upgrade:create("Farther Reach", 3)
+	uFlail  = Upgrade:create("Charge Attack", 1)
+	uReach  = Upgrade:create("Farther Reach", 2) 
 	uHeal   = Upgrade:create("Fully Heal", 30)
-	uSpeed  = Upgrade:create("Move Faster", 3)	--done
-	uDamage = Upgrade:create("More Damage", 3)	--done
+	uSpeed  = Upgrade:create("Move Faster", 3)
+	uDamage = Upgrade:create("More Damage", 3)	
 end
 
 function Upgrade:create(description, maxLevel)
@@ -22,11 +22,26 @@ end
 
 function Upgrade:nextLevel()
 	if self.maxLevel > self.level then
+		if(self == uHealth) then
+			maxHealth = maxHealth + 2
+		elseif(self == uHeal) then	
+			player.hp = maxHealth
+		end
+
 		self.level = self.level + 1
-		print(self.description.." upgraded.")
+		print(self.description.." upgraded to level " .. self.level)
 	end
 end
 
 function Upgrade:getButton(height)
-	return Button:create(self.description,{},height)
+	if(self==uHeal) then
+		return Button:create(self.description,{},height)
+	else
+		return Button:create(self.description,{},height,self.level .. "/" .. self.maxLevel)
+	end
+end
+
+
+function Upgrade:available()
+	return (self.level < self.maxLevel)
 end
