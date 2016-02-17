@@ -166,7 +166,7 @@ function Level:generate(index)
 			elseif r< .7 then
 				table.insert(entities, factory:slime(loc[1]*tileSize, loc[2]*tileSize))
 			else
-				table.insert(entities, factory:bat(loc[1]*tileSize, loc[2]*tileSize))
+				table.insert(entities, factory:octo(loc[1]*tileSize, loc[2]*tileSize))
 			end
 		end
 	else

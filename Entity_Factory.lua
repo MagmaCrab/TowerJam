@@ -10,6 +10,7 @@ function Entity_Factory:create()
 	new.rockImage  = love.graphics.newImage("Media/rock.png")
 	new.slimeImage = love.graphics.newImage("Media/slime.png")
 	new.slimeBigImage = love.graphics.newImage("Media/slimeBig.png")
+	new.octoImage = love.graphics.newImage("Media/octo.png")
 	new.batImage   = love.graphics.newImage("Media/bat.png")
 	new.barImage   = love.graphics.newImage("Media/bar.png")
 	new.barTopImage= love.graphics.newImage("Media/barTop.png")
@@ -61,6 +62,19 @@ function Entity_Factory:slimeBig(x, y)
 	entity.speed   = 16
 	entity.hp   = 13
 	entity.damage = 2
+	return entity
+end
+
+function Entity_Factory:octo(x, y)
+	local entity = Entity:create(x, y, self.octoImage, 3, BoundingBox:create(-5,-1,10,9))
+	entity.ai = Entity_AI:create("roam")
+	entity.enemy   = true
+	entity.dynamic = true
+	entity.speed   = 10
+	entity.flying = true
+	entity.hp   = 12
+	entity.xp = 3
+	entity.damage = 1
 	return entity
 end
 
