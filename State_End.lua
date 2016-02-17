@@ -10,7 +10,8 @@ function State_End:create()
 	self.__index = self
 	
 	--initialise all buttons for the menu 
-	qut = Button:create("back to main menu",{},350)
+	qut = Button:create("back to main menu",{},400)
+	skull = love.graphics.newImage("Media/skull.png")
 
 	new.buttons = {qut}
 	--this holds the bindings and name of the keys or buttons
@@ -22,8 +23,8 @@ function State_End:create()
 end
 
 function State_End:reset()
-	local temp       = love.graphics.newScreenshot()
-	screenshot = love.graphics.newImage(temp )
+	local temp = love.graphics.newScreenshot()
+	screenshot = love.graphics.newImage(temp)
 end
 
 function State_End:update(dt)
@@ -40,7 +41,9 @@ function State_End:draw()
 	love.graphics.setColor(50,0,0,200)
 	love.graphics.rectangle("fill",0,0,love.graphics.getWidth(),love.graphics.getHeight())	
 	love.graphics.setColor(255,255,255)
+	love.graphics.draw(skull, 320, 225)
 	love.graphics.printf("GAME OVER",0,100,768,"center")
+	love.graphics.printf("You didn't manage to escape the tower.",0,150,768,"center")
 	
 	--draw buttons
 	for i,v in ipairs(self.buttons) do
@@ -48,8 +51,7 @@ function State_End:draw()
 	end
 end
 
-		--input handling--
-
+--input handling--
 function State_End:movement(x,y)
 
 end

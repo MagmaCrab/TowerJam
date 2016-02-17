@@ -4,15 +4,14 @@
 [ ] menu fixen (options doet niets?)
 [-] meer enemies
 
-[ ] level design/ xp scaling/ enemy spawn formule
+[ ] name ( Renegade, CarcerAlte klint wel vet :P)
+[x] level design/ xp scaling/ enemy spawn formule
 
 EXTRA
 [ ] Extra hazards
 [ ] Level variatie (cracks in de muren etc.)
-[ ] Endgame cutscene
-[ ] Death screen / win screen prentje
-[ ] Betere pot placing
-
+[?] Endgame cutscene
+[x] Death screen / win screen prentje
 
 Enemy HP calculatie:
 (Aantal hits nodig voor kill)

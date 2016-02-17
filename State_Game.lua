@@ -53,7 +53,9 @@ function State_Game:create()
 			love.image.newImageData("Media/rooms/room2.png"),
 			love.image.newImageData("Media/rooms/room3.png"),
 			love.image.newImageData("Media/rooms/room4.png"),
-			love.image.newImageData("Media/rooms/room5.png")}
+			love.image.newImageData("Media/rooms/room5.png"),
+			love.image.newImageData("Media/rooms/room6.png"),
+			love.image.newImageData("Media/rooms/room7.png")}
 
 	
 
@@ -81,9 +83,7 @@ end
 function State_Game:draw()
 	-- Draw level
 	love.graphics.setCanvas(canvas)
-
-	love.graphics.clear( )
-
+	love.graphics.clear()
 	love.graphics.draw( tile[tileIndex], tileQuad , 64, 0)
 
 	love.graphics.draw(background)
@@ -145,7 +145,7 @@ function State_Game:key(name, set)
 		end
 	elseif  name == "Test" then
 		if (debug) then
-			player.xp = player.xp + 10
+			player.xp = player.xp + 5
 		end
 		--uSpeed:nextLevel()
 	end

@@ -11,11 +11,10 @@ function State_LevelUp:create()
 	
 	new.buttons = {}
 
-
 	new.upgrades = {uHeal,
 				uFlail,
 				uReach,
-				uHealth ,
+				uHealth,
 				uSpeed,
 				uDamage}
 

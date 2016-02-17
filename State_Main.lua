@@ -46,10 +46,11 @@ function State_Main:update(dt)
 end
 
 function State_Main:draw()
-	love.graphics.setFont(font)
-
+	love.graphics.setFont(font_title)
 	love.graphics.draw(main_background,-self.timer*1600,-self.timer*50,0,2+self.timer*5)
+	love.graphics.print("Carceralte", 50, 50)
 	--draw buttons
+	love.graphics.setFont(font)
 	for i,v in ipairs(self.buttons) do
 		v:draw()
 	end
@@ -80,6 +81,8 @@ end
 function State_Main:button(name, set)
 	if 	name == "start game" then
 		self.go = true
+	elseif name == "instructions" then
+		stateIndex = 7
 	elseif name == "quit game" then
 		print("Thanks for playing, shutting down system")
 		transition:go(love.event.quit)

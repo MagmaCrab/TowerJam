@@ -39,7 +39,9 @@ function State_Win:draw()
 	--draw background and menu
 	love.graphics.setColor(255,255,255)
 	love.graphics.draw(main_background,0,0,0,2)
-	love.graphics.printf("Thanks for playing!",0,love.graphics.getHeight()-160,768,"center")
+	love.graphics.printf("THANKS FOR PLAYING!",0,200,768,"center")
+	love.graphics.printf("brought to you by",0,340,768,"center")
+	love.graphics.printf("Hidde van Bavel \t&\t Casper van Bavel",0,380,768,"center")
 	
 	--draw buttons
 	for i,v in ipairs(self.buttons) do

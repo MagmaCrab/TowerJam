@@ -25,12 +25,13 @@ require "Transition"
 require "Upgrade"
 require "Bullet"
 
-debug = true
+debug = false
 
 function love.load()
 	--fonts loading
 	font = love.graphics.newFont("Media/runescape_uf.ttf",32)
 	font_gui = love.graphics.newFont("Media/runescape_uf.ttf",16)
+	font_title = love.graphics.newFont("Media/runescape_uf.ttf",64)
 	love.graphics.setFont(font)
 	love.graphics.setDefaultFilter("nearest","nearest",1)
  	love.math.setRandomSeed( os.time() )
