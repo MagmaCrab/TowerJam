@@ -14,11 +14,11 @@ function State_Main:create()
 
 	main_background = love.graphics.newImage("Media/menu_bg.png")
 	--buttons
-	con = Button:create("start game",{} ,love.graphics.getHeight()-160)
-	opt = Button:create("options"   ,{} ,love.graphics.getHeight()-110)
-	qut = Button:create("quit game" ,{} ,love.graphics.getHeight()-60)
+	con = Button:create("Start game",{} ,love.graphics.getHeight()-240)
 
-	new.buttons = { con, opt, qut}
+	qut = Button:create("Quit game" ,{} ,love.graphics.getHeight()-160)
+
+	new.buttons = { con, qut}
 	--this holds the bindings and name of the keys or buttons
 	--					NAME			KEY		BUTTON	PRESSED
 	new.bindings =  {{"Continue",	"",		3,		true},
@@ -79,11 +79,11 @@ function State_Main:key(name)
 end
 
 function State_Main:button(name, set)
-	if 	name == "start game" then
+	if 	name == "Start game" then
 		self.go = true
 	elseif name == "instructions" then
 		stateIndex = 7
-	elseif name == "quit game" then
+	elseif name == "Quit game" then
 		print("Thanks for playing, shutting down system")
 		transition:go(love.event.quit)
 	end

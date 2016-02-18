@@ -71,6 +71,8 @@ function Entity:update(dt)
 			playSound(hitSound)
 		end
 	end
+
+	-- break barrels
 	if (self.breakable and flail.active) then
 		if(self:checkCollisionOther(flail)) then
 			self.death = true
@@ -183,7 +185,10 @@ function Entity:knock(other,speed)
 
 	self.xKnock = dx*self.speed*s
 	self.yKnock = dy*self.speed*s
-	self.tKnock = 0.25
+	
+	if(self.hp>0) then
+		self.tKnock = 0.25
+	end
 
 	if(self == player and other.dynamic and (not self.damaged)) then
 		self.damaged = true

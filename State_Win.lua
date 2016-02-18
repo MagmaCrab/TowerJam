@@ -41,7 +41,7 @@ function State_Win:draw()
 	love.graphics.draw(main_background,0,0,0,2)
 	love.graphics.printf("THANKS FOR PLAYING!",0,200,768,"center")
 	love.graphics.printf("brought to you by",0,340,768,"center")
-	love.graphics.printf("Hidde van Bavel \t&\t Casper van Bavel",0,380,768,"center")
+	love.graphics.printf("Hidde\t&\tCasper van Bavel",0,380,768,"center")
 	
 	--draw buttons
 	for i,v in ipairs(self.buttons) do
