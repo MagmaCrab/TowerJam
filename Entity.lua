@@ -63,7 +63,7 @@ function Entity:update(dt)
 	end
 
 	--check flail for damage
-	if (self ~= player and flail.active and (not self.damaged) and  self.dynamic) then
+	if (self ~= player and flail.active and (not self.damaged) and  self.dynamic and (not self.invincible)) then
 		if(self:checkCollisionOther(flail)) then
 			self:knock(player,6)
 			self.damaged = true
@@ -95,7 +95,7 @@ function Entity:draw()
 		if(self.damaged)then
 		    love.graphics.setColor(255, 0, 0, 255)
 		else
-			love.graphics.setColor(255, 255, 255, love.graphics.setColor(255, 255, 255, 255))
+			love.graphics.setColor(255, 255, 255, 255)
 		end
 	end
 	if(self.hp>0 or flicker==1)then
@@ -187,7 +187,7 @@ function Entity:knock(other,speed)
 	self.yKnock = dy*self.speed*s
 	
 	if(self.hp>0) then
-		self.tKnock = 0.25
+		self.tKnock = 0.20
 	end
 
 	if(self == player and other.dynamic and (not self.damaged)) then

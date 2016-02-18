@@ -93,6 +93,11 @@ function Entity_AI:player(parent, dt)
 			parent.lastDir = 2
 		end
 	end
+	if(dx ~= 0 and dy ~= 0)then
+		dx = dx/math.sqrt(2)
+		dy = dy/math.sqrt(2)
+	end
+
 	parent.xSpeed = dx * (parent.speed + uSpeed.level*10)
 	parent.ySpeed = dy * (parent.speed + uSpeed.level*10)
 end
@@ -147,5 +152,5 @@ end
 function Entity_AI:setShoot(sSpeed, sDamage)
 	self.sSpeed = sSpeed
 	self.sDamage = sDamage
-	self.sTimer = math.random()*sSpeed
+	self.sTimer = math.random()*sSpeed/2
 end

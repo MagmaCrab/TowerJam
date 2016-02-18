@@ -12,6 +12,7 @@ function Entity_Factory:create()
 	new.slimeBigImage = love.graphics.newImage("Media/slimeBig.png")
 	new.octoImage = love.graphics.newImage("Media/octo.png")
 	new.octoTurretImage = love.graphics.newImage("Media/octoTurret.png")
+	new.spikeImage = love.graphics.newImage("Media/spike.png")
 	new.batImage   = love.graphics.newImage("Media/bat.png")
 	new.barImage   = love.graphics.newImage("Media/bar.png")
 	new.barTopImage= love.graphics.newImage("Media/barTop.png")
@@ -70,7 +71,7 @@ end
 function Entity_Factory:octo(x, y)
 	local entity = Entity:create(x, y, self.octoImage, 6, BoundingBox:create(-5,-1,10,9))
 	entity.ai = Entity_AI:create("run", "roam", 50)
-	entity.ai:setShoot(4,1)
+	entity.ai:setShoot(5,1)
 	entity.enemy   = true
 	entity.dynamic = true
 	entity.speed   = 12
@@ -83,14 +84,26 @@ end
 
 function Entity_Factory:octoTurret(x, y)
 	local entity = Entity:create(x, y, self.octoTurretImage, 1, BoundingBox:create(-5,-1,10,9))
-	entity.ai = Entity_AI:create("run", "roam", 50)
-	entity.ai:setShoot(3,2)
+	entity.ai = Entity_AI:create("none")
+	entity.ai:setShoot(6,1)
 	entity.enemy   = true
 	entity.dynamic = true
 	entity.speed   = 0
 	entity.flying = false
 	entity.hp   = 12
 	entity.xp = 3
+	entity.damage = 1
+	return entity
+end
+
+function Entity_Factory:spike(x, y)
+	local entity = Entity:create(x, y, self.spikeImage, 1, BoundingBox:create(-7,-7,14,14))
+	entity.ai = Entity_AI:create("none")
+	entity.enemy   = false
+	entity.dynamic = true
+	entity.speed   = 0
+	entity.flying = false
+	entity.invincible = true
 	entity.damage = 1
 	return entity
 end

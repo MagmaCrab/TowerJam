@@ -12,11 +12,10 @@ function State_Menu:create()
 	
 	
 	--initialise all buttons for the menu 
-	con = Button:create("continue",{},200)
-	bor = Button:create("borderless",{"off","on"},250)
-	qut = Button:create("back to main menu",{},300)
+	con = Button:create("continue",{},275)
+	qut = Button:create("back to main menu",{},350)
 
-	new.buttons = { con, bor, qut}
+	new.buttons = { con, qut}
 	--this holds the bindings and name of the keys or buttons
 	--					NAME		KEY		BUTTON	PRESSED
 	new.bindings =  	{{"Back",	"escape",	10,		false}

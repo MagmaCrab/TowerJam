@@ -33,26 +33,31 @@ function State_Main:update(dt)
 		v:update()
 	end
 
-	if(self.timer > 0.2) then
+	if(self.timer > 0.5) then
 		
 		--self.go = false
 		transition:go(self.button_start)
 		--self.button_start()
 	end
 	if(self.go) then
-		self.timer = self.timer + dt/2
+		self.timer = self.timer + dt/3
 	end
 	
 end
 
 function State_Main:draw()
+	local fade = 1- self.timer
+	love.graphics.setColor(255*fade,255*fade,255*fade)
 	love.graphics.setFont(font_title)
+	
 	love.graphics.draw(main_background,-self.timer*1600,-self.timer*50,0,2+self.timer*5)
-	love.graphics.print("Carceralte", 50, 50)
+	love.graphics.print("Carcerato", 50, 50)
 	--draw buttons
-	love.graphics.setFont(font)
-	for i,v in ipairs(self.buttons) do
-		v:draw()
+	if(not self.go) then
+		love.graphics.setFont(font)
+		for i,v in ipairs(self.buttons) do
+			v:draw()
+		end
 	end
 end
 

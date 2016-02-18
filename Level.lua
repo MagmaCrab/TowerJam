@@ -40,10 +40,10 @@ function Level:update(dt)
 	flail:update(dt)
 	local enemiesCount = 0
 	for i,v in ipairs(entities) do
-
 		if v.enemy then
 			enemiesCount = enemiesCount + 1
 		end
+		
 		if(v~=player and v.death) then
 			effects:add(v.x,v.y)
 
@@ -153,32 +153,37 @@ function Level:generate(index)
 				elseif r == 0 and g == 255   and b == 0 then
 					table.insert(entities, factory:barrel(x*tileSize+8, y*tileSize+8))
 				elseif r == 0 and g == 0   and b == 255 then
-					
+					table.insert(entities, factory:spike(x*tileSize+8, y*tileSize+8))
 				end
 			end
 		end
 		-- add enemies
 		local dif = 3 + 2*math.floor((index-.5)/3)
 		for i=1, dif do
-			loc = locations[love.math.random(#locations)]
-			local r = math.random()
+			local place = love.math.random(#locations)
+			if(locations[place]) then --prevents generating enemies when there are no locations left
+				local loc = locations[place]
+				local r = math.random()
 
-			if r < .2 then
-				table.insert(entities, factory:slimeBig(loc[1], loc[2]))
-			elseif r< .7 then
-				table.insert(entities, factory:slime(loc[1], loc[2]))
-			else
-				table.insert(entities, factory:octoTurret(loc[1], loc[2]))
+				if r < .1 then
+					table.insert(entities, factory:slimeBig(loc[1], loc[2]))
+				elseif r< .4 then
+					table.insert(entities, factory:slime(loc[1], loc[2]))
+				elseif r< .6 then
+					table.insert(entities, factory:bat(loc[1], loc[2]))
+				elseif r< .8 then
+					table.insert(entities, factory:octo(loc[1], loc[2]))
+				else
+					table.insert(entities, factory:octoTurret(loc[1], loc[2]-2))
+					table.remove(locations, place) --never more than one turret in the same spot!
+				end
 			end
 		end
 	else
 		for x=4, room:getWidth()-5 do
-			--for y=0, room:getHeight()-1 do
-
-				table.insert(entities, factory:barTop(x*tileSize+8, 7*tileSize+8))
-				table.insert(entities, factory:bar(x*tileSize+8, 8*tileSize+8))
-			end
-		--end
+			table.insert(entities, factory:barTop(x*tileSize+8, 7*tileSize+8))
+			table.insert(entities, factory:bar(x*tileSize+8, 8*tileSize+8))
+		end
 	end
 
 	--set player at right location and orientation

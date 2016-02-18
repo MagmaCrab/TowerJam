@@ -1,19 +1,18 @@
 [ ] readme niet inpakken
 [ ] deze todo verwijderen
 
+[ ] BULLETS
+[ ] Bug
 [-] muziek
 [ ] meer sound fx
 [ ] add items to z-ordering
 [ ] menu fixen (options doet niets?)
-[-] meer enemies
+[ ] Spikes
 
-[ ] name ( Renegade, CarcerAlte klint wel vet :P)
 [ ] level design/ xp scaling/ enemy spawn formule
 
 
 EXTRA
-[ ] Extra hazards
-[ ] Level variatie (cracks in de muren etc.)
 [?] Endgame cutscene
 
 
