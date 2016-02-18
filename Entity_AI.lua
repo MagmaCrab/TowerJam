@@ -20,6 +20,8 @@ function Entity_AI:create(active, passive, range)
 	new.passive = passive
 	new.range   = range or -1
 
+
+
 	return new
 end
 
@@ -44,6 +46,14 @@ function Entity_AI:update(parent, dt)
 		parent.ySpeed = 0
 	else
 		print("invalid AI type.")
+	end
+
+	if(self.sSpeed and (not parent.damaged)) then
+		self.sTimer = self.sTimer + dt
+		if(self.sTimer > self.sSpeed) then
+			bullets:add(parent.x,parent.y-4,self.sDamage)
+			self.sTimer = 0
+		end
 	end
 end
 
@@ -132,4 +142,10 @@ function Entity_AI:explore(parent, dt)
 	dy = math.sin(self.dir)
 	parent.xSpeed = dx * parent.speed
 	parent.ySpeed = dy * parent.speed
+end
+
+function Entity_AI:setShoot(sSpeed, sDamage)
+	self.sSpeed = sSpeed
+	self.sDamage = sDamage
+	self.sTimer = math.random()*sSpeed
 end

@@ -36,6 +36,7 @@ function Level:update(dt)
 		v:update(dt)
 	end
 
+	bullets:update(dt)
 	flail:update(dt)
 	local enemiesCount = 0
 	for i,v in ipairs(entities) do
@@ -117,6 +118,7 @@ function Level:draw()
 	end	
 
 	items:draw()
+	bullets:draw()
 	effects:draw()
 
 
@@ -147,7 +149,7 @@ function Level:generate(index)
 				if     r == 255 and g == 255 and b == 255 then
 					table.insert(entities, factory:rock(x*tileSize+8, y*tileSize+8))
 				elseif r == 255 and g == 0   and b == 0 then
-					table.insert(locations, {x, y})
+					table.insert(locations, {x*tileSize+8, y*tileSize+8})
 				elseif r == 0 and g == 255   and b == 0 then
 					table.insert(entities, factory:barrel(x*tileSize+8, y*tileSize+8))
 				elseif r == 0 and g == 0   and b == 255 then
@@ -162,11 +164,11 @@ function Level:generate(index)
 			local r = math.random()
 
 			if r < .2 then
-				table.insert(entities, factory:slimeBig(loc[1]*tileSize, loc[2]*tileSize))
+				table.insert(entities, factory:slimeBig(loc[1], loc[2]))
 			elseif r< .7 then
-				table.insert(entities, factory:slime(loc[1]*tileSize, loc[2]*tileSize))
+				table.insert(entities, factory:slime(loc[1], loc[2]))
 			else
-				table.insert(entities, factory:octo(loc[1]*tileSize, loc[2]*tileSize))
+				table.insert(entities, factory:octoTurret(loc[1], loc[2]))
 			end
 		end
 	else
