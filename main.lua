@@ -25,7 +25,7 @@ require "Transition"
 require "Upgrade"
 require "Bullet"
 
-debug = false
+debug = true
 
 function love.load()
 	--fonts loading
@@ -36,13 +36,14 @@ function love.load()
 	love.graphics.setDefaultFilter("nearest","nearest",1)
  	love.math.setRandomSeed( os.time() )
 	--Gamestates
+	
+	states = {State_Main:create(), State_Game:create(), State_Menu:create(), State_End:create(), State_Win:create(), State_LevelUp:create()}
 	if(debug) then
 		stateIndex = 2
+		states[stateIndex]:reset()
 	else
 		stateIndex = 1
 	end
-	states = {State_Main:create(), State_Game:create(), State_Menu:create(), State_End:create(), State_Win:create(), State_LevelUp:create()}
-	
 	transition:create()
 	print("System succesfully started")
 end

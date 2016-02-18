@@ -11,12 +11,7 @@ function State_LevelUp:create()
 	
 	new.buttons = {}
 
-	new.upgrades = {uHeal,
-				uFlail,
-				uReach,
-				uHealth,
-				uSpeed,
-				uDamage}
+	new.upgrades = {}
 
 	--this holds the bindings and name of the keys or buttons
 	--					NAME		KEY		BUTTON	PRESSED
@@ -28,6 +23,13 @@ end
 
 function State_LevelUp:reset()
 	self.buttons = {}
+
+	self.upgrades = {uHeal,
+				uFlail,
+				uReach,
+				uHealth,
+				uSpeed,
+				uDamage}
 
 	local temp = love.graphics.newScreenshot()
 	screenshot = love.graphics.newImage(temp )
@@ -55,6 +57,8 @@ function State_LevelUp:reset()
 		table.insert(self.buttons, available_upgrades[u1]:getButton(150+2*75))
 		table.insert(self.buttons, available_upgrades[u2]:getButton(150+3*75))
 	end
+
+	
 end
 
 function State_LevelUp:update(dt)
