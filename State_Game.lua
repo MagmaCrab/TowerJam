@@ -57,9 +57,6 @@ function State_Game:create()
 			love.image.newImageData("Media/rooms/room6.png"),
 			love.image.newImageData("Media/rooms/room7.png")}
 
-	
-
-	Upgrade:load()
 	bullets:create()
 	new:reset()
 	return new
@@ -160,6 +157,7 @@ function State_Game:reset()
 	factory = Entity_Factory:create()
 	player = factory:player(194, 32)
 	maxHealth = player.hp
+	Upgrade:load()
 
 	xpNext = 12
 	upgrade_available = false
