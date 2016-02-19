@@ -124,7 +124,7 @@ function State_Game.nextLevel()
 	--level up
 	if upgrade_available and (levelIndex ~= 30) then
 		player.xp = 0
-		xpNext = xpNext + 5 -- 12, 15, 19, 24, ...
+		xpNext = xpNext + 3 -- 12, 15, 19, 24, ...
 		upgrade_available = false
 		states[6]:reset()
 		transition:go(function () stateIndex = 6 end)

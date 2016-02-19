@@ -16,7 +16,7 @@ function items:add(x,y,type,val)
 	item.x=x
 	item.y=y
 	item.type = type or "hp"
-	item.timer = 5
+	item.timer = 7
 	item.val = val or 1
 	table.insert(items, item)
 end

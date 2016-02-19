@@ -14,7 +14,7 @@ function Entity_AI:create(active, passive, range)
 
 	new.dir = love.math.random(0, 2*math.pi)
 	new.difDir = 0.001
-	new.maxTimer = 0.3
+	new.maxTimer = 0.5
 	new.timer = math.random()*new.maxTimer
 	new.active  = active
 	new.passive = passive

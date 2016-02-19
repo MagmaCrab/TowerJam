@@ -60,7 +60,7 @@ end
 function Entity_Factory:octo(x, y)
 	local entity = Entity:create(x, y, self.octoImage, 6, BoundingBox:create(-5,-1,10,9))
 	entity.ai = Entity_AI:create("run", "roam", 50)
-	entity.ai:setShoot(3,1)
+	entity.ai:setShoot(5,1)
 	entity.enemy   = true
 	entity.dynamic = true
 	entity.speed   = 12
@@ -74,7 +74,7 @@ end
 function Entity_Factory:octoTurret(x, y)
 	local entity = Entity:create(x, y, self.octoTurretImage, 1, BoundingBox:create(-5,-1,10,9))
 	entity.ai = Entity_AI:create("none")
-	entity.ai:setShoot(6,1)
+	entity.ai:setShoot(7,1)
 	entity.enemy   = true
 	entity.dynamic = true
 	entity.speed   = 0
@@ -128,9 +128,9 @@ function Entity_Factory:bat(x, y)
 	entity.enemy   = true
 	entity.dynamic = true
 	entity.flying = true
-	entity.speed   = 50
+	entity.speed   = 30
 	entity.hp   = 3.5
-	entity.xp = 1
+	entity.xp = math.random(2)
 	entity.ai.difDir = .02
 	return entity
 end

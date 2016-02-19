@@ -170,17 +170,57 @@ function Level:generate(index)
 				local loc = locations[place]
 				local r = math.random()
 
-				if r < .1 then
-					table.insert(entities, factory:slimeBig(loc[1], loc[2]))
-				elseif r< .4 then
-					table.insert(entities, factory:slime(loc[1], loc[2]))
-				elseif r< .6 then
-					table.insert(entities, factory:bat(loc[1], loc[2]))
-				elseif r< .8 then
-					table.insert(entities, factory:octo(loc[1], loc[2]))
-				else
-					table.insert(entities, factory:octoTurret(loc[1], loc[2]-2))
-					table.remove(locations, place) --never more than one turret in the same spot!
+				if(index<3) then
+					if r < .7 then
+						table.insert(entities, factory:slime(loc[1], loc[2]))
+					else
+						table.insert(entities, factory:bat(loc[1], loc[2]))
+					end
+				elseif(index<6) then
+					if r < .05 then
+						table.insert(entities, factory:slimeBig(loc[1], loc[2]))
+					elseif r< .7 then
+						table.insert(entities, factory:slime(loc[1], loc[2]))
+					else
+						table.insert(entities, factory:bat(loc[1], loc[2]))
+					end
+				elseif(index<9) then
+					if r < .1 then
+						table.insert(entities, factory:slimeBig(loc[1], loc[2]))
+					elseif r< .55 then
+						table.insert(entities, factory:slime(loc[1], loc[2]))
+					elseif r< .9 then
+						table.insert(entities, factory:bat(loc[1], loc[2]))
+					else
+						table.insert(entities, factory:octoTurret(loc[1], loc[2]-2))
+						table.remove(locations, place) --never more than one turret in the same spot!
+					end
+				elseif(index<18) then
+					if r < .1 then
+						table.insert(entities, factory:slimeBig(loc[1], loc[2]))
+					elseif r< .45 then
+						table.insert(entities, factory:slime(loc[1], loc[2]))
+					elseif r< .8 then
+						table.insert(entities, factory:bat(loc[1], loc[2]))
+					elseif r< .9 then
+						table.insert(entities, factory:octo(loc[1], loc[2]))
+					else
+						table.insert(entities, factory:octoTurret(loc[1], loc[2]-2))
+						table.remove(locations, place) --never more than one turret in the same spot!
+					end
+				else 
+					if r < .15 then
+						table.insert(entities, factory:slimeBig(loc[1], loc[2]))
+					elseif r< .4 then
+						table.insert(entities, factory:slime(loc[1], loc[2]))
+					elseif r< .75 then
+						table.insert(entities, factory:bat(loc[1], loc[2]))
+					elseif r< .9 then
+						table.insert(entities, factory:octo(loc[1], loc[2]))
+					else
+						table.insert(entities, factory:octoTurret(loc[1], loc[2]-2))
+						table.remove(locations, place) --never more than one turret in the same spot!
+					end
 				end
 			end
 		end

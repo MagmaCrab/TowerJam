@@ -56,7 +56,7 @@ function Bullet:update(dt)
 
 	local x1,y1,x2,y2 = player:getCorners()
 	if  x1 < self.x and self.x < x2
-	and y1 < self.y and self.y < y2 then
+	and y1-1 < self.y and self.y < y2 then
 		player.damaged = true
 		player.hp = player.hp - self.damage
 		playSound(damageSound)
