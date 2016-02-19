@@ -31,7 +31,9 @@ function items:update(dt)
 				if(player.hp<maxHealth)then
 					player.hp = player.hp+1
 				end
+				playSound(heartSound)
 			else
+				playSound(xpSound)
 				player.xp = player.xp + v.val
 			end
 		end

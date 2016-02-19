@@ -25,7 +25,7 @@ require "Transition"
 require "Upgrade"
 require "Bullet"
 
-debug = true
+debug = false
 
 
 function love.load()
@@ -36,6 +36,17 @@ function love.load()
 	love.graphics.setFont(font)
 	love.graphics.setDefaultFilter("nearest","nearest",1)
  	love.math.setRandomSeed( os.time() )
+
+ 	menuM = love.sound.newSoundData("Media/menuM.wav")
+ 	mainM = love.sound.newSoundData("Media/mainM.wav")
+ 	winM =  love.sound.newSoundData("Media/winM.wav")
+
+ 	menuMusic = love.audio.newSource(menuM, "stream")
+ 	mainMusic = love.audio.newSource(mainM, "stream")
+ 	winMusic = love.audio.newSource(winM, "stream")
+
+
+ 	music = nil
 	--Gamestates
 	
 	states = {State_Main:create(), State_Game:create(), State_Menu:create(), State_End:create(), State_Win:create(), State_LevelUp:create()}
@@ -52,6 +63,14 @@ end
 function love.update(dt)
 	transition:update(dt)
 	states[stateIndex]:update(dt)
+
+	if (stateIndex == 1 or stateIndex == 4) then
+		playMusic(menuMusic)
+	elseif (stateIndex == 2) then
+		playMusic(mainMusic)
+	elseif (stateIndex == 5) then
+		playMusic(winMusic)
+	end
 end
 
 function love.draw()
@@ -87,4 +106,22 @@ end
 
 function love.mousereleased(x, y, button)
 	InputHandler:mousereleased(x, y, button)
+end
+
+function playSound(sd)
+  love.audio.newSource(sd, "static"):play()
+end
+
+function playMusic(md)
+	if(music ~= md) then
+		if(music) then
+			music:stop()
+		end
+		if (md) then
+			music = md
+			music:play()
+			music:setLooping(true)
+			music:setVolume(0.2)
+		end
+	end
 end

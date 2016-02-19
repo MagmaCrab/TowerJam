@@ -10,6 +10,7 @@ function flail:create()
 	self.dynamic = true
 	self.swirl = false
 	self.h = 0
+	self.charged = false
 	self.bb = BoundingBox:create(-4,-4,7,7)
 
 	self.image  	  = love.graphics.newImage("Media/flail.png")
@@ -26,6 +27,14 @@ function flail:update(dt)
 		end
 	else
 		timer_swirl = 0
+		charged = false
+	end
+
+	if(timer_swirl > 0.5) then
+		if not charged then
+			playSound(chargeSound)
+		end
+		charged = true
 	end
 
 	--heigth
@@ -115,7 +124,7 @@ function flail:draw()
 	end
 	love.graphics.draw(self.image,math.floor(self.x)-3,math.floor(self.y-self.h)-3)
 
-	if(timer_swirl > 0.5 and flicker == 1)then
+	if(charged and flicker == 1)then
 		love.graphics.draw(self.imageCharge,math.floor(self.x)-3,math.floor(self.y-self.h)-3)
 	end
 end

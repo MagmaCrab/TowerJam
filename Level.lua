@@ -73,8 +73,13 @@ function Level:update(dt)
 	end
 	--conditions for starting animation to go to next room
 	if(level.cleared and player.x > 192-3 and player.x < 192+3 and ((player.y>256-2 and self.index%2 == 0) or (player.y<32-2 and self.index%2 == 1)) ) then
+		if not level.walkStairs then
+			playSound(stairsSound)
+		end
+
 		level.walkStairs = true
 		transition:go(states[stateIndex].nextLevel)
+
 	end
 	effects:update(dt)
 end
@@ -158,7 +163,7 @@ function Level:generate(index)
 			end
 		end
 		-- add enemies
-		local dif = 3 + 2*math.floor((index-.5)/3)
+		local dif = 4 + math.floor((index-.5)/3)
 		for i=1, dif do
 			local place = love.math.random(#locations)
 			if(locations[place]) then --prevents generating enemies when there are no locations left

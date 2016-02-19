@@ -18,8 +18,8 @@ function Button:create(name,cycle,y, extraInfo)
 
 
 	
-	hoverSound = love.sound.newSoundData("Media/hover.wav",static)
-	clickSound = love.sound.newSoundData("Media/click.wav",static)
+	hoverSound = love.sound.newSoundData("Media/hover.wav")
+	clickSound = love.sound.newSoundData("Media/click.wav")
 	return new
 end
 
@@ -69,6 +69,3 @@ function Button:action(x, y, button, pressed)
 	end
 end
 
-function playSound(sd)
-  love.audio.newSource(sd, "static"):play()
-end

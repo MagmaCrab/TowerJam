@@ -1,16 +1,13 @@
 [ ] readme niet inpakken
+
 [ ] deze todo verwijderen
 
-[ ] BULLETS
-[ ] Bug
-[-] muziek
-[ ] meer sound fx
+[x] muziek
+[x] meer sound fx
 [ ] add items to z-ordering
-[ ] menu fixen (options doet niets?)
-[ ] Spikes
 
 [ ] level design/ xp scaling/ enemy spawn formule
-
+[ ] check hoofdletters
 
 EXTRA
 [?] Endgame cutscene

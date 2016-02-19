@@ -43,10 +43,16 @@ function State_Game:create()
 	end
 	tileQuad = love.graphics.newQuad( 0, 0, resy, resy, 16, 16)
 	-- Sounds
-	flailSound  = love.sound.newSoundData("Media/flail.wav",static)
-	hitSound    = love.sound.newSoundData("Media/hit.wav",static)
-	damageSound = love.sound.newSoundData("Media/damage.wav",static)
-	killSound   = love.sound.newSoundData("Media/kill.wav",static)
+	chargeSound   = love.sound.newSoundData("Media/charge.wav")
+	damageSound   = love.sound.newSoundData("Media/damage.wav")
+	flailSound  = love.sound.newSoundData("Media/flail.wav")
+	fullSound  = love.sound.newSoundData("Media/full.wav")
+	heartSound  = love.sound.newSoundData("Media/heart.wav")
+	hitSound    = love.sound.newSoundData("Media/hit.wav")
+	killSound  = love.sound.newSoundData("Media/kill.wav")
+	shootSound  = love.sound.newSoundData("Media/shoot.wav")
+	stairsSound  = love.sound.newSoundData("Media/stairs.wav")
+	xpSound  = love.sound.newSoundData("Media/xp.wav")
 
 	-- Rooms
 	room = {love.image.newImageData("Media/rooms/room1.png"),
@@ -73,6 +79,10 @@ function State_Game:update(dt)
 
 	if player.xp>=xpNext then
 		player.xp=xpNext
+		if not upgrade_available then
+			playSound(fullSound)
+		end
+
 		upgrade_available = true
 	end
 end
@@ -121,7 +131,7 @@ function State_Game.nextLevel()
 	end
 
 	if(levelIndex == 30) then
-		transition:go(function () stateIndex = 5 end)
+		transition:go(win())
 	else
 		levelIndex = levelIndex + 1
 		print("ascending to level "..levelIndex..".")
@@ -174,4 +184,9 @@ end
 
 function State_Game:mouse(x, y, mouseButton, pressed)
 
+end
+
+function win()
+	stateIndex = 5
+	states[stateIndex]:reset()
 end

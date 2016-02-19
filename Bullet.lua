@@ -23,8 +23,9 @@ end
 
 function bullets:add(x,y,speed,damage)
 	local t = Bullet:create(x,y,speed,damage)
-
 	table.insert(self,t)
+
+	playSound(shootSound)
 end
 
 Bullet = {}
@@ -60,6 +61,8 @@ function Bullet:update(dt)
 		player.hp = player.hp - self.damage
 		playSound(damageSound)
 		player.tKnock = 0.10
+		player.xKnock = 0
+		player.yKnock = 0
 		self.timer = 0
 	end
 end

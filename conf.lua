@@ -5,7 +5,7 @@
 function love.conf(t)
 	t.screen = t.screen or t.window
 	
-	t.title = "Tower Jam"
+	t.title = "Carcerato"
 	io.stdout:setvbuf("no")
 	
 	t.screen.width = 768

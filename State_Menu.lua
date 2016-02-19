@@ -9,11 +9,9 @@ function State_Menu:create()
 	setmetatable(new,self)
 	self.__index = self
 
-	
-	
 	--initialise all buttons for the menu 
-	con = Button:create("continue",{},275)
-	qut = Button:create("back to main menu",{},350)
+	con = Button:create("Continue",{},275)
+	qut = Button:create("Back to main menu",{},350)
 
 	new.buttons = { con, qut}
 	--this holds the bindings and name of the keys or buttons
@@ -70,11 +68,11 @@ function State_Menu:key(name)
 end
 
 function State_Menu:button(name,set)
-	if 		name == "continue" then
+	if 		name == "Continue" then
 		stateIndex = 2
-	elseif name == "back to main menu" then
+	elseif name == "Back to main menu" then
 		transition:go(function () stateIndex = 1 end)
-	elseif name == "borderless" then
+	elseif name == "Borderless" then
 		if set == "on" then
 			love.window.setMode( love.graphics.getWidth(), love.graphics.getHeight(), {borderless  = true})
 		else

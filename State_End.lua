@@ -10,7 +10,7 @@ function State_End:create()
 	self.__index = self
 	
 	--initialise all buttons for the menu 
-	qut = Button:create("back to main menu",{},400)
+	qut = Button:create("Back to main menu",{},400)
 	skull = love.graphics.newImage("Media/skull.png")
 
 	new.buttons = {qut}
@@ -68,7 +68,7 @@ function State_End:key(name)
 end
 
 function State_End:button(name,set)
-	if name == "back to main menu" then
+	if name == "Back to main menu" then
 		transition:go(function () stateIndex = 1 end)
 	end
 end

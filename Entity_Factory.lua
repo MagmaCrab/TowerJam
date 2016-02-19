@@ -55,23 +55,12 @@ function Entity_Factory:barTop(x, y)
 	return entity
 end
 
-function Entity_Factory:slimeBig(x, y)
-	local entity = Entity:create(x, y, self.slimeBigImage, 3)
-	entity.ai = Entity_AI:create("approach", "roam", 50)
-	entity.bigSlime = true
-	entity.noDrop = true
-	entity.enemy   = true
-	entity.dynamic = true
-	entity.speed   = 16
-	entity.hp   = 13
-	entity.damage = 2
-	return entity
-end
+
 
 function Entity_Factory:octo(x, y)
 	local entity = Entity:create(x, y, self.octoImage, 6, BoundingBox:create(-5,-1,10,9))
 	entity.ai = Entity_AI:create("run", "roam", 50)
-	entity.ai:setShoot(5,1)
+	entity.ai:setShoot(3,1)
 	entity.enemy   = true
 	entity.dynamic = true
 	entity.speed   = 12
@@ -90,7 +79,7 @@ function Entity_Factory:octoTurret(x, y)
 	entity.dynamic = true
 	entity.speed   = 0
 	entity.flying = false
-	entity.hp   = 12
+	entity.hp   = 9
 	entity.xp = 3
 	entity.damage = 1
 	return entity
@@ -114,12 +103,24 @@ function Entity_Factory:slime(x, y)
 	entity.enemy   = true
 	entity.dynamic = true
 	entity.speed   = 20
-	entity.hp   = 9
+	entity.hp   = 8
 	entity.xp = math.random(2)
 	entity.damage = 1
 	return entity
 end
 
+function Entity_Factory:slimeBig(x, y)
+	local entity = Entity:create(x, y, self.slimeBigImage, 3)
+	entity.ai = Entity_AI:create("approach", "roam", 50)
+	entity.bigSlime = true
+	entity.noDrop = true
+	entity.enemy   = true
+	entity.dynamic = true
+	entity.speed   = 16
+	entity.hp   = 13
+	entity.damage = 2
+	return entity
+end
 
 function Entity_Factory:bat(x, y)
 	local entity = Entity:create(x, y, self.batImage, 15)
@@ -128,7 +129,7 @@ function Entity_Factory:bat(x, y)
 	entity.dynamic = true
 	entity.flying = true
 	entity.speed   = 50
-	entity.hp   = 4
+	entity.hp   = 3.5
 	entity.xp = 1
 	entity.ai.difDir = .02
 	return entity

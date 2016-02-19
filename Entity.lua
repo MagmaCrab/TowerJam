@@ -76,7 +76,6 @@ function Entity:update(dt)
 	if (self.breakable and flail.active) then
 		if(self:checkCollisionOther(flail)) then
 			self.death = true
-			playSound(hitSound)
 		end
 	end
 
@@ -168,7 +167,7 @@ function Entity:getCorners()
 end
 
 function Entity:knock(other,speed)
-	local s = speed or 1.6
+	local s = speed or 1.4
 	local dx = self.x-other.x
 	local dy = self.y-other.y
 	local dist = (dx^2+dy^2)^0.5

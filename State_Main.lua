@@ -14,9 +14,9 @@ function State_Main:create()
 
 	main_background = love.graphics.newImage("Media/menu_bg.png")
 	--buttons
-	con = Button:create("Start game",{} ,love.graphics.getHeight()-240)
+	con = Button:create("Start game",{} ,love.graphics.getHeight()-220)
 
-	qut = Button:create("Quit game" ,{} ,love.graphics.getHeight()-160)
+	qut = Button:create("Quit game" ,{} ,love.graphics.getHeight()-130)
 
 	new.buttons = { con, qut}
 	--this holds the bindings and name of the keys or buttons

@@ -72,7 +72,7 @@ function State_LevelUp:draw()
 	love.graphics.setFont(font)
 	--draw background and menu
 	love.graphics.draw(screenshot,0,0)
-	love.graphics.setColor(50,50,50,200)
+	love.graphics.setColor(10,10,10,255)
 	love.graphics.rectangle("fill",0,0,love.graphics.getWidth(),love.graphics.getHeight())	
 	love.graphics.setColor(255,255,255)
 	love.graphics.printf("CHOOSE UPGRADE",0,100,768,"center")
