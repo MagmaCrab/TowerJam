@@ -10,7 +10,7 @@ Swing the ball and chain with space, and pause the game by pressing escape.
 When you've unlocked the charge upgrade, you can hold space to release a 
 devastating swing attack.
 
-Kill al enemies to advance to the next level. When you've collected enough XP,
+Kill all enemies to advance to the next level. When you've collected enough XP,
 you may choose an upgrade to improve the character's skills
 
 You win when you descend all 30 levels of the tower!
