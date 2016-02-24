@@ -25,7 +25,7 @@ require "Transition"
 require "Upgrade"
 require "Bullet"
 
-debug = false
+debug = true
 
 
 function love.load()

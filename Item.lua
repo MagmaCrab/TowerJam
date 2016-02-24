@@ -28,7 +28,7 @@ function items:update(dt)
 		if(x1-2<v.x and x2+2>v.x and y1-8<v.y and y2+1>v.y) then
 			v.timer = 0
 			if(v.type == "hp") then
-				if(player.hp<maxHealth)then
+				if player.hp < maxHealth then
 					player.hp = player.hp+1
 				end
 				playSound(heartSound)
@@ -38,8 +38,16 @@ function items:update(dt)
 			end
 		end
 
-		v.timer = v.timer-dt
-		if(v.timer<0) then
+		-- move slowly towards player when they are near eachother
+		local dist = ((v.x-player.x)^2+(v.y-player.y)^2)^0.5
+		local attr = .03*uAttract.level
+		if dist < 20+10*uAttract.level then 
+			v.x = v.x+(player.x-v.x)/dist * attr
+			v.y = v.y+(player.y-v.y)/dist * attr
+		end
+
+		v.timer = v.timer - dt
+		if v.timer < 0 then
 			table.remove(self,i)
 		end
 	end
