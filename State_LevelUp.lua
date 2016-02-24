@@ -29,8 +29,7 @@ function State_LevelUp:reset()
 				uReach,
 				uHealth,
 				uSpeed,
-				uDamage,
-				uAttract}
+				uDamage}
 
 	local temp = love.graphics.newScreenshot()
 	screenshot = love.graphics.newImage(temp )

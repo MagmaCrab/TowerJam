@@ -189,9 +189,9 @@ function Entity:knock(other,speed)
 		self.tKnock = 0.20
 	end
 
-	-- easy workaround
 	if(self ~= player and self.damaged and other.speed == 0) then
 		self.hp = self.hp -1
+		print("workaround for error")
 	end
 
 	if(self == player and other.dynamic and (not self.damaged)) then

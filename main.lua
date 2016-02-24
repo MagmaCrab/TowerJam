@@ -27,6 +27,7 @@ require "Bullet"
 
 debug = false
 
+
 function love.load()
 	--fonts loading
 	font = love.graphics.newFont("Media/runescape_uf.ttf",32)
