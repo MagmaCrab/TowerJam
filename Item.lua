@@ -40,10 +40,10 @@ function items:update(dt)
 
 		-- move slowly towards player when they are near eachother
 		local dist = ((v.x-player.x)^2+(v.y-player.y)^2)^0.5
-		local attr = .03*uAttract.level
-		if dist < 20+10*uAttract.level then 
-			v.x = v.x+(player.x-v.x)/dist * attr
-			v.y = v.y+(player.y-v.y)/dist * attr
+		local attr = 10*uAttract.level
+		if dist < 30*uAttract.level then 
+			v.x = v.x+(player.x-v.x)/dist*attr*dt
+			v.y = v.y+(player.y-v.y)/dist*attr*dt
 		end
 
 		v.timer = v.timer - dt

@@ -15,7 +15,6 @@ function State_Main:create()
 	main_background = love.graphics.newImage("Media/menu_bg.png")
 	--buttons
 	con = Button:create("Start game",{} ,love.graphics.getHeight()-220)
-
 	qut = Button:create("Quit game" ,{} ,love.graphics.getHeight()-130)
 
 	new.buttons = { con, qut}

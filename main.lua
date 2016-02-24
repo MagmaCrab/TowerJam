@@ -25,8 +25,7 @@ require "Transition"
 require "Upgrade"
 require "Bullet"
 
-debug = true
-
+debug = false
 
 function love.load()
 	--fonts loading
