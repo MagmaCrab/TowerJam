@@ -1,0 +1,17 @@
+Mini bosses
+Better enemy spawning
+ - groups
+ - point system
+Alternative challanges
+ - hazards
+ - puzzles
+Variation in rooms
+BoI-style items
+Better flail handling
+ - diagonal
+ - auto aim (?)
+Items attracted to player
+Simple achievements
+Multiple difficulties/levels?
+Unlockables
+->REPLAY VALUE
