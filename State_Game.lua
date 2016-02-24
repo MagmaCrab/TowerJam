@@ -134,7 +134,7 @@ function State_Game.nextLevel()
 		transition:go(win())
 	else
 		levelIndex = levelIndex + 1
-		print("ascending to level "..levelIndex..".")
+		print("descending to level "..levelIndex..".")
 		level = Level:create(levelIndex)
 	end
 end
@@ -154,7 +154,6 @@ function State_Game:key(name, set)
 		if (debug) then
 			player.xp = player.xp + 5
 		end
-		--uSpeed:nextLevel()
 	end
 end
 

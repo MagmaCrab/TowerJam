@@ -42,7 +42,6 @@ function Upgrade:getButton(height)
 	end
 end
 
-
 function Upgrade:available()
 	return (self.level < self.maxLevel)
 end

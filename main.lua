@@ -44,10 +44,9 @@ function love.load()
  	mainMusic = love.audio.newSource(mainM, "stream")
  	winMusic = love.audio.newSource(winM, "stream")
 
-
  	music = nil
+ 	
 	--Gamestates
-	
 	states = {State_Main:create(), State_Game:create(), State_Menu:create(), State_End:create(), State_Win:create(), State_LevelUp:create()}
 	if(debug) then
 		stateIndex = 2

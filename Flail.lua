@@ -13,9 +13,14 @@ function flail:create()
 	self.charged = false
 	self.bb = BoundingBox:create(-4,-4,7,7)
 
-	self.image  	  = love.graphics.newImage("Media/flail.png")
-	self.imageCharge  = love.graphics.newImage("Media/flailCharge.png")
-	self.imageBit     = love.graphics.newImage("Media/flailBit.png")
+	self.imageCharge = love.graphics.newImage("Media/flailCharge.png")
+	self.imageBall 	 = {love.graphics.newImage("Media/flail0.png"),
+						love.graphics.newImage("Media/flail1.png"),
+						love.graphics.newImage("Media/flail2.png"),
+						love.graphics.newImage("Media/flail3.png")}
+	self.imageBits   = {love.graphics.newImage("Media/flailBit0.png"),
+						love.graphics.newImage("Media/flailBit1.png"),
+						love.graphics.newImage("Media/flailBit2.png")}
 end
 
 function flail:update(dt)
@@ -114,18 +119,24 @@ function flail:attackswirl()
 end
 
 function flail:draw()
+	-- Draw shade
 	love.graphics.setColor(0, 0, 0, 128)
 	love.graphics.ellipse("fill", math.floor(self.x),  math.floor(self.y)+2, 3, 2)
 	love.graphics.setColor(255, 255, 255, 255)
-	
-	for i=1,5 do
-		local l = i/5.0
-		love.graphics.draw(self.imageBit,math.floor(self.x*l+player.x*(1-l))-1,math.floor((self.y-self.h)*l+(player.y+5)*(1-l))-1)
-	end
-	love.graphics.draw(self.image,math.floor(self.x)-3,math.floor(self.y-self.h)-3)
 
+	-- Draw chain
+	for i=1, 5 do
+		local l = i/5.0
+		local img = self.imageBits[uReach.level+1]
+		love.graphics.draw(img,math.floor(self.x*l+player.x*(1-l))-1,math.floor((self.y-self.h)*l+(player.y+5)*(1-l))-1)
+	end
+	
+	--Draw ball
 	if(charged and flicker == 1)then
 		love.graphics.draw(self.imageCharge,math.floor(self.x)-3,math.floor(self.y-self.h)-3)
+	else
+		local img = self.imageBall[uDamage.level+1]
+		love.graphics.draw(img,math.floor(self.x)-3,math.floor(self.y-self.h)-3)
 	end
 end
 
